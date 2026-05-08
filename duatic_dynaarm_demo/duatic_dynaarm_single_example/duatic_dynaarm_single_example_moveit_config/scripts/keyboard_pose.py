@@ -7,7 +7,7 @@ import rclpy
 from rclpy.node import Node
 from rclpy.publisher import Publisher
 import tf2_ros
-import tf2_geometry_msgs
+
 
 from geometry_msgs.msg import PoseStamped
 
@@ -95,7 +95,7 @@ def main():
     node = Node("keypose_pose")
 
     tf_buffer = tf2_ros.Buffer()
-    tf_listener = tf2_ros.TransformListener(tf_buffer, node)
+    tf2_ros.TransformListener(tf_buffer, node)
 
     switch_controller(node, ["freeze_controller"], ["cartesian_pose_controller"])
 
