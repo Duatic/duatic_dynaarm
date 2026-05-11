@@ -104,14 +104,14 @@ modes:
   - name: JointPositionVelocityTorque
     gains:
       p: 1000.0
-      i: 10.0
-      d: 5.0
+      i: 1.0
+      d: 1.0
 
   - name: JointPositionVelocityTorquePidGains
     gains:
       p: 1000.0
-      i: 10.0
-      d: 5.0
+      i: 1.0
+      d: 1.0
 
 goal_states:
   startup: "Configure"
