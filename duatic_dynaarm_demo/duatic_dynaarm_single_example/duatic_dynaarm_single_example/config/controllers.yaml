@@ -92,7 +92,7 @@
       - forearm_rotation
       - wrist_flexion
       - wrist_rotation
-    position_kick: 1.0
+    position_kick: 0.01
 
 
 /**/joint_trajectory_controller:
