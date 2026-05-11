@@ -59,12 +59,11 @@ modes:
       i: 0.2
       d: 0.0
 
-  # freeze controller gains
   - name: "MotorVelocity"
     gains:
-      p: 200
-      i: 1.5
-      d: 80
+      p: 180.0
+      i: 1.0
+      d: 250.0
 
   - name: "GearPosition"
     gains:
@@ -98,22 +97,21 @@ modes:
 
   - name: JointPositionVelocity
     gains:
-      p: 600.0
-      i: 0.5
-      d: 20.0
+      p: 1000.0
+      i: 10.0
+      d: 5.0
 
   - name: JointPositionVelocityTorque
     gains:
-      p: 600.0
-      i: 0.5
-      d: 20.0
-
+      p: 1000.0
+      i: 10.0
+      d: 5.0
 
   - name: JointPositionVelocityTorquePidGains
     gains:
-      p: 600.0
-      i: 0.5
-      d: 20.0
+      p: 1000.0
+      i: 10.0
+      d: 5.0
 
 goal_states:
   startup: "Configure"
