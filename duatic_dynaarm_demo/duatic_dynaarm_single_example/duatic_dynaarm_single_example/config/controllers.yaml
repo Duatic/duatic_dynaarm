@@ -40,6 +40,9 @@
       pid_tuner:
         type: duatic_controllers/PIDTuner
         state: active
+      safety_scaling_controller:
+        type: duatic_controllers/SafetyScalingController
+        state: active
 
 /**/joint_state_broadcaster:
   ros__parameters:
@@ -106,7 +109,15 @@
       - wrist_flexion
       - wrist_rotation
     position_kick: 0.01
-
+/**/safety_scaling_controller:
+  ros__parameters:
+    joints:
+      - shoulder_rotation
+      - shoulder_flexion
+      - elbow_flexion
+      - forearm_rotation
+      - wrist_flexion
+      - wrist_rotation
 
 /**/joint_trajectory_controller:
   ros__parameters:
