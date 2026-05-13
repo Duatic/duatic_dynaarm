@@ -120,7 +120,7 @@ def launch_setup(context, *args, **kwargs):
             ),
             # Emergency Stop
             Node(
-                package="duatic_dynaarm_extensions",
+                package="duatic_e_stop",
                 executable="e_stop_node",
                 name="e_stop_node",
                 output="screen",
@@ -151,7 +151,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             name="version",
             default_value="baracuda12",
-            choices=["arowana4", "baracuda12", "corydoras12"],
+            choices=["arowana4", "baracuda12"],
             description="Select the desired version of robot ",
         ),
         DeclareLaunchArgument(

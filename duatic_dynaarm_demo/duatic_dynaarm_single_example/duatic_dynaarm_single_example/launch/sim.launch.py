@@ -107,7 +107,7 @@ def launch_setup(context, *args, **kwargs):
         period=10.0,
         actions=[
             Node(
-                package="duatic_dynaarm_extensions",
+                package="duatic_move_to_predefined_position",
                 executable="move_to_predefined_position_node",
                 namespace=LaunchConfiguration("namespace"),
                 name="move_to_predefined_position_node",
