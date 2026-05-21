@@ -63,7 +63,7 @@ modes:
     gains:
       p: 50.0
       i: 1.0
-      d: 200.0
+      d: 100.0
 
   - name: "GearPosition"
     gains:

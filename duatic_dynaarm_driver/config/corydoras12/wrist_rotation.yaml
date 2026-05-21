@@ -64,7 +64,7 @@ modes:
     gains:
       p: 50.0
       i: 1.0
-      d: 200.0
+      d: 100.0
 
   - name: "GearPosition"
     gains:
@@ -113,7 +113,7 @@ modes:
       p: 100.0
       i: 0.0
       d: 2.0
-      
+
 goal_states:
   startup: "Configure"
   shutdown: "Standby"
