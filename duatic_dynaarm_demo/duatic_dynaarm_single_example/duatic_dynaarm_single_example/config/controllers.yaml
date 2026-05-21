@@ -24,7 +24,7 @@
 
       freeze_controller:
         type: duatic_controllers/FreezeController
-        state: active
+        state: inactive
 
       virtual_fts:
         type: duatic_controllers/ForceTorqueBroadcaster
@@ -37,9 +37,11 @@
       brake_release_controller:
         type: duatic_controllers/BrakeReleaseController
         state: inactive
+        
       pid_tuner:
         type: duatic_controllers/PIDTuner
-        state: active
+        state: inactive
+
       safety_scaling_controller:
         type: duatic_controllers/SafetyScalingController
         state: active
