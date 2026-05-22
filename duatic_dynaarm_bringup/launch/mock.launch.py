@@ -151,7 +151,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             name="version",
             default_value="baracuda12",
-            choices=["arowana4", "baracuda12"],
+            choices=["arowana4", "baracuda12", "corydoras12"],
             description="Select the desired version of robot ",
         ),
         DeclareLaunchArgument(
