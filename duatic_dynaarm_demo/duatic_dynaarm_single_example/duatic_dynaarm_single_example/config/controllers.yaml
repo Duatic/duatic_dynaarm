@@ -37,7 +37,7 @@
       brake_release_controller:
         type: duatic_controllers/BrakeReleaseController
         state: inactive
-        
+
       pid_tuner:
         type: duatic_controllers/PIDTuner
         state: inactive
