@@ -87,6 +87,9 @@ def launch_setup(context, *args, **kwargs):
         ),
         launch_arguments={
             "world": LaunchConfiguration("world"),
+            "gz_models_path": PathJoinSubstitution([pkg_dynaarm_description, ".."]).perform(
+                context
+            ),
         }.items(),
         condition=IfCondition(
             PythonExpression(["'", LaunchConfiguration("simulator"), "' == 'gazebo'"])
@@ -108,7 +111,7 @@ def launch_setup(context, *args, **kwargs):
         period=10.0,
         actions=[
             Node(
-                package="duatic_dynaarm_extensions",
+                package="duatic_move_to_predefined_position",
                 executable="move_to_predefined_position_node",
                 namespace=LaunchConfiguration("namespace"),
                 name="move_to_predefined_position_node",

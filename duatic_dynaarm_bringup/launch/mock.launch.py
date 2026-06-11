@@ -120,7 +120,7 @@ def launch_setup(context, *args, **kwargs):
             ),
             # Emergency Stop
             Node(
-                package="duatic_dynaarm_extensions",
+                package="duatic_e_stop",
                 executable="e_stop_node",
                 name="e_stop_node",
                 output="screen",
