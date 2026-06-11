@@ -41,10 +41,6 @@
         type: duatic_controllers/BrakeReleaseController
         state: inactive
 
-      pid_tuner:
-        type: duatic_controllers/PIDTuner
-        state: inactive
-
       safety_scaling_controller:
         type: duatic_controllers/SafetyScalingController
         state: active
@@ -178,13 +174,3 @@
   ros__parameters:
     names:
       - DynaarmSystem
-
-/**/pid_tuner:
-  ros__parameters:
-    joints:
-      - shoulder_rotation
-      - shoulder_flexion
-      - elbow_flexion
-      - forearm_rotation
-      - wrist_flexion
-      - wrist_rotation
