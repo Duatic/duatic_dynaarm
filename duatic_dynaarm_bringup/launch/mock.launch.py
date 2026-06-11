@@ -118,6 +118,14 @@ def launch_setup(context, *args, **kwargs):
                 }.items(),
                 condition=UnlessCondition(LaunchConfiguration("start_as_subcomponent")),
             ),
+            # Brake Release
+            Node(
+                package="duatic_e_stop",
+                executable="brake_release_node",
+                name="brake_release_node",
+                output="screen",
+                condition=UnlessCondition(LaunchConfiguration("start_as_subcomponent")),
+            ),
             # Emergency Stop
             Node(
                 package="duatic_e_stop",
