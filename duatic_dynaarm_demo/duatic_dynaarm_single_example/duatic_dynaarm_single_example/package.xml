@@ -24,7 +24,6 @@
   <exec_depend>joint_trajectory_controller</exec_depend>
   <exec_depend>rqt_joint_trajectory_controller</exec_depend>
   <exec_depend>rqt_controller_manager</exec_depend>
-  <exec_depend>effort_controllers</exec_depend>
 
   <exec_depend>duatic_dynaarm_single_example_description</exec_depend>
   <exec_depend>duatic_dynaarm_driver</exec_depend>
