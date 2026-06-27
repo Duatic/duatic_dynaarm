@@ -24,7 +24,7 @@
 
       freeze_controller:
         type: duatic_controllers/FreezeController
-        state: active
+        state: inactive
 
       virtual_fts:
         type: duatic_controllers/ForceTorqueBroadcaster
@@ -41,6 +41,9 @@
         type: duatic_controllers/BrakeReleaseController
         state: inactive
 
+      safety_scaling_controller:
+        type: duatic_controllers/SafetyScalingController
+        state: active
 
 /**/joint_state_broadcaster:
   ros__parameters:
@@ -54,6 +57,17 @@
       - wrist_rotation
 
 /**/dynaarm_status_broadcaster:
+  ros__parameters:
+    joints:
+      - shoulder_rotation
+      - shoulder_flexion
+      - elbow_flexion
+      - forearm_rotation
+      - wrist_flexion
+      - wrist_rotation
+
+
+/**/pid_tuner:
   ros__parameters:
     joints:
       - shoulder_rotation
@@ -96,7 +110,15 @@
       - wrist_flexion
       - wrist_rotation
     position_kick: 0.01
-
+/**/safety_scaling_controller:
+  ros__parameters:
+    joints:
+      - shoulder_rotation
+      - shoulder_flexion
+      - elbow_flexion
+      - forearm_rotation
+      - wrist_flexion
+      - wrist_rotation
 
 /**/joint_trajectory_controller:
   ros__parameters:
@@ -152,13 +174,3 @@
   ros__parameters:
     names:
       - DynaarmSystem
-
-/**/pid_tuner:
-  ros__parameters:
-    joints:
-      - shoulder_rotation
-      - shoulder_flexion
-      - elbow_flexion
-      - forearm_rotation
-      - wrist_flexion
-      - wrist_rotation

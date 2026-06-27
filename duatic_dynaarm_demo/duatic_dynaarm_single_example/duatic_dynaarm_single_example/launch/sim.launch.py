@@ -62,6 +62,7 @@ def launch_setup(context, *args, **kwargs):
             "namespace": LaunchConfiguration("namespace"),
             "world": LaunchConfiguration("world"),
             "simulator": LaunchConfiguration("simulator"),
+            "version": LaunchConfiguration("version"),
             "urdf_file_path": pkg_dynaarm_single_arm_example_description,
             "controllers_config": LaunchConfiguration("controllers_config"),
         }.items(),
@@ -138,6 +139,12 @@ def generate_launch_description():
             default_value="gazebo",
             choices=["gazebo", "isaac"],
             description="Which simulator backend to use.",
+        ),
+        DeclareLaunchArgument(
+            name="version",
+            default_value="corydoras12",
+            choices=["arowana4", "baracuda12", "corydoras12"],
+            description="Hardware revision of the DynaArm.",
         ),
         DeclareLaunchArgument(
             "controllers_config",
