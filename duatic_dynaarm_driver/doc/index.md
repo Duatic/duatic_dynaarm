@@ -17,6 +17,5 @@ This package contains the actual ros2control driver for the DynaArm as well as [
 ```{toctree}
 :maxdepth: 2
 
-./controllers.md
 ./drive_configuration.md
 ```
