@@ -37,7 +37,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         parent_unit
         version
         tf_prefix
-        dof:=6
+        dof
         ethercat_addresses
         drive_parameter_folder:=''">
 
@@ -120,7 +120,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                        drive_parameter_folder:=''
                        version
                        ethercat_addresses
-                       mode">
+                       mode
+                       dof">
 
 
     <ros2_control name="${tf_prefix}DynaarmSystem" type="system">
@@ -158,7 +159,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         version="${version}"
         ethercat_bus="${ethercat_bus}"
         parent_unit="${tf_prefix}DynaarmSystem"
-        ethercat_addresses="${ethercat_addresses}"/>
+        ethercat_addresses="${ethercat_addresses}"
+        dof="${dof}"/>
 
     </ros2_control>
   </xacro:macro>

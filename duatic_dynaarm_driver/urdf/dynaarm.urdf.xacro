@@ -32,7 +32,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                  params="tf_prefix
                          parent_link
                          collision:='simple'
-                         dof
+                         dof:='6'
                          mode
                          ethercat_bus
                          drive_order:=''
