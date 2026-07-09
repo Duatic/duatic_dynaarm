@@ -104,7 +104,7 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             name="ethercat_bus",
-            default_value="enp86s0",
+            default_value="enp118s0",
             description="The ethercat bus id or name of the robot.",
         ),
         DeclareLaunchArgument(
@@ -120,7 +120,7 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             name="version",
-            default_value="baracuda12",
+            default_value="corydoras12",
             choices=["arowana4", "baracuda12", "corydoras12"],
             description="Select the desired version of robot ",
         ),
