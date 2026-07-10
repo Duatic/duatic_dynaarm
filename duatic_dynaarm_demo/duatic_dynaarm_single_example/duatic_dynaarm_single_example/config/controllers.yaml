@@ -28,10 +28,10 @@
 
       virtual_fts:
         type: duatic_controllers/ForceTorqueBroadcaster
-        state: active
+        state: inactive
       pid_tuner:
         type: duatic_controllers/PIDTuner
-        state: active
+        state: inactive
 
       cartesian_pose_controller:
         type: duatic_controllers/CartesianPoseController
