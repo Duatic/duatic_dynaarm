@@ -25,8 +25,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
   <xacro:arg name="mode" default="mock" />
   <!-- physical ethercat bus, only used for real -->
   <xacro:arg name="ethercat_bus" default="eth0" />
-  <!-- Change to add covers to the arm -->
-  <xacro:arg name="covers" default="false" />
   <!-- v1, v2, ... -->
   <xacro:arg name="version" default="baracuda12" />
 
@@ -72,7 +70,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
                 collision="$(arg collision)"
                 mode="$(arg mode)"
                 ethercat_bus="$(arg ethercat_bus)"
-                covers="$(arg covers)"
                 version="$(arg version)">
     <origin xyz="0 0 0" rpy="0.0 0.0 0.0" />
   </xacro:dynaarm>
