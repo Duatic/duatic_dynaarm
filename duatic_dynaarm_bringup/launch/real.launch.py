@@ -99,7 +99,7 @@ def launch_setup(context, *args, **kwargs):
             Node(
                 package="controller_manager",
                 executable="ros2_control_node",
-                parameters=[{"update_rate": 500}],
+                parameters=[{"update_rate": 1000}],
                 output={
                     "stdout": "screen",
                     "stderr": "screen",
