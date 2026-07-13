@@ -28,10 +28,7 @@
 
       virtual_fts:
         type: duatic_controllers/ForceTorqueBroadcaster
-        state: inactive
-      pid_tuner:
-        type: duatic_controllers/PIDTuner
-        state: inactive
+        state: active
 
       cartesian_pose_controller:
         type: duatic_controllers/CartesianPoseController
@@ -153,12 +150,3 @@
     names:
       - DynaarmSystem
 
-/**/pid_tuner:
-  ros__parameters:
-    joints:
-      - shoulder_rotation
-      - shoulder_flexion
-      - elbow_flexion
-      - forearm_rotation
-      - wrist_flexion
-      - wrist_rotation
