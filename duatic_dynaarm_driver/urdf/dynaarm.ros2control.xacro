@@ -39,7 +39,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         tf_prefix
         dof
         ethercat_addresses
-        drive_parameter_folder:=''">
+        drive_parameter_folder:=''
+        has_brakes:=true">
 
 
       <!--Allow the user to pass a custom folder for drive parameters-->
@@ -57,7 +58,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           ethercat_bus="${ethercat_bus}"
           mode="${mode}"
           parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/shoulder_rotation.yaml" />
+          drive_parameter_file_path="${drive_parameter_folder_internal}/shoulder_rotation.yaml"
+          has_brake="${has_brakes}" />
       </xacro:if>
 
       <xacro:if value="${dof >= 2}">
@@ -66,7 +68,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           ethercat_bus="${ethercat_bus}"
           mode="${mode}"
           parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/shoulder_flexion.yaml" />
+          drive_parameter_file_path="${drive_parameter_folder_internal}/shoulder_flexion.yaml"
+          has_brake="${has_brakes}" />
       </xacro:if>
 
       <xacro:if value="${dof >= 3}">
@@ -75,7 +78,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           ethercat_bus="${ethercat_bus}"
           mode="${mode}"
           parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/elbow_flexion.yaml" />
+          drive_parameter_file_path="${drive_parameter_folder_internal}/elbow_flexion.yaml"
+          has_brake="${has_brakes}" />
       </xacro:if>
 
       <xacro:if value="${dof >= 4}">
@@ -84,7 +88,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           ethercat_bus="${ethercat_bus}"
           mode="${mode}"
           parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/forearm_rotation.yaml" />
+          drive_parameter_file_path="${drive_parameter_folder_internal}/forearm_rotation.yaml"
+          has_brake="${has_brakes}" />
       </xacro:if>
 
       <xacro:if value="${dof >= 5}">
@@ -93,7 +98,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           ethercat_bus="${ethercat_bus}"
           mode="${mode}"
           parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/wrist_flexion.yaml" />
+          drive_parameter_file_path="${drive_parameter_folder_internal}/wrist_flexion.yaml"
+          has_brake="${has_brakes}" />
       </xacro:if>
 
       <xacro:if value="${dof >= 6}">
@@ -102,7 +108,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           ethercat_bus="${ethercat_bus}"
           mode="${mode}"
           parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/wrist_rotation.yaml" />
+          drive_parameter_file_path="${drive_parameter_folder_internal}/wrist_rotation.yaml"
+          has_brake="${has_brakes}" />
       </xacro:if>
       <!--
       <xacro:if value="${mode != 'isaac'}">
@@ -153,6 +160,14 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </xacro:if>
       </hardware>
 
+      <!--Make the assumption that all newer arms will have brakes (very likely)-->
+      <xacro:if value="${version in ['arowana4', 'baracuda12']}">
+        <xacro:property name="has_brakes" value="false"/>
+      </xacro:if>
+      <xacro:unless value="${version in ['arowana4', 'baracuda12']}">
+        <xacro:property name="has_brakes" value="true"/>
+      </xacro:unless>
+
       <xacro:dynaarm_ros2_control_joints
         tf_prefix="${tf_prefix}"
         mode="${mode}"
@@ -160,7 +175,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         ethercat_bus="${ethercat_bus}"
         parent_unit="${tf_prefix}DynaarmSystem"
         ethercat_addresses="${ethercat_addresses}"
-        dof="${dof}"/>
+        dof="${dof}"
+        has_brakes="${has_brakes}"/>
 
     </ros2_control>
   </xacro:macro>
