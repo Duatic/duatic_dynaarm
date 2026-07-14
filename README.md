@@ -1,6 +1,9 @@
 # duatic_dynaarm
 
-[![Jazzy](https://github.com/Duatic/duatic_dynaarm/actions/workflows/build-jazzy.yml/badge.svg?branch=main)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/build-jazzy.yml)  [![Kilted](https://github.com/Duatic/duatic_dynaarm/actions/workflows/build-kilted.yml/badge.svg?branch=main)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/build-kilted.yml)  [![Lyrical](https://github.com/Duatic/duatic_dynaarm/actions/workflows/build-lyrical.yml/badge.svg?branch=main)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/build-lyrical.yml)  [![Rolling](https://github.com/Duatic/duatic_dynaarm/actions/workflows/build-rolling.yml/badge.svg?branch=main)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/build-rolling.yml)
+[![Jazzy](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mbloechli/1655a293568e313b11a4d4242be80b71/raw/duatic_dynaarm-jazzy.json)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/ci.yml)
+[![Kilted](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mbloechli/1655a293568e313b11a4d4242be80b71/raw/duatic_dynaarm-kilted.json)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/ci.yml)
+[![Lyrical](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mbloechli/1655a293568e313b11a4d4242be80b71/raw/duatic_dynaarm-lyrical.json)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/ci.yml)
+[![Rolling](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mbloechli/1655a293568e313b11a4d4242be80b71/raw/duatic_dynaarm-rolling.json)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/ci.yml)
 
 This repository contains the [ros2_control](https://control.ros.org/) based driver for the [Duatic DynaArm](https://duatic.com/robotic-arm/), the necessary description package and a simple demo application
 
