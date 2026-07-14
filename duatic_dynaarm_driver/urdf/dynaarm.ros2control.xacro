@@ -41,6 +41,13 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         ethercat_addresses
         drive_parameter_folder:=''">
 
+      <!--Make the assumption that all newer arms will have brakes (very likely)-->
+      <xacro:if value="${version in ['arowana4', 'baracuda12']}">
+        <xacro:property name="has_brakes" value="false"/>
+      </xacro:if>
+      <xacro:unless value="${version in ['arowana4', 'baracuda12']}">
+        <xacro:property name="has_brakes" value="true"/>
+      </xacro:unless>
 
       <!--Allow the user to pass a custom folder for drive parameters-->
       <xacro:property name="default_drive_parameter_folder" value="$(find duatic_dynaarm_driver)/config/${version}" />
@@ -57,7 +64,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           ethercat_bus="${ethercat_bus}"
           mode="${mode}"
           parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/shoulder_rotation.yaml" />
+          drive_parameter_file_path="${drive_parameter_folder_internal}/shoulder_rotation.yaml"
+          has_brake="${has_brakes}" />
       </xacro:if>
 
       <xacro:if value="${dof >= 2}">
@@ -66,7 +74,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           ethercat_bus="${ethercat_bus}"
           mode="${mode}"
           parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/shoulder_flexion.yaml" />
+          drive_parameter_file_path="${drive_parameter_folder_internal}/shoulder_flexion.yaml"
+          has_brake="${has_brakes}" />
       </xacro:if>
 
       <xacro:if value="${dof >= 3}">
@@ -75,7 +84,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           ethercat_bus="${ethercat_bus}"
           mode="${mode}"
           parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/elbow_flexion.yaml" />
+          drive_parameter_file_path="${drive_parameter_folder_internal}/elbow_flexion.yaml"
+          has_brake="${has_brakes}" />
       </xacro:if>
 
       <xacro:if value="${dof >= 4}">
@@ -84,7 +94,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           ethercat_bus="${ethercat_bus}"
           mode="${mode}"
           parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/forearm_rotation.yaml" />
+          drive_parameter_file_path="${drive_parameter_folder_internal}/forearm_rotation.yaml"
+          has_brake="${has_brakes}" />
       </xacro:if>
 
       <xacro:if value="${dof >= 5}">
@@ -93,7 +104,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           ethercat_bus="${ethercat_bus}"
           mode="${mode}"
           parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/wrist_flexion.yaml" />
+          drive_parameter_file_path="${drive_parameter_folder_internal}/wrist_flexion.yaml"
+          has_brake="${has_brakes}" />
       </xacro:if>
 
       <xacro:if value="${dof >= 6}">
@@ -102,7 +114,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           ethercat_bus="${ethercat_bus}"
           mode="${mode}"
           parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/wrist_rotation.yaml" />
+          drive_parameter_file_path="${drive_parameter_folder_internal}/wrist_rotation.yaml"
+          has_brake="${has_brakes}" />
       </xacro:if>
       <!--
       <xacro:if value="${mode != 'isaac'}">
@@ -152,6 +165,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           <param name="start_in_freeze_mode">${start_in_freeze_mode}</param>
         </xacro:if>
       </hardware>
+
+
 
       <xacro:dynaarm_ros2_control_joints
         tf_prefix="${tf_prefix}"
