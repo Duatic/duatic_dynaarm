@@ -32,7 +32,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- DynaArm Macro-->
   <!-- -->
   <xacro:macro name="dynaarm_description"
-    params="tf_prefix parent_link collision:='simple' dof  covers version *origin">
+    params="tf_prefix parent_link collision:='simple' dof version *origin">
 
 
     <!-- Set ee_parent based on the specified DoF -->
@@ -71,21 +71,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       </base_collision>
     </xacro:dynaarm_baselink>
 
-    <!-- Base Covers-->
-    <xacro:if value="${covers}">
-      <xacro:dynaarm_link link_name="${base}_cover" file_name="${base_cover_mesh}">
-        <link_inertia>
-          <xacro:insert_block name="base_cover_inertial" />
-        </link_inertia>
-      </xacro:dynaarm_link>
-
-      <xacro:dynaarm_joint_fixed joint_name="${base}_cover"
-        parent="${base}"
-        child="${base}_cover">
-        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-      </xacro:dynaarm_joint_fixed>
-    </xacro:if>
-
     <!-- 1 DoF -->
     <xacro:if value="${dof >= 1}">
 
@@ -111,20 +96,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         joint_type="${joint_1_joint_type}">
         <origin xyz="${joint_1_origin_xyz}" rpy="${joint_1_origin_rpy}" />
       </xacro:dynaarm_revolute_joint>
-
-      <!-- 1 Dof & Covers-->
-      <xacro:if value="${covers}">
-        <xacro:dynaarm_link link_name="${link01}_cover" file_name="${link01_cover_mesh}">
-          <link_inertia>
-            <xacro:insert_block name="link01_cover_inertial" />
-          </link_inertia>
-        </xacro:dynaarm_link>
-
-        <xacro:dynaarm_joint_fixed joint_name="${link01}_cover" parent="${link01}"
-          child="${link01}_cover">
-          <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-        </xacro:dynaarm_joint_fixed>
-      </xacro:if>
 
     </xacro:if>
 
@@ -154,19 +125,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <origin xyz="${joint_2_origin_xyz}" rpy="${joint_2_origin_rpy}" />
       </xacro:dynaarm_revolute_joint>
 
-      <!-- 2 Dof & Covers-->
-      <xacro:if value="${covers}">
-        <xacro:dynaarm_link link_name="${link02}_cover" file_name="${link02_cover_mesh}">
-          <link_inertia>
-            <xacro:insert_block name="link02_cover_inertial" />
-          </link_inertia>
-        </xacro:dynaarm_link>
-
-        <xacro:dynaarm_joint_fixed joint_name="${link02}_cover" parent="${link02}"
-          child="${link02}_cover">
-          <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-        </xacro:dynaarm_joint_fixed>
-      </xacro:if>
     </xacro:if>
 
     <!-- 3 DoF -->
@@ -209,19 +167,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </xacro:dynaarm_joint_fixed>
       </xacro:if>
 
-      <!-- 3 Dof & Covers-->
-      <xacro:if value="${covers}">
-        <xacro:dynaarm_link link_name="${link03}_cover" file_name="${link03_cover_mesh}">
-          <link_inertia>
-            <xacro:insert_block name="link03_cover_inertial" />
-          </link_inertia>
-        </xacro:dynaarm_link>
-
-        <xacro:dynaarm_joint_fixed joint_name="${link03}_cover" parent="${link03}"
-          child="${link03}_cover">
-          <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-        </xacro:dynaarm_joint_fixed>
-      </xacro:if>
     </xacro:if>
 
     <!-- 4 DoF -->
@@ -261,19 +206,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <origin xyz="${joint_4_origin_xyz}" rpy="${joint_4_origin_rpy}" />
       </xacro:dynaarm_revolute_joint>
 
-      <!-- 4 Dof & Covers-->
-      <xacro:if value="${covers}">
-        <xacro:dynaarm_link link_name="${link04}_cover" file_name="${link04_cover_mesh}">
-          <link_inertia>
-            <xacro:insert_block name="link04_cover_inertial" />
-          </link_inertia>
-        </xacro:dynaarm_link>
-
-        <xacro:dynaarm_joint_fixed joint_name="${link04}_cover" parent="${link04}"
-          child="${link04}_cover">
-          <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-        </xacro:dynaarm_joint_fixed>
-      </xacro:if>
     </xacro:if>
 
     <!-- 5 DoF -->
@@ -313,19 +245,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </xacro:dynaarm_joint_fixed>
       </xacro:if>
 
-      <!-- 5 Dof & Covers-->
-      <xacro:if value="${covers}">
-        <xacro:dynaarm_link link_name="${link05}_cover" file_name="${link05_cover_mesh}">
-          <link_inertia>
-            <xacro:insert_block name="link05_cover_inertial" />
-          </link_inertia>
-        </xacro:dynaarm_link>
-
-        <xacro:dynaarm_joint_fixed joint_name="${link05}_cover" parent="${link05}"
-          child="${link05}_cover">
-          <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-        </xacro:dynaarm_joint_fixed>
-      </xacro:if>
     </xacro:if>
 
     <!-- 6 DoF -->

@@ -32,11 +32,11 @@ This package current supports the following DynaArms:
 This repository integrates a simple show case you can view by running
 
 ```bash
-ros2 launch dynaarm_description view.launch.py covers:=True dual:=True dof:=6 version:=baracuda12
+ros2 launch dynaarm_description view.launch.py dual:=True dof:=6 version:=baracuda12
 ```
 
-![Example: baracuda12, no covers, 6 dof](./doc/example.png)
-Example: baracuda12, no covers, 6 dof
+![Example: baracuda12, 6 dof](./doc/example.png)
+Example: baracuda12, 6 dof
 
 # Contributing
 

@@ -62,7 +62,6 @@ def launch_setup(context, *args, **kwargs):
             "namespace": LaunchConfiguration("namespace").perform(context),
             "mode": sim_tool,
             "dof": LaunchConfiguration("dof").perform(context),
-            "covers": LaunchConfiguration("covers").perform(context),
             "version": LaunchConfiguration("version").perform(context),
             "tf_prefix": tf_prefix + "/" if tf_prefix else "",
         },
@@ -147,11 +146,6 @@ def generate_launch_description():
             choices=["1", "2", "3", "4", "5", "6"],
             default_value="6",
             description="Select the desired degrees of freedom (dof)",
-        ),
-        DeclareLaunchArgument(
-            name="covers",
-            default_value="False",
-            description="Show or hide the covers of the robot",
         ),
         DeclareLaunchArgument(
             name="version",

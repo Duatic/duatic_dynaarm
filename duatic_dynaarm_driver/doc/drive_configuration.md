@@ -27,7 +27,6 @@ Adapted from the `dynaarm_standalone.urdf.xacro`:
                 dof="$(arg dof)"
                 mode="$(arg mode)"
                 ethercat_bus="$(arg ethercat_bus)"
-                covers="$(arg covers)"
                 version="$(arg version)"
                 drive_parameter_folder="my path to my own drive parameter files">
     <origin xyz="0 0 0.085" rpy="0.0 0.0 0.0" />
