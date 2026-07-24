@@ -23,7 +23,6 @@ This package current supports the following DynaArms:
 
 | Name     | Description |
 | ---      | ---         |
-| arowana4 | Pre-release version of the arm with 4kg payload at maximum reach |
 | baracuda12 | First publicly released version of the  DynaArm with 12kg payload at maximum reach |
 | corydoras12 | First DynaArm with brake support, same dimensions as the `baracuda12` but needs different configuration parameters |
 
