@@ -61,7 +61,6 @@ def launch_setup(context, *args, **kwargs):
         mappings={
             "namespace": LaunchConfiguration("namespace").perform(context),
             "mode": sim_tool,
-            "dof": LaunchConfiguration("dof").perform(context),
             "version": LaunchConfiguration("version").perform(context),
             "tf_prefix": tf_prefix + "/" if tf_prefix else "",
         },
@@ -141,12 +140,6 @@ def launch_setup(context, *args, **kwargs):
 def generate_launch_description():
 
     declared_arguments = [
-        DeclareLaunchArgument(
-            name="dof",
-            choices=["1", "2", "3", "4", "5", "6"],
-            default_value="6",
-            description="Select the desired degrees of freedom (dof)",
-        ),
         DeclareLaunchArgument(
             name="version",
             default_value="baracuda12",

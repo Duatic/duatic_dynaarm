@@ -37,7 +37,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         parent_unit
         version
         tf_prefix
-        dof
         ethercat_addresses
         drive_parameter_folder:=''">
 
@@ -53,71 +52,60 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <xacro:property name="drive_parameter_folder_internal" value="${drive_parameter_folder}" />
       </xacro:unless>
 
-      <xacro:if value="${dof >= 1}">
-        <xacro:duadrive_interface_joint name="${tf_prefix}shoulder_rotation"
-          ethercat_address="${ethercat_addresses['shoulder_rotation']}"
-          ethercat_bus="${ethercat_bus}"
-          mode="${mode}"
-          parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/shoulder_rotation.yaml"
-          has_brake="${has_brakes}" />
-      </xacro:if>
+      <!-- Shoulder Rotation -->
+      <xacro:duadrive_interface_joint name="${tf_prefix}shoulder_rotation"
+        ethercat_address="${ethercat_addresses['shoulder_rotation']}"
+        ethercat_bus="${ethercat_bus}"
+        mode="${mode}"
+        parent_unit="${parent_unit}"
+        drive_parameter_file_path="${drive_parameter_folder_internal}/shoulder_rotation.yaml"
+        has_brake="${has_brakes}" />
 
-      <xacro:if value="${dof >= 2}">
-        <xacro:duadrive_interface_joint name="${tf_prefix}shoulder_flexion"
-          ethercat_address="${ethercat_addresses['shoulder_flexion']}"
-          ethercat_bus="${ethercat_bus}"
-          mode="${mode}"
-          parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/shoulder_flexion.yaml"
-          has_brake="${has_brakes}" />
-      </xacro:if>
+      <!-- Shoulder Flexion -->
+      <xacro:duadrive_interface_joint name="${tf_prefix}shoulder_flexion"
+        ethercat_address="${ethercat_addresses['shoulder_flexion']}"
+        ethercat_bus="${ethercat_bus}"
+        mode="${mode}"
+        parent_unit="${parent_unit}"
+        drive_parameter_file_path="${drive_parameter_folder_internal}/shoulder_flexion.yaml"
+        has_brake="${has_brakes}" />
 
-      <xacro:if value="${dof >= 3}">
-        <xacro:duadrive_interface_joint name="${tf_prefix}elbow_flexion"
-          ethercat_address="${ethercat_addresses['elbow_flexion']}"
-          ethercat_bus="${ethercat_bus}"
-          mode="${mode}"
-          parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/elbow_flexion.yaml"
-          has_brake="${has_brakes}" />
-      </xacro:if>
+      <!-- Elbow Flexion -->
+      <xacro:duadrive_interface_joint name="${tf_prefix}elbow_flexion"
+        ethercat_address="${ethercat_addresses['elbow_flexion']}"
+        ethercat_bus="${ethercat_bus}"
+        mode="${mode}"
+        parent_unit="${parent_unit}"
+        drive_parameter_file_path="${drive_parameter_folder_internal}/elbow_flexion.yaml"
+        has_brake="${has_brakes}" />
 
-      <xacro:if value="${dof >= 4}">
-        <xacro:duadrive_interface_joint name="${tf_prefix}forearm_rotation"
-          ethercat_address="${ethercat_addresses['forearm_rotation']}"
-          ethercat_bus="${ethercat_bus}"
-          mode="${mode}"
-          parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/forearm_rotation.yaml"
-          has_brake="${has_brakes}" />
-      </xacro:if>
+      <!-- Forearm Rotation -->
+      <xacro:duadrive_interface_joint name="${tf_prefix}forearm_rotation"
+        ethercat_address="${ethercat_addresses['forearm_rotation']}"
+        ethercat_bus="${ethercat_bus}"
+        mode="${mode}"
+        parent_unit="${parent_unit}"
+        drive_parameter_file_path="${drive_parameter_folder_internal}/forearm_rotation.yaml"
+        has_brake="${has_brakes}" />
 
-      <xacro:if value="${dof >= 5}">
-        <xacro:duadrive_interface_joint name="${tf_prefix}wrist_flexion"
-          ethercat_address="${ethercat_addresses['wrist_flexion']}"
-          ethercat_bus="${ethercat_bus}"
-          mode="${mode}"
-          parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/wrist_flexion.yaml"
-          has_brake="${has_brakes}" />
-      </xacro:if>
+      <!-- Wrist Flexion -->
+      <xacro:duadrive_interface_joint name="${tf_prefix}wrist_flexion"
+        ethercat_address="${ethercat_addresses['wrist_flexion']}"
+        ethercat_bus="${ethercat_bus}"
+        mode="${mode}"
+        parent_unit="${parent_unit}"
+        drive_parameter_file_path="${drive_parameter_folder_internal}/wrist_flexion.yaml"
+        has_brake="${has_brakes}" />
 
-      <xacro:if value="${dof >= 6}">
-        <xacro:duadrive_interface_joint name="${tf_prefix}wrist_rotation"
-          ethercat_address="${ethercat_addresses['wrist_rotation']}"
-          ethercat_bus="${ethercat_bus}"
-          mode="${mode}"
-          parent_unit="${parent_unit}"
-          drive_parameter_file_path="${drive_parameter_folder_internal}/wrist_rotation.yaml"
-          has_brake="${has_brakes}" />
-      </xacro:if>
-      <!--
-      <xacro:if value="${mode != 'isaac'}">
-        <gpio name="${parent_unit}">
-          <command_interface name="freeze_mode" />
-        </gpio>
-      </xacro:if>-->
+      <!-- Wrist Rotation -->
+      <xacro:duadrive_interface_joint name="${tf_prefix}wrist_rotation"
+        ethercat_address="${ethercat_addresses['wrist_rotation']}"
+        ethercat_bus="${ethercat_bus}"
+        mode="${mode}"
+        parent_unit="${parent_unit}"
+        drive_parameter_file_path="${drive_parameter_folder_internal}/wrist_rotation.yaml"
+        has_brake="${has_brakes}" />
+
   </xacro:macro>
 
   <xacro:macro name="dynaarm_ros2_control"
@@ -128,9 +116,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                        drive_parameter_folder:=''
                        version
                        ethercat_addresses
-                       mode
-                       dof">
-
+                       mode">
 
     <ros2_control name="${tf_prefix}DynaarmSystem" type="system">
       <hardware>
@@ -161,16 +147,13 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </xacro:if>
       </hardware>
 
-
-
       <xacro:dynaarm_ros2_control_joints
         tf_prefix="${tf_prefix}"
         mode="${mode}"
         version="${version}"
         ethercat_bus="${ethercat_bus}"
         parent_unit="${tf_prefix}DynaarmSystem"
-        ethercat_addresses="${ethercat_addresses}"
-        dof="${dof}"/>
+        ethercat_addresses="${ethercat_addresses}"/>
 
     </ros2_control>
   </xacro:macro>

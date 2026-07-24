@@ -32,7 +32,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                  params="tf_prefix
                          parent_link
                          collision:='simple'
-                         dof:='6'
                          mode
                          ethercat_bus
                          drive_order:=''
@@ -54,7 +53,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 tf_prefix="${tf_prefix}"
                 parent_link="${parent_link}"
                 collision="${collision}"
-                dof="${dof}"
                 version="${version}">
             <xacro:insert_block name="origin" />
         </xacro:dynaarm_description>
@@ -66,8 +64,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                                     drive_parameter_folder="${drive_parameter_folder}"
                                     ethercat_addresses="${ethercat_addresses}"
                                     version="${version}"
-                                    mode="${mode}"
-                                    dof="${dof}"/>
+                                    mode="${mode}"/>
 
     </xacro:macro>
 </robot>

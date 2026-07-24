@@ -52,7 +52,6 @@ def launch_setup(context, *args, **kwargs):
         mappings={
             "namespace": LaunchConfiguration("namespace").perform(context),
             "mode": "real",
-            "dof": LaunchConfiguration("dof").perform(context),
             "version": LaunchConfiguration("version").perform(context),
             "ethercat_bus": LaunchConfiguration("ethercat_bus").perform(context),
             "tf_prefix": tf_prefix + "/" if tf_prefix else "",
@@ -64,7 +63,6 @@ def launch_setup(context, *args, **kwargs):
     xacro.process_doc(
         srdf_doc,
         mappings={
-            "dof": LaunchConfiguration("dof").perform(context),
             "version": LaunchConfiguration("version").perform(context),
             "mode": "real",
         },
@@ -138,12 +136,6 @@ def generate_launch_description():
         DeclareLaunchArgument(
             name="ethercat_bus",
             description="The ethercat bus id or name.",
-        ),
-        DeclareLaunchArgument(
-            name="dof",
-            choices=["1", "2", "3", "4", "5", "6"],
-            default_value="6",
-            description="Select the desired degrees of freedom (dof)",
         ),
         DeclareLaunchArgument(
             name="version",

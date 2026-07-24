@@ -32,10 +32,10 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- DynaArm Macro-->
   <!-- -->
   <xacro:macro name="dynaarm_description"
-    params="tf_prefix parent_link collision:='simple' dof version *origin">
+    params="tf_prefix parent_link collision:='simple' version *origin">
 
 
-    <!-- Set ee_parent based on the specified DoF -->
+    <!-- Set ee_parent -->
     <xacro:property name="ee_parent" value="${base}" />
 
     <xacro:include filename="$(find duatic_dynaarm_description)/urdf/common/dynaarm_common.urdf.xacro" />
@@ -61,7 +61,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- -->
   <xacro:macro name="dynaarm_main_body">
 
-    <!-- dynaarm_base -->
+    <!-- Link: Base -->
     <xacro:dynaarm_baselink link_name="${base}" file_name="${base_mesh}">
       <base_inertia>
         <xacro:insert_block name="base_inertial" />
@@ -71,192 +71,167 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       </base_collision>
     </xacro:dynaarm_baselink>
 
-    <!-- 1 DoF -->
-    <xacro:if value="${dof >= 1}">
 
-      <!-- dynaarm_SHOULDER -->
-      <xacro:dynaarm_link_w_collision link_name="${link01}" file_name="${link01_mesh}">
-        <link_inertia>
-          <xacro:insert_block name="link01_inertial" />
-        </link_inertia>
-        <link_collision>
-          <xacro:insert_block name="link01_collision" />
-        </link_collision>
-      </xacro:dynaarm_link_w_collision>
+    <!-- Link: Shoulder -->
+    <xacro:dynaarm_link_w_collision link_name="${link01}" file_name="${link01_mesh}">
+      <link_inertia>
+        <xacro:insert_block name="link01_inertial" />
+      </link_inertia>
+      <link_collision>
+        <xacro:insert_block name="link01_collision" />
+      </link_collision>
+    </xacro:dynaarm_link_w_collision>
 
-      <!-- shoulder_rotation -->
-      <xacro:dynaarm_revolute_joint joint_name="${joint_1_name}"
-        parent="${base}"
-        child="${link01}"
-        joint_axis_xyz="${joint_1_axis_xyz}"
-        joint_lower_limit="${joint_1_lower_limit}"
-        joint_upper_limit="${joint_1_upper_limit}"
-        joint_limit_vel="${baboon_max_speed}"
-        joint_limit_effort="${baboon_peak_torque}"
-        joint_type="${joint_1_joint_type}">
-        <origin xyz="${joint_1_origin_xyz}" rpy="${joint_1_origin_rpy}" />
-      </xacro:dynaarm_revolute_joint>
-
-    </xacro:if>
-
-    <!-- 2 DoF -->
-    <xacro:if value="${dof >= 2}">
-
-      <!-- dynaarm_UPPERARM -->
-      <xacro:dynaarm_link_w_collision link_name="${link02}" file_name="${link02_mesh}">
-        <link_inertia>
-          <xacro:insert_block name="link02_inertial" />
-        </link_inertia>
-        <link_collision>
-          <xacro:insert_block name="link02_collision" />
-        </link_collision>
-      </xacro:dynaarm_link_w_collision>
-
-      <!-- shoulder_flexion -->
-      <xacro:dynaarm_revolute_joint joint_name="${joint_2_name}"
-        parent="${link01}"
-        child="${link02}"
-        joint_axis_xyz="${joint_2_axis_xyz}"
-        joint_lower_limit="${joint_2_lower_limit}"
-        joint_upper_limit="${joint_2_upper_limit}"
-        joint_limit_vel="${baboon_max_speed}"
-        joint_limit_effort="${baboon_peak_torque}"
-        joint_type="${joint_2_joint_type}">
-        <origin xyz="${joint_2_origin_xyz}" rpy="${joint_2_origin_rpy}" />
-      </xacro:dynaarm_revolute_joint>
-
-    </xacro:if>
-
-    <!-- 3 DoF -->
-    <xacro:if value="${dof >= 3}">
-
-      <!-- dynaarm_ELBOW -->
-      <xacro:dynaarm_link_w_collision link_name="${link03}" file_name="${link03_mesh}">
-        <link_inertia>
-          <xacro:insert_block name="link03_inertial" />
-        </link_inertia>
-        <link_collision>
-          <xacro:insert_block name="link03_collision" />
-        </link_collision>
-      </xacro:dynaarm_link_w_collision>
-
-      <!-- elbow_flexion -->
-      <xacro:dynaarm_revolute_joint joint_name="${joint_3_name}"
-        parent="${link02}"
-        child="${link03}"
-        joint_axis_xyz="${joint_3_axis_xyz}"
-        joint_lower_limit="${joint_3_lower_limit}"
-        joint_upper_limit="${joint_3_upper_limit}"
-        joint_limit_vel="${baboon_max_speed}"
-        joint_limit_effort="${baboon_peak_torque}"
-        joint_type="${joint_3_joint_type}">
-        <origin xyz="${joint_3_origin_xyz}" rpy="${joint_3_origin_rpy}" />
-      </xacro:dynaarm_revolute_joint>
-
-      <!-- Virtual elbow camera link -->
-      <xacro:virtual_link link_name="${link03_cam}" />
-
-      <!-- Camera fixed on elbow -->
-      <xacro:dynaarm_joint_fixed joint_name="${joint_3_cam_name}"
-        parent="${link03}"
-        child="${link03_cam}">
-        <origin xyz="${joint_3_cam_origin_xyz}" rpy="${joint_3_cam_origin_rpy}" />
-      </xacro:dynaarm_joint_fixed>
+    <!-- Joint: Shoulder Rotation -->
+    <xacro:dynaarm_revolute_joint joint_name="${joint_1_name}"
+      parent="${base}"
+      child="${link01}"
+      joint_axis_xyz="${joint_1_axis_xyz}"
+      joint_lower_limit="${joint_1_lower_limit}"
+      joint_upper_limit="${joint_1_upper_limit}"
+      joint_limit_vel="${baboon_max_speed}"
+      joint_limit_effort="${baboon_peak_torque}"
+      joint_type="${joint_1_joint_type}">
+      <origin xyz="${joint_1_origin_xyz}" rpy="${joint_1_origin_rpy}" />
+    </xacro:dynaarm_revolute_joint>
 
 
-    </xacro:if>
+    <!-- Link: Upperarm -->
+    <xacro:dynaarm_link_w_collision link_name="${link02}" file_name="${link02_mesh}">
+      <link_inertia>
+        <xacro:insert_block name="link02_inertial" />
+      </link_inertia>
+      <link_collision>
+        <xacro:insert_block name="link02_collision" />
+      </link_collision>
+    </xacro:dynaarm_link_w_collision>
 
-    <!-- 4 DoF -->
-    <xacro:if value="${dof >= 4}">
+    <!-- Joint: Shoulder Flexion -->
+    <xacro:dynaarm_revolute_joint joint_name="${joint_2_name}"
+      parent="${link01}"
+      child="${link02}"
+      joint_axis_xyz="${joint_2_axis_xyz}"
+      joint_lower_limit="${joint_2_lower_limit}"
+      joint_upper_limit="${joint_2_upper_limit}"
+      joint_limit_vel="${baboon_max_speed}"
+      joint_limit_effort="${baboon_peak_torque}"
+      joint_type="${joint_2_joint_type}">
+      <origin xyz="${joint_2_origin_xyz}" rpy="${joint_2_origin_rpy}" />
+    </xacro:dynaarm_revolute_joint>
 
-      <!-- dynaarm_FOREARM -->
-      <xacro:dynaarm_link_w_collision link_name="${link04}" file_name="${link04_mesh}">
-        <link_inertia>
-          <xacro:insert_block name="link04_inertial" />
-        </link_inertia>
 
-        <link_collision>
-          <xacro:insert_block name="link04_collision" />
-        </link_collision>
-      </xacro:dynaarm_link_w_collision>
+    <!-- Link: Elbow -->
+    <xacro:dynaarm_link_w_collision link_name="${link03}" file_name="${link03_mesh}">
+      <link_inertia>
+        <xacro:insert_block name="link03_inertial" />
+      </link_inertia>
+      <link_collision>
+        <xacro:insert_block name="link03_collision" />
+      </link_collision>
+    </xacro:dynaarm_link_w_collision>
 
-      <!-- forearm_rotation -->
-      <xacro:dynaarm_revolute_joint joint_name="${joint_4_name}" parent="${link03}"
-        child="${link04}"
-        joint_axis_xyz="${joint_4_axis_xyz}"
-        joint_lower_limit="${joint_4_lower_limit}"
-        joint_upper_limit="${joint_4_upper_limit}"
-        joint_limit_vel="${baboon_max_speed}"
-        joint_limit_effort="${baboon_peak_torque}"
-        joint_type="${joint_4_joint_type}">
-        <origin xyz="${joint_4_origin_xyz}" rpy="${joint_4_origin_rpy}" />
-      </xacro:dynaarm_revolute_joint>
+    <!-- Joint: Elbow Flexion -->
+    <xacro:dynaarm_revolute_joint joint_name="${joint_3_name}"
+      parent="${link02}"
+      child="${link03}"
+      joint_axis_xyz="${joint_3_axis_xyz}"
+      joint_lower_limit="${joint_3_lower_limit}"
+      joint_upper_limit="${joint_3_upper_limit}"
+      joint_limit_vel="${baboon_max_speed}"
+      joint_limit_effort="${baboon_peak_torque}"
+      joint_type="${joint_3_joint_type}">
+      <origin xyz="${joint_3_origin_xyz}" rpy="${joint_3_origin_rpy}" />
+    </xacro:dynaarm_revolute_joint>
 
-    </xacro:if>
+    <!-- Link: Elbow Camera Mount -->
+    <xacro:virtual_link link_name="${link03_cam}" />
 
-    <!-- 5 DoF -->
-    <xacro:if value="${dof >= 5}">
+    <!-- Joint: Elbow Camera -->
+    <xacro:dynaarm_joint_fixed joint_name="${joint_3_cam_name}"
+      parent="${link03}"
+      child="${link03_cam}">
+      <origin xyz="${joint_3_cam_origin_xyz}" rpy="${joint_3_cam_origin_rpy}" />
+    </xacro:dynaarm_joint_fixed>
 
-      <!-- WRIST_1 -->
-      <xacro:dynaarm_link_w_collision link_name="${link05}" file_name="${link05_mesh}">
-        <link_inertia>
-          <xacro:insert_block name="link05_inertial" />
-        </link_inertia>
-        <link_collision>
-          <xacro:insert_block name="link05_collision" />
-        </link_collision>
-      </xacro:dynaarm_link_w_collision>
 
-      <!-- wrist_flexion -->
-      <xacro:dynaarm_revolute_joint joint_name="${joint_5_name}" parent="${link04}"
-        child="${link05}"
-        joint_axis_xyz="${joint_5_axis_xyz}"
-        joint_lower_limit="${joint_5_lower_limit}"
-        joint_upper_limit="${joint_5_upper_limit}"
-        joint_limit_vel="${baboon_max_speed}"
-        joint_limit_effort="${baboon_peak_torque}"
-        joint_type="${joint_5_joint_type}">
-        <origin xyz="${joint_5_origin_xyz}" rpy="${joint_5_origin_rpy}" />
-      </xacro:dynaarm_revolute_joint>
+    <!-- Link: Forearm -->
+    <xacro:dynaarm_link_w_collision link_name="${link04}" file_name="${link04_mesh}">
+      <link_inertia>
+        <xacro:insert_block name="link04_inertial" />
+      </link_inertia>
 
-      <!-- Virtual wrist camera link -->
-      <xacro:virtual_link link_name="${link05_cam}" />
+      <link_collision>
+        <xacro:insert_block name="link04_collision" />
+      </link_collision>
+    </xacro:dynaarm_link_w_collision>
 
-      <!-- Camera fixed on wrist1 -->
-      <xacro:dynaarm_joint_fixed joint_name="${joint_5_cam_name}"
-        parent="${link05}"
-        child="${link05_cam}">
-        <origin xyz="${joint_5_cam_origin_xyz}" rpy="${joint_5_cam_origin_rpy}" />
-      </xacro:dynaarm_joint_fixed>
+    <!-- Joint: Forearm Rotation -->
+    <xacro:dynaarm_revolute_joint joint_name="${joint_4_name}" parent="${link03}"
+      child="${link04}"
+      joint_axis_xyz="${joint_4_axis_xyz}"
+      joint_lower_limit="${joint_4_lower_limit}"
+      joint_upper_limit="${joint_4_upper_limit}"
+      joint_limit_vel="${baboon_max_speed}"
+      joint_limit_effort="${baboon_peak_torque}"
+      joint_type="${joint_4_joint_type}">
+      <origin xyz="${joint_4_origin_xyz}" rpy="${joint_4_origin_rpy}" />
+    </xacro:dynaarm_revolute_joint>
 
-    </xacro:if>
 
-    <!-- 6 DoF -->
-    <xacro:if value="${dof >= 6}">
+    <!-- Link: Wrist 1 -->
+    <xacro:dynaarm_link_w_collision link_name="${link05}" file_name="${link05_mesh}">
+      <link_inertia>
+        <xacro:insert_block name="link05_inertial" />
+      </link_inertia>
+      <link_collision>
+        <xacro:insert_block name="link05_collision" />
+      </link_collision>
+    </xacro:dynaarm_link_w_collision>
 
-      <!-- WRIST_2 -->
-      <xacro:dynaarm_link_w_collision link_name="${link06}" file_name="${link06_mesh}">
-        <link_inertia>
-          <xacro:insert_block name="link06_inertial" />
-        </link_inertia>
-        <link_collision>
-          <xacro:insert_block name="link06_collision" />
-        </link_collision>
-      </xacro:dynaarm_link_w_collision>
+    <!-- Joint: Wrist Flexion -->
+    <xacro:dynaarm_revolute_joint joint_name="${joint_5_name}" parent="${link04}"
+      child="${link05}"
+      joint_axis_xyz="${joint_5_axis_xyz}"
+      joint_lower_limit="${joint_5_lower_limit}"
+      joint_upper_limit="${joint_5_upper_limit}"
+      joint_limit_vel="${baboon_max_speed}"
+      joint_limit_effort="${baboon_peak_torque}"
+      joint_type="${joint_5_joint_type}">
+      <origin xyz="${joint_5_origin_xyz}" rpy="${joint_5_origin_rpy}" />
+    </xacro:dynaarm_revolute_joint>
 
-      <!-- wrist_rotation -->
-      <xacro:dynaarm_revolute_joint joint_name="${joint_6_name}" parent="${link05}"
-        child="${link06}"
-        joint_axis_xyz="${joint_6_axis_xyz}"
-        joint_lower_limit="${joint_6_lower_limit}"
-        joint_upper_limit="${joint_6_upper_limit}"
-        joint_limit_vel="${baboon_max_speed}"
-        joint_limit_effort="${baboon_peak_torque}"
-        joint_type="${joint_6_joint_type}">
-        <origin xyz="${joint_6_origin_xyz}" rpy="${joint_6_origin_rpy}" />
-      </xacro:dynaarm_revolute_joint>
+    <!-- Link: Wrist 1 Camera Mount -->
+    <xacro:virtual_link link_name="${link05_cam}" />
 
-    </xacro:if>
+    <!-- Joint: Wrist Flexion Camera -->
+    <xacro:dynaarm_joint_fixed joint_name="${joint_5_cam_name}"
+      parent="${link05}"
+      child="${link05_cam}">
+      <origin xyz="${joint_5_cam_origin_xyz}" rpy="${joint_5_cam_origin_rpy}" />
+    </xacro:dynaarm_joint_fixed>
+
+
+    <!-- Link: Wrist 2 -->
+    <xacro:dynaarm_link_w_collision link_name="${link06}" file_name="${link06_mesh}">
+      <link_inertia>
+        <xacro:insert_block name="link06_inertial" />
+      </link_inertia>
+      <link_collision>
+        <xacro:insert_block name="link06_collision" />
+      </link_collision>
+    </xacro:dynaarm_link_w_collision>
+
+    <!-- Joint: Wrist Rotation -->
+    <xacro:dynaarm_revolute_joint joint_name="${joint_6_name}" parent="${link05}"
+      child="${link06}"
+      joint_axis_xyz="${joint_6_axis_xyz}"
+      joint_lower_limit="${joint_6_lower_limit}"
+      joint_upper_limit="${joint_6_upper_limit}"
+      joint_limit_vel="${baboon_max_speed}"
+      joint_limit_effort="${baboon_peak_torque}"
+      joint_type="${joint_6_joint_type}">
+      <origin xyz="${joint_6_origin_xyz}" rpy="${joint_6_origin_rpy}" />
+    </xacro:dynaarm_revolute_joint>
 
   </xacro:macro>
 
