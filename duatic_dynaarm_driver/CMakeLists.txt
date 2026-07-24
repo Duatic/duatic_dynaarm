@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.22)
 project(duatic_dynaarm_driver)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -28,13 +28,24 @@ add_library(${PROJECT_NAME} SHARED
   src/dynaarm_hardware_interface_mock.cpp
   src/kinematic_translation.cpp
 )
+add_library(${PROJECT_NAME}:${PROJECT_NAME} ALIAS ${PROJECT_NAME})
+
 target_include_directories(${PROJECT_NAME} PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
   ${YAML_CPP_INCLUDE_DIR}
 )
 
-ament_target_dependencies(${PROJECT_NAME} ${PACKAGE_DEPENDENCIES})
+# Support ros distros older than lyrical
+if(COMMAND ament_target_dependencies)
+    ament_target_dependencies(${PROJECT_NAME}  ${PACKAGE_DEPENDENCIES})
+else()
+    target_link_libraries(${PROJECT_NAME}
+    rclcpp::rclcpp
+    pluginlib::pluginlib
+    duatic_duadrive_interface::duatic_duadrive_interface)
+endif()
+# Enforce also linkage to yaml-cpp
 target_link_libraries(${PROJECT_NAME} ${YAML_CPP_LIBRARIES})
 
 ament_export_dependencies(${PACKAGE_DEPENDENCIES} yaml-cpp)

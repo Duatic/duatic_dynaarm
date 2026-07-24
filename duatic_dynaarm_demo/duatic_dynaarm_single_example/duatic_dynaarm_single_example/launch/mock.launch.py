@@ -59,6 +59,7 @@ def launch_setup(context, *args, **kwargs):
             "namespace": LaunchConfiguration("namespace"),
             "urdf_file_path": pkg_dynaarm_single_arm_example_description,
             "controllers_config": LaunchConfiguration("controllers_config"),
+            "version": LaunchConfiguration("version"),
         }.items(),
     )
 
@@ -106,6 +107,12 @@ def generate_launch_description():
             "start_rviz",
             default_value="true",
             description="Start RViz2 automatically with this launch file.",
+        ),
+        DeclareLaunchArgument(
+            name="version",
+            default_value="baracuda12",
+            choices=["arowana4", "baracuda12", "corydoras12"],
+            description="Select the desired version of robot ",
         ),
     ]
 

@@ -43,7 +43,6 @@ def launch_setup(context, *args, **kwargs):
 
     start_rviz = LaunchConfiguration("start_rviz")
     dof = LaunchConfiguration("dof")
-    covers = LaunchConfiguration("covers")
     version = LaunchConfiguration("version")
     ethercat_bus = LaunchConfiguration("ethercat_bus")
     mode = LaunchConfiguration("mode")
@@ -51,14 +50,12 @@ def launch_setup(context, *args, **kwargs):
     ethercat_bus_value = ethercat_bus.perform(context)
     mode_value = mode.perform(context)
     dof_value = dof.perform(context)
-    covers_value = covers.perform(context)
     version_value = version.perform(context)
 
     launch_arguments = {
         "dof": dof_value,
         "mode": mode_value,
         "ethercat_bus": ethercat_bus_value,
-        "covers": covers_value,
         "version": version_value,
         "namespace": LaunchConfiguration("namespace"),
     }
@@ -78,7 +75,6 @@ def launch_setup(context, *args, **kwargs):
             launch_arguments={
                 "dof": dof_value,
                 "gui": "False",
-                "covers": covers_value,
                 "version": version_value,
                 "namespace": LaunchConfiguration("namespace"),
             }.items(),
@@ -96,7 +92,6 @@ def launch_setup(context, *args, **kwargs):
             launch_arguments={
                 "dof": dof_value,
                 "gui": "False",
-                "covers": covers_value,
                 "version": version_value,
                 "ethercat_bus": ethercat_bus_value,
                 "namespace": LaunchConfiguration("namespace"),
@@ -114,7 +109,6 @@ def launch_setup(context, *args, **kwargs):
             launch_arguments={
                 "dof": dof_value,
                 "gui": "False",
-                "covers": covers_value,
                 "version": version_value,
                 "namespace": LaunchConfiguration("namespace"),
             }.items(),
@@ -185,13 +179,6 @@ def generate_launch_description():
             choices=["1", "2", "3", "4", "5", "6"],
             default_value="6",
             description="Select the desired degrees of freedom (dof)",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            name="covers",
-            default_value="False",
-            description="Show or hide the covers of the robot",
         )
     )
     declared_arguments.append(

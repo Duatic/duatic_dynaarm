@@ -48,32 +48,13 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="end_effector" value="${tf_prefix}flange" />
 
   <!-- Meshes -->
-  <xacro:if value="${covers}">
-    <xacro:property name="base_mesh" value="base_mesh.dae" />
-    <xacro:property name="link01_mesh" value="shoulder_mesh.dae" />
-    <xacro:property name="link02_mesh" value="upperarm_mesh.dae" />
-    <xacro:property name="link03_mesh" value="elbow_mesh.dae" />
-    <xacro:property name="link04_mesh" value="forearm_mesh.dae" />
-    <xacro:property name="link05_mesh" value="wrist1_mesh.dae" />
-    <xacro:property name="link06_mesh" value="wrist2_mesh.dae" />
-
-    <xacro:property name="base_cover_mesh" value="base_cover_mesh.dae" />
-    <xacro:property name="link01_cover_mesh" value="shoulder_cover_mesh.dae" />
-    <xacro:property name="link02_cover_mesh" value="upperarm_cover_mesh.dae" />
-    <xacro:property name="link03_cover_mesh" value="elbow_cover_mesh.dae" />
-    <xacro:property name="link04_cover_mesh" value="forearm_cover_mesh.dae" />
-    <xacro:property name="link05_cover_mesh" value="wrist_1_cover_mesh.dae" />
-    <xacro:property name="link06_cover_mesh" value="wrist_2_cover_mesh.dae" />
-  </xacro:if>
-  <xacro:unless value="${covers}">
-    <xacro:property name="base_mesh" value="base_detailed_mesh.dae" />
-    <xacro:property name="link01_mesh" value="shoulder_detailed_mesh.dae" />
-    <xacro:property name="link02_mesh" value="upperarm_detailed_mesh.dae" />
-    <xacro:property name="link03_mesh" value="elbow_detailed_mesh.dae" />
-    <xacro:property name="link04_mesh" value="forearm_detailed_mesh.dae" />
-    <xacro:property name="link05_mesh" value="wrist1_detailed_mesh.dae" />
-    <xacro:property name="link06_mesh" value="wrist2_detailed_mesh.dae" />
-  </xacro:unless>
+  <xacro:property name="base_mesh" value="base_detailed_mesh.dae" />
+  <xacro:property name="link01_mesh" value="shoulder_detailed_mesh.dae" />
+  <xacro:property name="link02_mesh" value="upperarm_detailed_mesh.dae" />
+  <xacro:property name="link03_mesh" value="elbow_detailed_mesh.dae" />
+  <xacro:property name="link04_mesh" value="forearm_detailed_mesh.dae" />
+  <xacro:property name="link05_mesh" value="wrist1_detailed_mesh.dae" />
+  <xacro:property name="link06_mesh" value="wrist2_detailed_mesh.dae" />
 
   <!-- Joint properties -->
   <xacro:property name="joint_base_name" value="${tf_prefix}joint_base" />
@@ -127,7 +108,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_6_axis_xyz" value="0 0 1" />
   <xacro:property name="joint_6_origin_xyz" value="0.12 0.0 0.03" />
   <xacro:property name="joint_6_origin_rpy" value="${-J_PI/2} 0 ${-J_PI/2}" />
-  <xacro:property name="joint_6_lower_limit" value="${-J_PI - J_PI/2}" />
+  <xacro:property name="joint_6_lower_limit" value="${-J_PI/2}" />
   <xacro:property name="joint_6_upper_limit" value="${J_PI + J_PI/2}" />
 
   <xacro:property name="joint_ee_name" value="${tf_prefix}flange_fix_joint" />
@@ -209,61 +190,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <inertia ixx="${115*mm2_to_m2}" iyy="${115*mm2_to_m2}"
         izz="${115*mm2_to_m2}" ixy="${0.0*mm2_to_m2}" ixz="${0*mm2_to_m2}"
         iyz="${0.0*mm2_to_m2}" />
-    </inertial>
-  </xacro:property>
-
-  <!-- Covers -->
-  <xacro:property name="base_cover_inertial">
-    <inertial>
-      <mass value="0.098" />
-      <origin xyz="${0.0*mm_to_m} ${0.0*mm_to_m} ${-60.7*mm_to_m}" rpy="0 0 0" />
-      <inertia ixx="${0.000349}" iyy="${0.000338}" izz="${0.000649}" ixy="${0.000000018}"
-        ixz="${-0.000000001}" iyz="${-0.000000002}" />
-    </inertial>
-  </xacro:property>
-
-  <xacro:property name="link01_cover_inertial">
-    <inertial>
-      <mass value="0.135" />
-      <origin xyz="${-0.039*mm_to_m} ${-0.015*mm_to_m} ${-31.709*mm_to_m}" rpy="0 0 0" />
-      <inertia ixx="${0.00068}" iyy="${0.000517}" izz="${0.000646}" ixy="${-0.000000318}"
-        ixz="${-0.000000206}" iyz="${-0.000000074}" />
-    </inertial>
-  </xacro:property>
-
-  <xacro:property name="link02_cover_inertial">
-    <inertial>
-      <mass value="0.743" />
-      <origin xyz="${167.97*mm_to_m} ${0.081*mm_to_m} ${0.0*mm_to_m}" rpy="0 0 0" />
-      <inertia ixx="${0.0054}" iyy="${0.025}" izz="${0.0293}" ixy="${-0.000004814}"
-        ixz="${-0.000000101}" iyz="${0.000000134}" />
-    </inertial>
-  </xacro:property>
-
-  <xacro:property name="link03_cover_inertial">
-    <inertial>
-      <mass value="0.383" />
-      <origin xyz="${37.807*mm_to_m} ${-101.52*mm_to_m} ${0.184*mm_to_m}" rpy="0 0 0" />
-      <inertia ixx="${0.00139}" iyy="${0.00176}" izz="${0.00225}" ixy="${-0.000150269}"
-        ixz="${0.000002221}" iyz="${-0.000003993}" />
-    </inertial>
-  </xacro:property>
-
-  <xacro:property name="link04_cover_inertial">
-    <inertial>
-      <mass value="0.158" />
-      <origin xyz="${-9.28*mm_to_m} ${-0.008*mm_to_m} ${377.34*mm_to_m}" rpy="0 0 0" />
-      <inertia ixx="${0.000594}" iyy="${0.000846}" izz="${0.000485}" ixy="${-0.000000100}"
-        ixz="${-0.000057116}" iyz="${0.000000128}" />
-    </inertial>
-  </xacro:property>
-
-  <xacro:property name="link05_cover_inertial">
-    <inertial>
-      <mass value="0.121" />
-      <origin xyz="${54.24*mm_to_m} ${-0.0012*mm_to_m} ${-0.0069*mm_to_m}" rpy="0 0 0" />
-      <inertia ixx="${0.0003}" iyy="${0.00049}" izz="${0.00053}" ixy="${-0.000000004}"
-        ixz="${0.0}" iyz="${-0.000000043}" />
     </inertial>
   </xacro:property>
 

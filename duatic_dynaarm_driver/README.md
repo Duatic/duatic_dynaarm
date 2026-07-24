@@ -1,7 +1,5 @@
 # duatic_dynaarm_driver
 
-[![Jazzy Build Main](https://github.com/Duatic/duatic_dynaarm_driver/actions/workflows/build-jazzy.yml/badge.svg?branch=main)](https://github.com/Duatic/duatic_dynaarm_driver/actions/workflows/build-jazzy.yml)  [![Kilted Build Main](https://github.com/Duatic/duatic_dynaarm_driver/actions/workflows/build-kilted.yml/badge.svg?branch=main)](https://github.com/Duatic/duatic_dynaarm_driver/actions/workflows/build-kilted.yml)  [![Rolling Build Main](https://github.com/Duatic/duatic_dynaarm_driver/actions/workflows/build-rolling.yml/badge.svg?branch=main)](https://github.com/Duatic/duatic_dynaarm_driver/actions/workflows/build-rolling.yml)
-
 This repository contains the [ros2_control](https://control.ros.org/) based driver for the [Duatic DynaArm](https://duatic.com/robotic-arm/)
 
 # License
@@ -14,7 +12,6 @@ Images in this repository are to be licensed separately if you want to use them 
 All dependencies with their corresponding version are listed in the [repos.list](./repos.list).
 
 | Name | Description | License
-| ---  | --- | --- |
 | [duatic_dynaarm_description](https://github.com/Duatic/dynaarm_description) | URDF descript of the Dynaarm | BSD-3-Clause |
 | [ethercat_sdk_master](https://github.com/Duatic/ethercat_sdk_master) | Object oriented wrapper around the soem_interface | BSD-3-Clause |
 | [rsl_drive_sdk](https://github.com/leggedrobotics/rsl_drive_sdk) | Basic drive sdk for the DynaDrives | BSD-3-Clause |

@@ -34,8 +34,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:arg name="dof" default="6" />
   <!-- collision: simple, complex -->
   <xacro:arg name="collision" default="simple" />
-  <!-- Change to add covers to the arm -->
-  <xacro:arg name="covers" default="false" />
   <!-- v1, v2, ... -->
   <xacro:arg name="version" default="baracuda12" />
 
@@ -51,7 +49,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 parent_link="base_link"
                 dof="$(arg dof)"
                 collision="$(arg collision)"
-                covers="$(arg covers)"
                 version="$(arg version)">
     <origin xyz="0 0 0" rpy="0.0 0.0 0.0" />
   </xacro:dynaarm_description>
