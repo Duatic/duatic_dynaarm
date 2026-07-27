@@ -153,46 +153,32 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <origin xyz="${joint_3_origin_xyz}" rpy="${joint_3_origin_rpy}" />
       </xacro:dynaarm_revolute_joint>
 
-      <!--dynaarm_ELBOW_CAMERA_BASE-->
-      <xacro:if value="${version == 'baracuda12' or version == 'corydoras12'}">
+      <!-- Virtual elbow camera link -->
+      <xacro:virtual_link link_name="${link03_cam}" />
 
-        <!-- Virtual elbow camera link -->
-        <xacro:virtual_link link_name="${link03_cam}" />
+      <!-- Camera fixed on elbow -->
+      <xacro:dynaarm_joint_fixed joint_name="${joint_3_cam_name}"
+        parent="${link03}"
+        child="${link03_cam}">
+        <origin xyz="${joint_3_cam_origin_xyz}" rpy="${joint_3_cam_origin_rpy}" />
+      </xacro:dynaarm_joint_fixed>
 
-        <!-- Camera fixed on elbow -->
-        <xacro:dynaarm_joint_fixed joint_name="${joint_3_cam_name}"
-          parent="${link03}"
-          child="${link03_cam}">
-          <origin xyz="${joint_3_cam_origin_xyz}" rpy="${joint_3_cam_origin_rpy}" />
-        </xacro:dynaarm_joint_fixed>
-      </xacro:if>
 
     </xacro:if>
 
     <!-- 4 DoF -->
     <xacro:if value="${dof >= 4}">
 
-      <xacro:if value="${version == 'arowana4'}">
-        <!-- dynaarm_FOREARM -->
-        <xacro:dynaarm_link link_name="${link04}" file_name="${link04_mesh}">
-          <link_inertia>
-            <xacro:insert_block name="link04_inertial" />
-          </link_inertia>
-        </xacro:dynaarm_link>
-      </xacro:if>
+      <!-- dynaarm_FOREARM -->
+      <xacro:dynaarm_link_w_collision link_name="${link04}" file_name="${link04_mesh}">
+        <link_inertia>
+          <xacro:insert_block name="link04_inertial" />
+        </link_inertia>
 
-      <xacro:if value="${version == 'baracuda12' or version == 'corydoras12'}">
-        <!-- dynaarm_FOREARM -->
-        <xacro:dynaarm_link_w_collision link_name="${link04}" file_name="${link04_mesh}">
-          <link_inertia>
-            <xacro:insert_block name="link04_inertial" />
-          </link_inertia>
-
-          <link_collision>
-            <xacro:insert_block name="link04_collision" />
-          </link_collision>
-        </xacro:dynaarm_link_w_collision>
-      </xacro:if>
+        <link_collision>
+          <xacro:insert_block name="link04_collision" />
+        </link_collision>
+      </xacro:dynaarm_link_w_collision>
 
       <!-- forearm_rotation -->
       <xacro:dynaarm_revolute_joint joint_name="${joint_4_name}" parent="${link03}"
@@ -233,43 +219,30 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <origin xyz="${joint_5_origin_xyz}" rpy="${joint_5_origin_rpy}" />
       </xacro:dynaarm_revolute_joint>
 
-      <xacro:if value="${version == 'baracuda12' or version == 'corydoras12'}">
-        <!-- Virtual wrist camera link -->
-        <xacro:virtual_link link_name="${link05_cam}" />
+      <!-- Virtual wrist camera link -->
+      <xacro:virtual_link link_name="${link05_cam}" />
 
-        <!-- Camera fixed on wrist1 -->
-        <xacro:dynaarm_joint_fixed joint_name="${joint_5_cam_name}"
-          parent="${link05}"
-          child="${link05_cam}">
-          <origin xyz="${joint_5_cam_origin_xyz}" rpy="${joint_5_cam_origin_rpy}" />
-        </xacro:dynaarm_joint_fixed>
-      </xacro:if>
+      <!-- Camera fixed on wrist1 -->
+      <xacro:dynaarm_joint_fixed joint_name="${joint_5_cam_name}"
+        parent="${link05}"
+        child="${link05_cam}">
+        <origin xyz="${joint_5_cam_origin_xyz}" rpy="${joint_5_cam_origin_rpy}" />
+      </xacro:dynaarm_joint_fixed>
 
     </xacro:if>
 
     <!-- 6 DoF -->
     <xacro:if value="${dof >= 6}">
 
-      <xacro:if value="${version == 'arowana4'}">
-        <!-- WRIST_2 -->
-        <xacro:dynaarm_link link_name="${link06}" file_name="${link06_mesh}">
-          <link_inertia>
-            <xacro:insert_block name="link06_inertial" />
-          </link_inertia>
-        </xacro:dynaarm_link>
-      </xacro:if>
-
-      <xacro:if value="${version == 'baracuda12' or version == 'corydoras12'}">
-        <!-- WRIST_2 -->
-        <xacro:dynaarm_link_w_collision link_name="${link06}" file_name="${link06_mesh}">
-          <link_inertia>
-            <xacro:insert_block name="link06_inertial" />
-          </link_inertia>
-          <link_collision>
-            <xacro:insert_block name="link06_collision" />
-          </link_collision>
-        </xacro:dynaarm_link_w_collision>
-      </xacro:if>
+      <!-- WRIST_2 -->
+      <xacro:dynaarm_link_w_collision link_name="${link06}" file_name="${link06_mesh}">
+        <link_inertia>
+          <xacro:insert_block name="link06_inertial" />
+        </link_inertia>
+        <link_collision>
+          <xacro:insert_block name="link06_collision" />
+        </link_collision>
+      </xacro:dynaarm_link_w_collision>
 
       <!-- wrist_rotation -->
       <xacro:dynaarm_revolute_joint joint_name="${joint_6_name}" parent="${link05}"

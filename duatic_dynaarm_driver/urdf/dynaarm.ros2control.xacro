@@ -42,12 +42,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         drive_parameter_folder:=''">
 
       <!--Make the assumption that all newer arms will have brakes (very likely)-->
-      <xacro:if value="${version in ['arowana4', 'baracuda12']}">
-        <xacro:property name="has_brakes" value="false"/>
-      </xacro:if>
-      <xacro:unless value="${version in ['arowana4', 'baracuda12']}">
-        <xacro:property name="has_brakes" value="true"/>
-      </xacro:unless>
+      <xacro:property name="has_brakes" value="${version not in ['baracuda12']}"/>
 
       <!--Allow the user to pass a custom folder for drive parameters-->
       <xacro:property name="default_drive_parameter_folder" value="$(find duatic_dynaarm_driver)/config/${version}" />
