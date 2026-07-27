@@ -41,6 +41,9 @@ struct DynaArmKinematicsMapping
   static VectorType map_from_serial_to_coupled_coordinates(const VectorType& input);
   static VectorType map_from_serial_to_coupled_torques(const VectorType& input);
 
+  static VectorType map_from_serial_to_coupled_coordinate_limits(const VectorType& in);
+  static VectorType map_from_serial_to_coupled_torque_limits(const VectorType& in);
+
   static constexpr std::size_t input_size()
   {
     return 6;
