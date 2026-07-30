@@ -31,8 +31,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!--Example dual arm setup - mocked only-->
 
   <xacro:arg name="tf_prefix" default="" />
-  <!-- e.g.: 6-->
-  <xacro:arg name="dof" default="6" />
   <!-- collision: simple, complex-->
   <xacro:arg name="collision" default="complex" />
   <!-- v1, v2, ... -->
@@ -46,7 +44,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- create two dynaarms and fix their bases, move them up such that they do not intersect with the ground -->
   <xacro:dynaarm_description tf_prefix="$(arg tf_prefix)_1/"
                 parent_link="base_link"
-                dof="$(arg dof)"
                 collision="$(arg collision)"
                 version="$(arg version)">
     <origin xyz="0 0 0" rpy="0.0 0.0 0.0" />
@@ -55,7 +52,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- Note: for a real world application you would pass different parameters for both arms (e.g. different ethercat_bus)-->
   <xacro:dynaarm_description tf_prefix="$(arg tf_prefix)_2/"
                 parent_link="base_link"
-                dof="$(arg dof)"
                 collision="$(arg collision)"
                 version="$(arg version)">
     <origin xyz="1.0 0 0" rpy="0.0 0.0 0.0" />

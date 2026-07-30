@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <!--
 Copyright 2025 Duatic AG
 
@@ -16,8 +17,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
   <!--Example single arm setup-->
 
   <xacro:arg name="tf_prefix" default="" />
-  <!-- e.g.: 6-->
-  <xacro:arg name="dof" default="6" />
 
   <!-- simple, complex -->
   <xacro:arg name="collision" default="complex" />
@@ -66,7 +65,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
   <!-- create an instance of the dynaarm and fix its base-->
   <xacro:dynaarm tf_prefix="$(arg tf_prefix)"
                 parent_link="table"
-                dof="$(arg dof)"
                 collision="$(arg collision)"
                 mode="$(arg mode)"
                 ethercat_bus="$(arg ethercat_bus)"
