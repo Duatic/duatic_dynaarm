@@ -42,18 +42,15 @@ import os
 def launch_setup(context, *args, **kwargs):
 
     start_rviz = LaunchConfiguration("start_rviz")
-    dof = LaunchConfiguration("dof")
     version = LaunchConfiguration("version")
     ethercat_bus = LaunchConfiguration("ethercat_bus")
     mode = LaunchConfiguration("mode")
 
     ethercat_bus_value = ethercat_bus.perform(context)
     mode_value = mode.perform(context)
-    dof_value = dof.perform(context)
     version_value = version.perform(context)
 
     launch_arguments = {
-        "dof": dof_value,
         "mode": mode_value,
         "ethercat_bus": ethercat_bus_value,
         "version": version_value,
@@ -73,7 +70,6 @@ def launch_setup(context, *args, **kwargs):
         start_demo_mock = IncludeLaunchDescription(
             PythonLaunchDescriptionSource(os.path.join(pkg_demo_mock, "launch", "mock.launch.py")),
             launch_arguments={
-                "dof": dof_value,
                 "gui": "False",
                 "version": version_value,
                 "namespace": LaunchConfiguration("namespace"),
@@ -90,7 +86,6 @@ def launch_setup(context, *args, **kwargs):
         start_demo_real = IncludeLaunchDescription(
             PythonLaunchDescriptionSource(os.path.join(pkg_demo_real, "launch", "real.launch.py")),
             launch_arguments={
-                "dof": dof_value,
                 "gui": "False",
                 "version": version_value,
                 "ethercat_bus": ethercat_bus_value,
@@ -107,7 +102,6 @@ def launch_setup(context, *args, **kwargs):
         start_demo_sim = IncludeLaunchDescription(
             PythonLaunchDescriptionSource(os.path.join(pkg_demo_sim, "launch", "sim.launch.py")),
             launch_arguments={
-                "dof": dof_value,
                 "gui": "False",
                 "version": version_value,
                 "namespace": LaunchConfiguration("namespace"),
@@ -171,14 +165,6 @@ def generate_launch_description():
             name="start_rviz",
             default_value="True",
             description="Start RViz2 automatically with this launch file.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            name="dof",
-            choices=["1", "2", "3", "4", "5", "6"],
-            default_value="6",
-            description="Select the desired degrees of freedom (dof)",
         )
     )
     declared_arguments.append(

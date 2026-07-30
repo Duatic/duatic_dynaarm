@@ -24,7 +24,6 @@ Adapted from the `dynaarm_standalone.urdf.xacro`:
 ```xml
   <xacro:dynaarm tf_prefix="$(arg tf_prefix)"
                 parent_link="world"
-                dof="$(arg dof)"
                 mode="$(arg mode)"
                 ethercat_bus="$(arg ethercat_bus)"
                 version="$(arg version)"
