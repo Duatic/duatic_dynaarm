@@ -1,0 +1,35 @@
+# Copyright 2026 Duatic AG
+#
+# A single DynaArm on real hardware, with only the skills a bare arm can serve.
+#
+# Without an application the UI starts every installed skill and passes no
+# parameters. Grasp detection and SAM3 then come up on camera topics that exist
+# only on a robot with a head, and their retries crowd out the arm's own messages.
+application_id: single_arm_dynaarm
+name: "Single DynaArm"
+description: >-
+  One arm, no end effector, no perception. Joint and cartesian moves for bringing
+  up hardware and for checking the IK against a real drive.
+robot: dynaarm
+mode: real
+
+# The variant selects the URDF and the drive addresses that come with it, so it is
+# named here instead of left to the launch file's default.
+#
+# `ethercat_bus` is deliberately absent: it names an interface on one particular
+# machine. The UI's own field is applied after this file, so a value here would be
+# overridden where it happens to be right and wrong everywhere else.
+launch_args:
+  version: baracuda12
+  start_rviz: "false"
+
+# No parameter files. On a robot with wheels and a head the move skill needs a
+# reference posture and a list of joints to leave alone; here every joint moves the
+# flange, and an empty reference posture means the solve is steered by the arm's live
+# configuration, which is what a bench arm without a task should do. Each of those is
+# already the skill's default, so a file naming them would only restate them.
+skills:
+  - skill_id: move_v2
+  - skill_id: wait_v2
+  - skill_id: set_controller_v2
+  - skill_id: check_value_v2
