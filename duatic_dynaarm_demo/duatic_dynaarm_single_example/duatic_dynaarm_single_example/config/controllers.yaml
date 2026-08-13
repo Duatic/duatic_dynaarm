@@ -6,7 +6,7 @@
         type: joint_state_broadcaster/JointStateBroadcaster
         state: active
 
-      dynaarm_status_broadcaster:
+      duadrive_status_broadcaster:
         type: duatic_controllers/StatusBroadcaster
         state: active
 
@@ -50,7 +50,7 @@
       - wrist_flexion
       - wrist_rotation
 
-/**/dynaarm_status_broadcaster:
+/**/duadrive_status_broadcaster:
   ros__parameters:
     joints:
       - shoulder_rotation
