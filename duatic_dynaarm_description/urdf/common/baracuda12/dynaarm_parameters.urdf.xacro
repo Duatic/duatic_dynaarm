@@ -50,13 +50,13 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="end_effector" value="${tf_prefix}flange" />
 
   <!-- Meshes -->
-  <xacro:property name="base_mesh" value="base_mesh.dae" />
-  <xacro:property name="link01_mesh" value="shoulder_mesh.dae" />
-  <xacro:property name="link02_mesh" value="upperarm_mesh.dae" />
-  <xacro:property name="link03_mesh" value="elbow_mesh.dae" />
-  <xacro:property name="link04_mesh" value="forearm_mesh.dae" />
-  <xacro:property name="link05_mesh" value="wrist1_mesh.dae" />
-  <xacro:property name="link06_mesh" value="wrist2_mesh.dae" />
+  <xacro:property name="base_mesh" value="base_mesh.glb" />
+  <xacro:property name="link01_mesh" value="shoulder_mesh.glb" />
+  <xacro:property name="link02_mesh" value="upperarm_mesh.glb" />
+  <xacro:property name="link03_mesh" value="elbow_mesh.glb" />
+  <xacro:property name="link04_mesh" value="forearm_mesh.glb" />
+  <xacro:property name="link05_mesh" value="wrist1_mesh.glb" />
+  <xacro:property name="link06_mesh" value="wrist2_mesh.glb" />
 
   <!-- Joint properties -->
   <xacro:property name="joint_base_name" value="${tf_prefix}joint_base" />
