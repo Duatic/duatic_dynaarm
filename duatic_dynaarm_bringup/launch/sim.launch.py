@@ -63,6 +63,7 @@ def launch_setup(context, *args, **kwargs):
             "mode": sim_tool,
             "version": LaunchConfiguration("version").perform(context),
             "tf_prefix": tf_prefix + "/" if tf_prefix else "",
+            "controller_manager_yaml": LaunchConfiguration("controllers_config").perform(context),
         },
     )
 
@@ -103,7 +104,7 @@ def launch_setup(context, *args, **kwargs):
             Node(
                 package="controller_manager",
                 executable="ros2_control_node",
-                parameters=[{"update_rate": 1000}],
+                parameters=[LaunchConfiguration("controllers_config")],
                 output={
                     "stdout": "screen",
                     "stderr": "screen",
