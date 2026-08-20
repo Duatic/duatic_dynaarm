@@ -25,7 +25,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
   <!-- physical ethercat bus, only used for real -->
   <xacro:arg name="ethercat_bus" default="eth0" />
   <!-- v1, v2, ... -->
-  <xacro:arg name="version" default="baracuda12" />
+  <xacro:arg name="version" default="corydoras12" />
 
   <xacro:arg name="namespace" default="" />
 
