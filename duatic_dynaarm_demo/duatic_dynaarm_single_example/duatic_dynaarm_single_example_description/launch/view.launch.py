@@ -53,11 +53,9 @@ def string_to_bool(string_input):
 
 def launch_setup(context, *args, **kwargs):
 
-    dof = LaunchConfiguration("dof")
     gui = LaunchConfiguration("gui")
     version = LaunchConfiguration("version")
 
-    dof_value = dof.perform(context)
     version_value = version.perform(context)
 
     # Load the robot description
@@ -71,7 +69,7 @@ def launch_setup(context, *args, **kwargs):
 
     xacro.process_doc(
         doc,
-        mappings={"dof": dof_value, "version": version_value},
+        mappings={"version": version_value},
     )
     robot_description = {"robot_description": doc.toxml()}
 
@@ -140,17 +138,9 @@ def generate_launch_description():
     )
     declared_arguments.append(
         DeclareLaunchArgument(
-            name="dof",
-            choices=["1", "2", "3", "4", "5", "6"],
-            default_value="6",
-            description="Select the desired degrees of freedom (dof)",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
             name="version",
             default_value="baracuda12",
-            choices=["arowana4", "baracuda12", "corydoras12"],
+            choices=["baracuda12", "corydoras12"],
             description="Select the desired version of robot ",
         )
     )

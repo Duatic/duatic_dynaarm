@@ -23,7 +23,6 @@ This package current supports the following DynaArms:
 
 | Name     | Description |
 | ---      | ---         |
-| arowana4 | Pre-release version of the arm with 4kg payload at maximum reach |
 | baracuda12 | First publicly released version of the  DynaArm with 12kg payload at maximum reach |
 | corydoras12 | First DynaArm with brake support, same dimensions as the `baracuda12` but needs different configuration parameters |
 
@@ -32,11 +31,11 @@ This package current supports the following DynaArms:
 This repository integrates a simple show case you can view by running
 
 ```bash
-ros2 launch dynaarm_description view.launch.py dual:=True dof:=6 version:=baracuda12
+ros2 launch dynaarm_description view.launch.py dual:=True version:=baracuda12
 ```
 
-![Example: baracuda12, 6 dof](./doc/example.png)
-Example: baracuda12, 6 dof
+![Example: baracuda12](./doc/example.png)
+Example: baracuda12
 
 # Contributing
 
