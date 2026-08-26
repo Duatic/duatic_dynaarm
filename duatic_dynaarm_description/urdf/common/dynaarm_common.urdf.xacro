@@ -36,12 +36,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="mm_to_m" value="0.001" />
 
   <!-- -->
-  <!-- Common Properties -->
-  <!-- -->
-  <xacro:property name="drive_T40_limit_effort" value="40.0" />
-  <xacro:property name="drive_T120_limit_effort" value="120.0" />
-
-  <!-- -->
   <!-- Common Definitions -->
   <!-- -->
   <xacro:property name="joint_1_limit_vel" value="10.64" />
@@ -50,6 +44,13 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_4_limit_vel" value="13.647" />
   <xacro:property name="joint_5_limit_vel" value="13.647" />
   <xacro:property name="joint_6_limit_vel" value="13.647" />
+
+  <xacro:property name="joint_1_limit_effort" value="120.0" />
+  <xacro:property name="joint_2_limit_effort" value="120.0" />
+  <xacro:property name="joint_3_limit_effort" value="120.0" />
+  <xacro:property name="joint_4_limit_effort" value="40.0" />
+  <xacro:property name="joint_5_limit_effort" value="40.0" />
+  <xacro:property name="joint_6_limit_effort" value="40.0" />
 
   <!-- -->
   <!-- DynaArm Base Link Macro -->
