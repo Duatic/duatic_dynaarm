@@ -23,11 +23,10 @@
  */
 
 #include <gtest/gtest.h>
+#include <eigen3/Eigen/Core>
 
 #include <cstddef>
 #include <random>
-
-#include <eigen3/Eigen/Core>
 
 #include "duatic_dynaarm_driver/kinematic_translation.hpp"
 
@@ -96,6 +95,7 @@ Eigen::VectorXd randomAbsMax(std::mt19937& rng, double max_magnitude, Eigen::Ind
 // map_from_serial_to_coupled_coordinate_limits must return exactly the outer hull that
 // map_from_serial_to_coupled_coordinates attains when driven with every combination of
 // +/- a pseudo-random set of per-joint maximum velocities.
+// cppcheck-suppress syntaxError  // cppcheck doesn't know the TEST() gtest macro
 TEST(KinematicTranslationLimits, CoordinateLimitsOuterHullRandomTest)
 {
   std::mt19937 rng(kRandomSeed);
@@ -156,11 +156,7 @@ TEST(KinematicTranslationLimits, TorqueLimitsZeroInputTest)
   expectVectorsNear(analytic_limits, zero_torque, 1e-9);
 }
 
-// Per-joint velocity limits as specified in
-// duatic_dynaarm_description/urdf/common/dynaarm_common.urdf.xacro (joint_1_limit_vel .. joint_6_limit_vel),
-// identical for both the baracuda12 and corydoras12 versions.
-// Coordinate coupling (map_from_serial_to_coupled_coordinates): q2 = th2 + th3, all others unchanged
-// -> expected limits = [v1, v2, v2 + v3, v4, v5, v6].
+// Concrete, per-joint velocity limits
 TEST(KinematicTranslationLimits, CoordinateLimitsUrdfValuesTest)
 {
   Eigen::VectorXd max_velocity(DynaArmKinematicsMapping::input_size());
@@ -175,12 +171,7 @@ TEST(KinematicTranslationLimits, CoordinateLimitsUrdfValuesTest)
   expectVectorsNear(analytic_limits, expected_limits, 1e-9);
 }
 
-// Per-joint effort (torque) limits as specified in
-// duatic_dynaarm_description/urdf/common/dynaarm_common.urdf.xacro (drive_T120_limit_effort = 120.0 for
-// joints 1-3, drive_T40_limit_effort = 40.0 for joints 4-6), identical for both the baracuda12 and
-// corydoras12 versions.
-// Torque coupling (map_from_serial_to_coupled_torques): element 1 = joint_2 + joint_3, all others
-// unchanged -> expected limits = [t1, t2 + t3, t3, t4, t5, t6].
+// Concrete, per-joint effort (torque) limits
 TEST(KinematicTranslationLimits, TorqueLimitsUrdfValuesTest)
 {
   Eigen::VectorXd max_torque(DynaArmKinematicsMapping::input_size());
