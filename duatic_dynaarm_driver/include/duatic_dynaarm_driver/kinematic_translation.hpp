@@ -25,10 +25,8 @@
 #pragma once
 #include <span>
 
-#include <eigen3/Eigen/Core>
 #include <eigen3/Eigen/Dense>
 
-#include <duatic_duadrive_interface/coupled_kinematics_types.hpp>
 #include <duatic_duadrive_interface/coupled_kinematics_translator.hpp>
 
 namespace duatic::dynaarm_driver::kinematics
@@ -49,5 +47,8 @@ struct DynaArmKinematicsMapping
     return 6;
   }
 };
+
+// c-time evaluation of interface
+static_assert(duatic::duadrive_interface::kinematics::CoupledSerialMapping<DynaArmKinematicsMapping>);
 
 }  // namespace duatic::dynaarm_driver::kinematics
