@@ -25,9 +25,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
   <!-- physical ethercat bus, only used for real -->
   <xacro:arg name="ethercat_bus" default="eth0" />
   <!-- v1, v2, ... -->
-  <xacro:arg name="version" default="baracuda12" />
+  <xacro:arg name="version" default="corydoras12" />
 
+  <!-- Only relevant for Gazebo -->
   <xacro:arg name="namespace" default="" />
+  <xacro:arg name="controller_manager_yaml" default="" />
 
   <xacro:include filename="$(find duatic_dynaarm_driver)/urdf/dynaarm.urdf.xacro" />
 
@@ -74,6 +76,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
 
   <!-- Include the control plugin -->
   <xacro:include filename="$(find duatic_control)/urdf/plugins.urdf.xacro" />
-  <xacro:control namespace="$(arg namespace)" />
+  <xacro:control namespace="$(arg namespace)"
+                controller_manager_yaml="$(arg controller_manager_yaml)" />
 
 </robot>
