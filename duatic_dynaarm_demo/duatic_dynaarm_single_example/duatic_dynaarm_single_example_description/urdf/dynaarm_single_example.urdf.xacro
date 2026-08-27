@@ -38,9 +38,11 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- physical ethercat bus, only used for real -->
   <xacro:arg name="ethercat_bus" default="eth0" />
   <!-- v1, v2, ... -->
-  <xacro:arg name="version" default="baracuda12" />
+  <xacro:arg name="version" default="corydoras12" />
 
+  <!-- Only relevant for Gazebo -->
   <xacro:arg name="namespace" default="" />
+  <xacro:arg name="controller_manager_yaml" default="" />
 
   <!-- robot control limits -->
   <xacro:arg name="shoulder_rotation_limit_vel" default="10.64" />
@@ -103,6 +105,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!-- Include the control plugin -->
   <xacro:include filename="$(find duatic_control)/urdf/plugins.urdf.xacro" />
-  <xacro:control namespace="$(arg namespace)" />
+  <xacro:control namespace="$(arg namespace)"
+                controller_manager_yaml="$(arg controller_manager_yaml)" />
 
 </robot>
