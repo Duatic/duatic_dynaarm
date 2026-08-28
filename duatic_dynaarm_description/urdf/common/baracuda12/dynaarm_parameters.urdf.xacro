@@ -34,20 +34,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="duadrive_T40_limit_vel" value="13.647" />
   <xacro:property name="duadrive_T40_limit_effort" value="40.0" />
 
-  <!-- Joint limit overrides (fall back to the drive defaults above if not declared by the caller) -->
-  <xacro:arg name="shoulder_rotation_limit_vel" default="${duadrive_T120_limit_vel}" />
-  <xacro:arg name="shoulder_rotation_limit_effort" default="${duadrive_T120_limit_effort}" />
-  <xacro:arg name="shoulder_flexion_limit_vel" default="${duadrive_T120_limit_vel}" />
-  <xacro:arg name="shoulder_flexion_limit_effort" default="${duadrive_T120_limit_effort}" />
-  <xacro:arg name="elbow_flexion_limit_vel" default="${duadrive_T120_limit_vel}" />
-  <xacro:arg name="elbow_flexion_limit_effort" default="${duadrive_T120_limit_effort}" />
-  <xacro:arg name="forearm_rotation_limit_vel" default="${duadrive_T40_limit_vel}" />
-  <xacro:arg name="forearm_rotation_limit_effort" default="${duadrive_T40_limit_effort}" />
-  <xacro:arg name="wrist_flexion_limit_vel" default="${duadrive_T40_limit_vel}" />
-  <xacro:arg name="wrist_flexion_limit_effort" default="${duadrive_T40_limit_effort}" />
-  <xacro:arg name="wrist_rotation_limit_vel" default="${duadrive_T40_limit_vel}" />
-  <xacro:arg name="wrist_rotation_limit_effort" default="${duadrive_T40_limit_effort}" />
-
   <!-- Links -->
   <xacro:property name="base" value="${tf_prefix}base" />
   <xacro:property name="link01" value="${tf_prefix}shoulder" />
@@ -83,8 +69,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_1_origin_rpy" value="0 0 0" />
   <xacro:property name="joint_1_lower_limit" value="${-J_PI - J_PI/2 + 0.4}" />
   <xacro:property name="joint_1_upper_limit" value="${J_PI + J_PI/2 - 0.4}" />
-  <xacro:property name="joint_1_limit_vel" value="${xacro.arg('shoulder_rotation_limit_vel')}" />
-  <xacro:property name="joint_1_limit_effort" value="${xacro.arg('shoulder_rotation_limit_effort')}" />
+  <xacro:property name="joint_1_limit_vel_default" value="${duadrive_T120_limit_vel}" />
+  <xacro:property name="joint_1_limit_effort_default" value="${duadrive_T120_limit_effort}" />
 
   <xacro:property name="joint_2_name" value="${tf_prefix}shoulder_flexion" />
   <xacro:property name="joint_2_joint_type" value="revolute" />
@@ -93,8 +79,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_2_origin_rpy" value="${J_PI/2} ${-J_PI/2} 0" />
   <xacro:property name="joint_2_lower_limit" value="${-J_PI/2 - 0.15}" />
   <xacro:property name="joint_2_upper_limit" value="${J_PI/2 + 0.15}" />
-  <xacro:property name="joint_2_limit_vel" value="${xacro.arg('shoulder_flexion_limit_vel')}" />
-  <xacro:property name="joint_2_limit_effort" value="${xacro.arg('shoulder_flexion_limit_effort')}" />
+  <xacro:property name="joint_2_limit_vel_default" value="${duadrive_T120_limit_vel}" />
+  <xacro:property name="joint_2_limit_effort_default" value="${duadrive_T120_limit_effort}" />
 
   <xacro:property name="joint_3_name" value="${tf_prefix}elbow_flexion" />
   <xacro:property name="joint_3_joint_type" value="revolute" />
@@ -103,8 +89,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_3_origin_rpy" value="0 0 0" />
   <xacro:property name="joint_3_lower_limit" value="0.00" />
   <xacro:property name="joint_3_upper_limit" value="${J_PI - 0.05}" />
-  <xacro:property name="joint_3_limit_vel" value="${xacro.arg('elbow_flexion_limit_vel')}" />
-  <xacro:property name="joint_3_limit_effort" value="${xacro.arg('elbow_flexion_limit_effort')}" />
+  <xacro:property name="joint_3_limit_vel_default" value="${duadrive_T120_limit_vel}" />
+  <xacro:property name="joint_3_limit_effort_default" value="${duadrive_T120_limit_effort}" />
 
   <xacro:property name="joint_3_cam_name" value="${tf_prefix}elbow_camera" />
   <xacro:property name="joint_3_cam_joint_type" value="fixed" />
@@ -119,8 +105,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_4_origin_rpy" value="${J_PI/2} ${J_PI/2} ${J_PI/2}" />
   <xacro:property name="joint_4_lower_limit" value="${-J_PI - J_PI/2}" />
   <xacro:property name="joint_4_upper_limit" value="${J_PI + J_PI/2}" />
-  <xacro:property name="joint_4_limit_vel" value="${xacro.arg('forearm_rotation_limit_vel')}" />
-  <xacro:property name="joint_4_limit_effort" value="${xacro.arg('forearm_rotation_limit_effort')}" />
+  <xacro:property name="joint_4_limit_vel_default" value="${duadrive_T40_limit_vel}" />
+  <xacro:property name="joint_4_limit_effort_default" value="${duadrive_T40_limit_effort}" />
 
   <xacro:property name="joint_5_name" value="${tf_prefix}wrist_flexion" />
   <xacro:property name="joint_5_joint_type" value="revolute" />
@@ -129,8 +115,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_5_origin_rpy" value="0 ${-J_PI/2} 0" />
   <xacro:property name="joint_5_lower_limit" value="${-J_PI/2 -0.25}" />
   <xacro:property name="joint_5_upper_limit" value="${J_PI/2 + 0.25}" />
-  <xacro:property name="joint_5_limit_vel" value="${xacro.arg('wrist_flexion_limit_vel')}" />
-  <xacro:property name="joint_5_limit_effort" value="${xacro.arg('wrist_flexion_limit_effort')}" />
+  <xacro:property name="joint_5_limit_vel_default" value="${duadrive_T40_limit_vel}" />
+  <xacro:property name="joint_5_limit_effort_default" value="${duadrive_T40_limit_effort}" />
 
   <xacro:property name="joint_5_cam_name" value="${tf_prefix}wrist_flexion_camera" />
   <xacro:property name="joint_5_cam_joint_type" value="fixed" />
@@ -145,8 +131,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_6_origin_rpy" value="${-J_PI/2} ${J_PI/2} ${-J_PI/2}" />
   <xacro:property name="joint_6_lower_limit" value="${-J_PI/2}" />
   <xacro:property name="joint_6_upper_limit" value="${J_PI + J_PI/2}" />
-  <xacro:property name="joint_6_limit_vel" value="${xacro.arg('wrist_rotation_limit_vel')}" />
-  <xacro:property name="joint_6_limit_effort" value="${xacro.arg('wrist_rotation_limit_effort')}" />
+  <xacro:property name="joint_6_limit_vel_default" value="${duadrive_T40_limit_vel}" />
+  <xacro:property name="joint_6_limit_effort_default" value="${duadrive_T40_limit_effort}" />
 
   <xacro:property name="joint_ee_name" value="${tf_prefix}flange_fix_joint" />
   <xacro:property name="joint_ee_xyz" value="0.0 0.0 0.009" />

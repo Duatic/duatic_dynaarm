@@ -42,20 +42,20 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <xacro:arg name="namespace" default="" />
 
-  <!-- robot control limits -->
-  <xacro:arg name="shoulder_rotation_limit_vel" default="10.64" />
-  <xacro:arg name="shoulder_flexion_limit_vel" default="10.64" />
-  <xacro:arg name="elbow_flexion_limit_vel" default="10.64" />
-  <xacro:arg name="forearm_rotation_limit_vel" default="13.647" />
-  <xacro:arg name="wrist_flexion_limit_vel" default="13.647" />
-  <xacro:arg name="wrist_rotation_limit_vel" default="13.647" />
+  <!-- example definition of custom control limits; remove if not needed -->
+  <xacro:arg name="shoulder_rotation_limit_vel" default="" />
+  <xacro:arg name="shoulder_flexion_limit_vel" default="" />
+  <xacro:arg name="elbow_flexion_limit_vel" default="" />
+  <xacro:arg name="forearm_rotation_limit_vel" default="" />
+  <xacro:arg name="wrist_flexion_limit_vel" default="" />
+  <xacro:arg name="wrist_rotation_limit_vel" default="" />
 
-  <xacro:arg name="shoulder_rotation_limit_effort" default="120.0" />
-  <xacro:arg name="shoulder_flexion_limit_effort" default="120.0" />
-  <xacro:arg name="elbow_flexion_limit_effort" default="120.0" />
-  <xacro:arg name="forearm_rotation_limit_effort" default="40.0" />
-  <xacro:arg name="wrist_flexion_limit_effort" default="40.0" />
-  <xacro:arg name="wrist_rotation_limit_effort" default="40.0" />
+  <xacro:arg name="shoulder_rotation_limit_effort" default="" />
+  <xacro:arg name="shoulder_flexion_limit_effort" default="" />
+  <xacro:arg name="elbow_flexion_limit_effort" default="" />
+  <xacro:arg name="forearm_rotation_limit_effort" default="" />
+  <xacro:arg name="wrist_flexion_limit_effort" default="" />
+  <xacro:arg name="wrist_rotation_limit_effort" default="" />
 
   <!-- load robot description -->
   <xacro:include filename="$(find duatic_dynaarm_driver)/urdf/dynaarm.urdf.xacro" />
@@ -97,7 +97,19 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     collision="$(arg collision)"
     mode="$(arg mode)"
     ethercat_bus="$(arg ethercat_bus)"
-    version="$(arg version)">
+    version="$(arg version)"
+    joint_1_limit_vel="$(arg shoulder_rotation_limit_vel)"
+    joint_2_limit_vel="$(arg shoulder_flexion_limit_vel)"
+    joint_3_limit_vel="$(arg elbow_flexion_limit_vel)"
+    joint_4_limit_vel="$(arg forearm_rotation_limit_vel)"
+    joint_5_limit_vel="$(arg wrist_flexion_limit_vel)"
+    joint_6_limit_vel="$(arg wrist_rotation_limit_vel)"
+    joint_1_limit_effort="$(arg shoulder_rotation_limit_effort)"
+    joint_2_limit_effort="$(arg shoulder_flexion_limit_effort)"
+    joint_3_limit_effort="$(arg elbow_flexion_limit_effort)"
+    joint_4_limit_effort="$(arg forearm_rotation_limit_effort)"
+    joint_5_limit_effort="$(arg wrist_flexion_limit_effort)"
+    joint_6_limit_effort="$(arg wrist_rotation_limit_effort)">
     <origin xyz="0 0 0" rpy="0.0 0.0 0.0" />
   </xacro:dynaarm>
 
