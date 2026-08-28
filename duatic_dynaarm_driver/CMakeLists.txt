@@ -75,7 +75,13 @@ install(DIRECTORY
 )
 
 if(BUILD_TESTING)
-
+  find_package(ament_cmake_gtest REQUIRED)
+  ament_add_gtest(test_kinematic_translation
+    test/test_kinematic_translation.cpp
+  )
+  target_link_libraries(test_kinematic_translation
+    ${PROJECT_NAME}
+  )
 endif()
 
 ament_package()

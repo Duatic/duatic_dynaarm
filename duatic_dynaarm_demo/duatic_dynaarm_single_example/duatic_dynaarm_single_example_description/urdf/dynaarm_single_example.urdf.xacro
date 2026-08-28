@@ -2,19 +2,32 @@
 <!--
 Copyright 2025 Duatic AG
 
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+Redistribution and use in source and binary forms, with or without modification, are permitted
+provided that the following conditions are met:
 
-1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+1. Redistributions of source code must retain the above copyright notice, this list of conditions
+and the following disclaimer.
 
-2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of
+conditions and the following disclaimer in the documentation and/or other materials provided with
+the distribution.
 
-3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+3. Neither the name of the copyright holder nor the names of its contributors may be used to
+endorse or promote products derived from this software without specific prior written permission.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+OF
+THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <robot name="dynaarm" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!--Example single arm setup-->
+  <!-- Example single arm setup -->
 
   <xacro:arg name="tf_prefix" default="" />
 
@@ -31,46 +44,74 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
   <xacro:arg name="namespace" default="" />
   <xacro:arg name="controller_manager_yaml" default="" />
 
+  <!-- example definition of custom control limits; remove if not needed -->
+  <xacro:arg name="shoulder_rotation_limit_vel" default="" />
+  <xacro:arg name="shoulder_flexion_limit_vel" default="" />
+  <xacro:arg name="elbow_flexion_limit_vel" default="" />
+  <xacro:arg name="forearm_rotation_limit_vel" default="" />
+  <xacro:arg name="wrist_flexion_limit_vel" default="" />
+  <xacro:arg name="wrist_rotation_limit_vel" default="" />
+
+  <xacro:arg name="shoulder_rotation_limit_effort" default="" />
+  <xacro:arg name="shoulder_flexion_limit_effort" default="" />
+  <xacro:arg name="elbow_flexion_limit_effort" default="" />
+  <xacro:arg name="forearm_rotation_limit_effort" default="" />
+  <xacro:arg name="wrist_flexion_limit_effort" default="" />
+  <xacro:arg name="wrist_rotation_limit_effort" default="" />
+
+  <!-- load robot description -->
   <xacro:include filename="$(find duatic_dynaarm_driver)/urdf/dynaarm.urdf.xacro" />
 
-<link name="base_link" />
+  <link name="base_link" />
 
   <link name="table">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-          <box size="1.0 1.0 0.05"/>
+        <box size="1.0 1.0 0.05" />
       </geometry>
       <material name="Wood">
-        <color rgba="0.9 0.83 0.733 1.0"/>
+        <color rgba="0.9 0.83 0.733 1.0" />
       </material>
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-          <box size="1.0 1.0 0.05"/>
+        <box size="1.0 1.0 0.05" />
       </geometry>
     </collision>
     <inertial>
-      <mass value="10.0"/>
-      <origin xyz="0 0 0"/>
-      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      <mass value="10.0" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
     </inertial>
   </link>
 
   <joint name="table_joint" type="fixed">
-    <parent link="base_link"/>
-    <child link="table"/>
-    <origin xyz="0 0 -0.025" rpy="0 0 0"/>
+    <parent link="base_link" />
+    <child link="table" />
+    <origin xyz="0 0 -0.025" rpy="0 0 0" />
   </joint>
 
   <!-- create an instance of the dynaarm and fix its base-->
   <xacro:dynaarm tf_prefix="$(arg tf_prefix)"
-                parent_link="table"
-                collision="$(arg collision)"
-                mode="$(arg mode)"
-                ethercat_bus="$(arg ethercat_bus)"
-                version="$(arg version)">
+    parent_link="table"
+    collision="$(arg collision)"
+    mode="$(arg mode)"
+    ethercat_bus="$(arg ethercat_bus)"
+    version="$(arg version)"
+    joint_1_limit_vel="$(arg shoulder_rotation_limit_vel)"
+    joint_2_limit_vel="$(arg shoulder_flexion_limit_vel)"
+    joint_3_limit_vel="$(arg elbow_flexion_limit_vel)"
+    joint_4_limit_vel="$(arg forearm_rotation_limit_vel)"
+    joint_5_limit_vel="$(arg wrist_flexion_limit_vel)"
+    joint_6_limit_vel="$(arg wrist_rotation_limit_vel)"
+    joint_1_limit_effort="$(arg shoulder_rotation_limit_effort)"
+    joint_2_limit_effort="$(arg shoulder_flexion_limit_effort)"
+    joint_3_limit_effort="$(arg elbow_flexion_limit_effort)"
+    joint_4_limit_effort="$(arg forearm_rotation_limit_effort)"
+    joint_5_limit_effort="$(arg wrist_flexion_limit_effort)"
+    joint_6_limit_effort="$(arg wrist_rotation_limit_effort)">
     <origin xyz="0 0 0" rpy="0.0 0.0 0.0" />
   </xacro:dynaarm>
 

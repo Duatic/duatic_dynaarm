@@ -32,15 +32,32 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- DynaArm Macro-->
   <!-- -->
   <xacro:macro name="dynaarm_description"
-    params="tf_prefix parent_link collision:='simple' version *origin">
+    params="tf_prefix parent_link
+      collision:='simple'
+      joint_1_limit_vel=''
+      joint_2_limit_vel=''
+      joint_3_limit_vel=''
+      joint_4_limit_vel=''
+      joint_5_limit_vel=''
+      joint_6_limit_vel=''
+      joint_1_limit_effort=''
+      joint_2_limit_effort=''
+      joint_3_limit_effort=''
+      joint_4_limit_effort=''
+      joint_5_limit_effort=''
+      joint_6_limit_effort=''
+      version *origin">
 
 
     <!-- Set ee_parent -->
     <xacro:property name="ee_parent" value="${base}" />
 
-    <xacro:include filename="$(find duatic_dynaarm_description)/urdf/common/dynaarm_common.urdf.xacro" />
-    <!-- Include the version specific information and also load the ethercat addresses from the drive file -->
-    <xacro:include filename="$(find duatic_dynaarm_description)/urdf/common/${version}/dynaarm_parameters.urdf.xacro" />
+    <xacro:include
+      filename="$(find duatic_dynaarm_description)/urdf/common/dynaarm_common.urdf.xacro" />
+    <!-- Include the version specific information and also load the ethercat addresses from the
+    drive file -->
+    <xacro:include
+      filename="$(find duatic_dynaarm_description)/urdf/common/${version}/dynaarm_parameters.urdf.xacro" />
 
 
     <xacro:dynaarm_joint_fixed joint_name="${joint_base_name}"
@@ -89,8 +106,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_axis_xyz="${joint_1_axis_xyz}"
       joint_lower_limit="${joint_1_lower_limit}"
       joint_upper_limit="${joint_1_upper_limit}"
-      joint_limit_vel="${baboon_max_speed}"
-      joint_limit_effort="${baboon_peak_torque}"
+      joint_limit_vel="${joint_1_limit_vel_default if joint_1_limit_vel == '' else joint_1_limit_vel}"
+      joint_limit_effort="${joint_1_limit_effort_default if joint_1_limit_effort == '' else joint_1_limit_effort}"
       joint_type="${joint_1_joint_type}">
       <origin xyz="${joint_1_origin_xyz}" rpy="${joint_1_origin_rpy}" />
     </xacro:dynaarm_revolute_joint>
@@ -113,8 +130,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_axis_xyz="${joint_2_axis_xyz}"
       joint_lower_limit="${joint_2_lower_limit}"
       joint_upper_limit="${joint_2_upper_limit}"
-      joint_limit_vel="${baboon_max_speed}"
-      joint_limit_effort="${baboon_peak_torque}"
+      joint_limit_vel="${joint_2_limit_vel_default if joint_2_limit_vel == '' else joint_2_limit_vel}"
+      joint_limit_effort="${joint_2_limit_effort_default if joint_2_limit_effort == '' else joint_2_limit_effort}"
       joint_type="${joint_2_joint_type}">
       <origin xyz="${joint_2_origin_xyz}" rpy="${joint_2_origin_rpy}" />
     </xacro:dynaarm_revolute_joint>
@@ -137,8 +154,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_axis_xyz="${joint_3_axis_xyz}"
       joint_lower_limit="${joint_3_lower_limit}"
       joint_upper_limit="${joint_3_upper_limit}"
-      joint_limit_vel="${baboon_max_speed}"
-      joint_limit_effort="${baboon_peak_torque}"
+      joint_limit_vel="${joint_3_limit_vel_default if joint_3_limit_vel == '' else joint_3_limit_vel}"
+      joint_limit_effort="${joint_3_limit_effort_default if joint_3_limit_effort == '' else joint_3_limit_effort}"
       joint_type="${joint_3_joint_type}">
       <origin xyz="${joint_3_origin_xyz}" rpy="${joint_3_origin_rpy}" />
     </xacro:dynaarm_revolute_joint>
@@ -171,8 +188,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_axis_xyz="${joint_4_axis_xyz}"
       joint_lower_limit="${joint_4_lower_limit}"
       joint_upper_limit="${joint_4_upper_limit}"
-      joint_limit_vel="${baboon_max_speed}"
-      joint_limit_effort="${baboon_peak_torque}"
+      joint_limit_vel="${joint_4_limit_vel_default if joint_4_limit_vel == '' else joint_4_limit_vel}"
+      joint_limit_effort="${joint_4_limit_effort_default if joint_4_limit_effort == '' else joint_4_limit_effort}"
       joint_type="${joint_4_joint_type}">
       <origin xyz="${joint_4_origin_xyz}" rpy="${joint_4_origin_rpy}" />
     </xacro:dynaarm_revolute_joint>
@@ -194,8 +211,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_axis_xyz="${joint_5_axis_xyz}"
       joint_lower_limit="${joint_5_lower_limit}"
       joint_upper_limit="${joint_5_upper_limit}"
-      joint_limit_vel="${baboon_max_speed}"
-      joint_limit_effort="${baboon_peak_torque}"
+      joint_limit_vel="${joint_5_limit_vel_default if joint_5_limit_vel == '' else joint_5_limit_vel}"
+      joint_limit_effort="${joint_5_limit_effort_default if joint_5_limit_effort == '' else joint_5_limit_effort}"
       joint_type="${joint_5_joint_type}">
       <origin xyz="${joint_5_origin_xyz}" rpy="${joint_5_origin_rpy}" />
     </xacro:dynaarm_revolute_joint>
@@ -227,8 +244,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_axis_xyz="${joint_6_axis_xyz}"
       joint_lower_limit="${joint_6_lower_limit}"
       joint_upper_limit="${joint_6_upper_limit}"
-      joint_limit_vel="${baboon_max_speed}"
-      joint_limit_effort="${baboon_peak_torque}"
+      joint_limit_vel="${joint_6_limit_vel_default if joint_6_limit_vel == '' else joint_6_limit_vel}"
+      joint_limit_effort="${joint_6_limit_effort_default if joint_6_limit_effort == '' else joint_6_limit_effort}"
       joint_type="${joint_6_joint_type}">
       <origin xyz="${joint_6_origin_xyz}" rpy="${joint_6_origin_rpy}" />
     </xacro:dynaarm_revolute_joint>
@@ -239,12 +256,12 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- DynaArm Tool-->
   <!-- -->
   <xacro:macro name="dynaarm_tool">
-      <xacro:virtual_link link_name="${end_effector}" />
-      <xacro:dynaarm_joint_fixed joint_name="${joint_ee_name}"
-          parent="${ee_parent}"
-          child="${end_effector}">
-          <origin xyz="${joint_ee_origin_xyz}" rpy="${joint_ee_origin_rpy}" />
-      </xacro:dynaarm_joint_fixed>
+    <xacro:virtual_link link_name="${end_effector}" />
+    <xacro:dynaarm_joint_fixed joint_name="${joint_ee_name}"
+      parent="${ee_parent}"
+      child="${end_effector}">
+      <origin xyz="${joint_ee_origin_xyz}" rpy="${joint_ee_origin_rpy}" />
+    </xacro:dynaarm_joint_fixed>
   </xacro:macro>
 
 </robot>
