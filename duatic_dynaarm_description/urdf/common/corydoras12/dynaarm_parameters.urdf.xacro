@@ -185,7 +185,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="link03_cam_inertial">
     <inertial>
       <mass value="1e-6" />
-
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <inertia ixx="1e-6" iyy="1e-6"
         izz="1e-6" ixy="1e-6"
@@ -243,7 +242,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <xacro:property name="base_collision">
         <collision>
             <geometry>
-                <cylinder length='0.1' radius='0.05'/>
+                <cylinder length='0.1' radius='0.075'/>
             </geometry>
             <origin xyz='0 0 0.05' rpy='0 0 0'/>
         </collision>
