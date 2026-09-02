@@ -71,7 +71,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
                 mode="$(arg mode)"
                 ethercat_bus="$(arg ethercat_bus)"
                 version="$(arg version)">
-    <origin xyz="0 0 0" rpy="0.0 0.0 0.0" />
+    <origin xyz="0 0 0.025" rpy="0.0 0.0 0.0" />
   </xacro:dynaarm>
 
   <!-- Include the control plugin -->
