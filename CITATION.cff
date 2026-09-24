@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this software in your research, please cite it as below."
+type: software
+title: "duatic_dynaarm: ros2_control driver and description for the Duatic DynaArm"
+authors:
+  - name: "Duatic AG"
+repository-code: "https://github.com/Duatic/duatic_dynaarm"
+license: BSD-3-Clause
