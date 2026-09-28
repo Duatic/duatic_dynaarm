@@ -11,7 +11,7 @@
          <range left="6.027899" top="-0.053962" right="16.027924" bottom="-0.053982"/>
          <limitY/>
          <curve name="/joint_states/shoulder_rotation/position" color="#ff7f0e"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[0]/joint_position_commanded" color="#1f77b4"/>
+         <curve name="/duadrive_status_broadcaster/state/states[0]/joint_position_commanded" color="#1f77b4"/>
         </plot>
        </DockArea>
        <DockArea name="...">
@@ -19,7 +19,7 @@
          <range left="6.027899" top="-1.386693" right="16.027924" bottom="-1.386709"/>
          <limitY/>
          <curve name="/joint_states/shoulder_flexion/position" color="#1ac938"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[1]/joint_position_commanded" color="#d62728"/>
+         <curve name="/duadrive_status_broadcaster/state/states[1]/joint_position_commanded" color="#d62728"/>
         </plot>
        </DockArea>
        <DockArea name="...">
@@ -27,8 +27,8 @@
          <range left="6.027899" top="2.532424" right="16.027924" bottom="2.532398"/>
          <limitY/>
          <curve name="/joint_states/elbow_flexion/position" color="#1f77b4"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[2]/joint_position" color="#1ac938"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[2]/joint_position_commanded" color="#ff7f0e"/>
+         <curve name="/duadrive_status_broadcaster/state/states[2]/joint_position" color="#1ac938"/>
+         <curve name="/duadrive_status_broadcaster/state/states[2]/joint_position_commanded" color="#ff7f0e"/>
         </plot>
        </DockArea>
       </DockSplitter>
@@ -38,7 +38,7 @@
          <range left="6.027899" top="-0.124826" right="16.027924" bottom="-0.124845"/>
          <limitY/>
          <curve name="/joint_states/forearm_rotation/position" color="#d62728"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[3]/joint_position_commanded" color="#f14cc1"/>
+         <curve name="/duadrive_status_broadcaster/state/states[3]/joint_position_commanded" color="#f14cc1"/>
         </plot>
        </DockArea>
        <DockArea name="...">
@@ -46,7 +46,7 @@
          <range left="6.027899" top="0.521415" right="16.027924" bottom="0.521361"/>
          <limitY/>
          <curve name="/joint_states/wrist_flexion/position" color="#f14cc1"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[4]/joint_position_commanded" color="#9467bd"/>
+         <curve name="/duadrive_status_broadcaster/state/states[4]/joint_position_commanded" color="#9467bd"/>
         </plot>
        </DockArea>
        <DockArea name="...">
@@ -54,7 +54,7 @@
          <range left="6.027899" top="0.587867" right="16.027924" bottom="0.587803"/>
          <limitY/>
          <curve name="/joint_states/wrist_rotation/position" color="#9467bd"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[5]/joint_position_commanded" color="#17becf"/>
+         <curve name="/duadrive_status_broadcaster/state/states[5]/joint_position_commanded" color="#17becf"/>
         </plot>
        </DockArea>
       </DockSplitter>
@@ -72,7 +72,7 @@
          <range left="6.027899" top="0.094376" right="16.027924" bottom="-0.094376"/>
          <limitY/>
          <curve name="/joint_states/shoulder_rotation/velocity" color="#d62728"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[0]/joint_velocity_commanded" color="#f14cc1"/>
+         <curve name="/duadrive_status_broadcaster/state/states[0]/joint_velocity_commanded" color="#f14cc1"/>
         </plot>
        </DockArea>
        <DockArea name="...">
@@ -80,7 +80,7 @@
          <range left="6.027899" top="0.113757" right="16.027924" bottom="-0.102521"/>
          <limitY/>
          <curve name="/joint_states/shoulder_flexion/velocity" color="#1f77b4"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[1]/joint_velocity_commanded" color="#9467bd"/>
+         <curve name="/duadrive_status_broadcaster/state/states[1]/joint_velocity_commanded" color="#9467bd"/>
         </plot>
        </DockArea>
        <DockArea name="...">
@@ -88,7 +88,7 @@
          <range left="6.027899" top="0.133605" right="16.027924" bottom="-0.129860"/>
          <limitY/>
          <curve name="/joint_states/elbow_flexion/velocity" color="#1729cf"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[2]/joint_velocity_commanded" color="#17becf"/>
+         <curve name="/duadrive_status_broadcaster/state/states[2]/joint_velocity_commanded" color="#17becf"/>
         </plot>
        </DockArea>
       </DockSplitter>
@@ -98,7 +98,7 @@
          <range left="6.027899" top="0.057052" right="16.027924" bottom="-0.053063"/>
          <limitY/>
          <curve name="/joint_states/forearm_rotation/velocity" color="#bcbd22"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[3]/joint_velocity_commanded" color="#17becf"/>
+         <curve name="/duadrive_status_broadcaster/state/states[3]/joint_velocity_commanded" color="#17becf"/>
         </plot>
        </DockArea>
        <DockArea name="...">
@@ -106,7 +106,7 @@
          <range left="6.027899" top="0.064614" right="16.027924" bottom="-0.061136"/>
          <limitY/>
          <curve name="/joint_states/wrist_flexion/velocity" color="#1ac938"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[4]/joint_velocity_commanded" color="#bcbd22"/>
+         <curve name="/duadrive_status_broadcaster/state/states[4]/joint_velocity_commanded" color="#bcbd22"/>
         </plot>
        </DockArea>
        <DockArea name="...">
@@ -114,7 +114,7 @@
          <range left="6.027899" top="0.160484" right="16.027924" bottom="-0.204139"/>
          <limitY/>
          <curve name="/joint_states/wrist_rotation/velocity" color="#ff7f0e"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[5]/joint_velocity_commanded" color="#1f77b4"/>
+         <curve name="/duadrive_status_broadcaster/state/states[5]/joint_velocity_commanded" color="#1f77b4"/>
         </plot>
        </DockArea>
       </DockSplitter>
@@ -131,24 +131,24 @@
         <plot flip_x="false" mode="TimeSeries" flip_y="false" style="Lines">
          <range left="6.027899" top="0.552545" right="16.027841" bottom="-0.468258"/>
          <limitY/>
-         <curve name="/dynaarm_status_broadcaster/state/states[0]/joint_effort" color="#f14cc1"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[0]/joint_effort_commanded" color="#000885"/>
+         <curve name="/duadrive_status_broadcaster/state/states[0]/joint_effort" color="#f14cc1"/>
+         <curve name="/duadrive_status_broadcaster/state/states[0]/joint_effort_commanded" color="#000885"/>
         </plot>
        </DockArea>
        <DockArea name="...">
         <plot flip_x="false" mode="TimeSeries" flip_y="false" style="Lines">
          <range left="6.027899" top="11.031241" right="16.027841" bottom="8.698837"/>
          <limitY/>
-         <curve name="/dynaarm_status_broadcaster/state/states[1]/joint_effort" color="#1ac938"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[1]/joint_effort_commanded" color="#d62728"/>
+         <curve name="/duadrive_status_broadcaster/state/states[1]/joint_effort" color="#1ac938"/>
+         <curve name="/duadrive_status_broadcaster/state/states[1]/joint_effort_commanded" color="#d62728"/>
         </plot>
        </DockArea>
        <DockArea name="...">
         <plot flip_x="false" mode="TimeSeries" flip_y="false" style="Lines">
          <range left="6.027899" top="-7.302367" right="16.027841" bottom="-8.092271"/>
          <limitY/>
-         <curve name="/dynaarm_status_broadcaster/state/states[2]/joint_effort" color="#17becf"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[2]/joint_effort_commanded" color="#f2fa00"/>
+         <curve name="/duadrive_status_broadcaster/state/states[2]/joint_effort" color="#17becf"/>
+         <curve name="/duadrive_status_broadcaster/state/states[2]/joint_effort_commanded" color="#f2fa00"/>
         </plot>
        </DockArea>
       </DockSplitter>
@@ -157,24 +157,24 @@
         <plot flip_x="false" mode="TimeSeries" flip_y="false" style="Lines">
          <range left="6.027899" top="0.088913" right="16.027841" bottom="-0.110422"/>
          <limitY/>
-         <curve name="/dynaarm_status_broadcaster/state/states[3]/joint_effort" color="#1f77b4"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[3]/joint_effort_commanded" color="#ff7f0e"/>
+         <curve name="/duadrive_status_broadcaster/state/states[3]/joint_effort" color="#1f77b4"/>
+         <curve name="/duadrive_status_broadcaster/state/states[3]/joint_effort_commanded" color="#ff7f0e"/>
         </plot>
        </DockArea>
        <DockArea name="...">
         <plot flip_x="false" mode="TimeSeries" flip_y="false" style="Lines">
          <range left="6.027899" top="-0.938498" right="16.027841" bottom="-1.296140"/>
          <limitY/>
-         <curve name="/dynaarm_status_broadcaster/state/states[4]/joint_effort" color="#1ac938"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[4]/joint_effort_commanded" color="#f14cc1"/>
+         <curve name="/duadrive_status_broadcaster/state/states[4]/joint_effort" color="#1ac938"/>
+         <curve name="/duadrive_status_broadcaster/state/states[4]/joint_effort_commanded" color="#f14cc1"/>
         </plot>
        </DockArea>
        <DockArea name="...">
         <plot flip_x="false" mode="TimeSeries" flip_y="false" style="Lines">
          <range left="6.027899" top="0.022662" right="16.027841" bottom="-0.057812"/>
          <limitY/>
-         <curve name="/dynaarm_status_broadcaster/state/states[5]/joint_effort" color="#f14cc1"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[5]/joint_effort_commanded" color="#9467bd"/>
+         <curve name="/duadrive_status_broadcaster/state/states[5]/joint_effort" color="#f14cc1"/>
+         <curve name="/duadrive_status_broadcaster/state/states[5]/joint_effort_commanded" color="#9467bd"/>
         </plot>
        </DockArea>
       </DockSplitter>
@@ -221,24 +221,24 @@
         <plot flip_x="false" mode="TimeSeries" flip_y="false" style="Lines">
          <range left="6.027899" top="54.400749" right="16.027841" bottom="32.109249"/>
          <limitY/>
-         <curve name="/dynaarm_status_broadcaster/state/states[0]/temperature_phase_a" color="#17becf"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[0]/temperature_system" color="#d62728"/>
+         <curve name="/duadrive_status_broadcaster/state/states[0]/temperature_phase_a" color="#17becf"/>
+         <curve name="/duadrive_status_broadcaster/state/states[0]/temperature_system" color="#d62728"/>
         </plot>
        </DockArea>
        <DockArea name="...">
         <plot flip_x="false" mode="TimeSeries" flip_y="false" style="Lines">
          <range left="6.027899" top="56.887500" right="16.027841" bottom="-1.387500"/>
          <limitY/>
-         <curve name="/dynaarm_status_broadcaster/state/states[1]/temperature_phase_a" color="#1ac938"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[1]/temperature_system" color="#9467bd"/>
+         <curve name="/duadrive_status_broadcaster/state/states[1]/temperature_phase_a" color="#1ac938"/>
+         <curve name="/duadrive_status_broadcaster/state/states[1]/temperature_system" color="#9467bd"/>
         </plot>
        </DockArea>
        <DockArea name="...">
         <plot flip_x="false" mode="TimeSeries" flip_y="false" style="Lines">
          <range left="6.027899" top="56.921299" right="16.027841" bottom="33.766701"/>
          <limitY/>
-         <curve name="/dynaarm_status_broadcaster/state/states[2]/temperature_phase_a" color="#17becf"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[2]/temperature_system" color="#d62728"/>
+         <curve name="/duadrive_status_broadcaster/state/states[2]/temperature_phase_a" color="#17becf"/>
+         <curve name="/duadrive_status_broadcaster/state/states[2]/temperature_system" color="#d62728"/>
         </plot>
        </DockArea>
       </DockSplitter>
@@ -247,24 +247,24 @@
         <plot flip_x="false" mode="TimeSeries" flip_y="false" style="Lines">
          <range left="6.027899" top="53.880899" right="16.027841" bottom="32.423098"/>
          <limitY/>
-         <curve name="/dynaarm_status_broadcaster/state/states[3]/temperature_phase_a" color="#1ac938"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[3]/temperature_system" color="#9467bd"/>
+         <curve name="/duadrive_status_broadcaster/state/states[3]/temperature_phase_a" color="#1ac938"/>
+         <curve name="/duadrive_status_broadcaster/state/states[3]/temperature_system" color="#9467bd"/>
         </plot>
        </DockArea>
        <DockArea name="...">
         <plot flip_x="false" mode="TimeSeries" flip_y="false" style="Lines">
          <range left="6.027899" top="53.487624" right="16.027841" bottom="27.547376"/>
          <limitY/>
-         <curve name="/dynaarm_status_broadcaster/state/states[4]/temperature_phase_a" color="#17becf"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[4]/temperature_system" color="#d62728"/>
+         <curve name="/duadrive_status_broadcaster/state/states[4]/temperature_phase_a" color="#17becf"/>
+         <curve name="/duadrive_status_broadcaster/state/states[4]/temperature_system" color="#d62728"/>
         </plot>
        </DockArea>
        <DockArea name="...">
         <plot flip_x="false" mode="TimeSeries" flip_y="false" style="Lines">
          <range left="6.027899" top="50.623274" right="16.027841" bottom="29.485725"/>
          <limitY/>
-         <curve name="/dynaarm_status_broadcaster/state/states[5]/temperature_phase_a" color="#1ac938"/>
-         <curve name="/dynaarm_status_broadcaster/state/states[5]/temperature_system" color="#9467bd"/>
+         <curve name="/duadrive_status_broadcaster/state/states[5]/temperature_phase_a" color="#1ac938"/>
+         <curve name="/duadrive_status_broadcaster/state/states[5]/temperature_system" color="#9467bd"/>
         </plot>
        </DockArea>
       </DockSplitter>
@@ -297,7 +297,7 @@
    <max_array_size value="100"/>
    <boolean_strings_to_number value="true"/>
    <remove_suffix_from_strings value="true"/>
-   <selected_topics value="/dynaarm_status_broadcaster/state;/joint_states;/joint_trajectory_controller/controller_state"/>
+   <selected_topics value="/duadrive_status_broadcaster/state;/joint_states;/joint_trajectory_controller/controller_state"/>
   </plugin>
   <plugin ID="UDP Server"/>
   <plugin ID="WebSocket Server"/>

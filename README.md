@@ -5,7 +5,21 @@
 [![Lyrical](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mbloechli/1655a293568e313b11a4d4242be80b71/raw/duatic_dynaarm-lyrical.json)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/ci.yml)
 [![Rolling](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mbloechli/1655a293568e313b11a4d4242be80b71/raw/duatic_dynaarm-rolling.json)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/ci.yml)
 
-This repository contains the [ros2_control](https://control.ros.org/) based driver for the [Duatic DynaArm](https://duatic.com/robotic-arm/), the necessary description package and a simple demo application
+This repository contains the [ros2_control](https://control.ros.org/) based driver for the [Duatic DynaArm](https://www.duatic.com/dynaarm), the necessary description package and a simple demo application
+
+# Citation
+
+If you use this software in your research, please cite it as:
+
+```bibtex
+@misc{duatic_dynaarm,
+  author       = {{Duatic AG}},
+  title        = {duatic\_dynaarm: ros2\_control driver and description for the {Duatic DynaArm}},
+  year         = {2026},
+  howpublished = {\url{https://github.com/Duatic/duatic_dynaarm}},
+  note         = {Product page: \url{https://www.duatic.com/dynaarm}. Accessed: YYYY-MM-DD}
+}
+```
 
 # License
 

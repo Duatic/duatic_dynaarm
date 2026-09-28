@@ -50,13 +50,13 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="end_effector" value="${tf_prefix}flange" />
 
   <!-- Meshes -->
-  <xacro:property name="base_mesh" value="base_mesh.dae" />
-  <xacro:property name="link01_mesh" value="shoulder_mesh.dae" />
-  <xacro:property name="link02_mesh" value="upperarm_mesh.dae" />
-  <xacro:property name="link03_mesh" value="elbow_mesh.dae" />
-  <xacro:property name="link04_mesh" value="forearm_mesh.dae" />
-  <xacro:property name="link05_mesh" value="wrist1_mesh.dae" />
-  <xacro:property name="link06_mesh" value="wrist2_mesh.dae" />
+  <xacro:property name="base_mesh" value="${'base_mesh_standalone.glb' if standalone else 'base_mesh_attached.glb'}" />
+  <xacro:property name="link01_mesh" value="shoulder_mesh.glb" />
+  <xacro:property name="link02_mesh" value="upperarm_mesh.glb" />
+  <xacro:property name="link03_mesh" value="elbow_mesh.glb" />
+  <xacro:property name="link04_mesh" value="forearm_mesh.glb" />
+  <xacro:property name="link05_mesh" value="wrist1_mesh.glb" />
+  <xacro:property name="link06_mesh" value="wrist2_mesh.glb" />
 
   <!-- Joint properties -->
   <xacro:property name="joint_base_name" value="${tf_prefix}joint_base" />
@@ -242,7 +242,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <xacro:property name="base_collision">
         <collision>
             <geometry>
-                <cylinder length='0.1' radius='0.05'/>
+                <cylinder length='0.1' radius='0.075'/>
             </geometry>
             <origin xyz='0 0 0.05' rpy='0 0 0'/>
         </collision>
@@ -305,13 +305,14 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </xacro:if>
 
   <xacro:if value="${collision == 'complex'}">
-    <!-- Collision properties -->
+    <!-- Collision properties: reuse the visual meshes (base_mesh already resolves to the
+         standalone/attached variant) instead of the separate collision_meshes/*.stl files -->
     <xacro:property name="base_collision">
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://duatic_dynaarm_description/meshes/baracuda12/collision_meshes/base_collision_mesh.stl"
+            filename="package://duatic_dynaarm_description/meshes/${version}/${base_mesh}"
             scale="1 1 1" />
         </geometry>
       </collision>
@@ -322,7 +323,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://duatic_dynaarm_description/meshes/baracuda12/collision_meshes/shoulder_collision_mesh.stl"
+            filename="package://duatic_dynaarm_description/meshes/${version}/${link01_mesh}"
             scale="1 1 1" />
         </geometry>
       </collision>
@@ -333,7 +334,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://duatic_dynaarm_description/meshes/baracuda12/collision_meshes/upperarm_collision_mesh.stl"
+            filename="package://duatic_dynaarm_description/meshes/${version}/${link02_mesh}"
             scale="1 1 1" />
         </geometry>
       </collision>
@@ -344,7 +345,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://duatic_dynaarm_description/meshes/baracuda12/collision_meshes/elbow_collision_mesh.stl"
+            filename="package://duatic_dynaarm_description/meshes/${version}/${link03_mesh}"
             scale="1 1 1" />
         </geometry>
       </collision>
@@ -355,7 +356,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://duatic_dynaarm_description/meshes/baracuda12/collision_meshes/forearm_collision_mesh.stl"
+            filename="package://duatic_dynaarm_description/meshes/${version}/${link04_mesh}"
             scale="1 1 1" />
         </geometry>
       </collision>
@@ -366,7 +367,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://duatic_dynaarm_description/meshes/baracuda12/collision_meshes/wrist1_collision_mesh.stl"
+            filename="package://duatic_dynaarm_description/meshes/${version}/${link05_mesh}"
             scale="1 1 1" />
         </geometry>
       </collision>
@@ -377,7 +378,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://duatic_dynaarm_description/meshes/baracuda12/collision_meshes/wrist2_collision_mesh.stl"
+            filename="package://duatic_dynaarm_description/meshes/${version}/${link06_mesh}"
             scale="1 1 1" />
         </geometry>
       </collision>

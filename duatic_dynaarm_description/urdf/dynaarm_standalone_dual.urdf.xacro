@@ -34,7 +34,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- collision: simple, complex-->
   <xacro:arg name="collision" default="complex" />
   <!-- v1, v2, ... -->
-  <xacro:arg name="version" default="baracuda12" />
+  <xacro:arg name="version" default="corydoras12" />
 
 
   <xacro:include filename="$(find duatic_dynaarm_description)/urdf/dynaarm.urdf.xacro" />
