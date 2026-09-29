@@ -27,7 +27,6 @@ from launch.actions import (
     DeclareLaunchArgument,
     OpaqueFunction,
     IncludeLaunchDescription,
-    TimerAction,
 )
 
 from launch.conditions import IfCondition
@@ -105,23 +104,7 @@ def launch_setup(context, *args, **kwargs):
         parameters=[{"autorepeat_rate": 100.0}],
     )
 
-    # Move Arms to Start Position
-    # TODO: Find a better way to delay this node start until controllers are ready
-    move_to_predefined_position_node = TimerAction(
-        period=10.0,
-        actions=[
-            Node(
-                package="duatic_move_to_predefined_position",
-                executable="move_to_predefined_position_node",
-                namespace=LaunchConfiguration("namespace"),
-                name="move_to_predefined_position_node",
-                output="screen",
-                parameters=[{"robot_configuration": "dynaarm"}],
-            )
-        ],
-    )
-
-    nodes_to_start = [simulation, dynaarm_bringup, rviz, joy_node, move_to_predefined_position_node]
+    nodes_to_start = [simulation, dynaarm_bringup, rviz, joy_node]
 
     return nodes_to_start
 
