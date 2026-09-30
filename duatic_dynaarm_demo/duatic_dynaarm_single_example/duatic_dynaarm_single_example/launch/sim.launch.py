@@ -86,6 +86,7 @@ def launch_setup(context, *args, **kwargs):
         ),
         launch_arguments={
             "world": LaunchConfiguration("world"),
+            "headless": LaunchConfiguration("headless"),
             "gz_models_path": PathJoinSubstitution([pkg_dynaarm_description, ".."]).perform(
                 context
             ),
@@ -128,6 +129,12 @@ def generate_launch_description():
             default_value=get_package_share_directory("duatic_dynaarm_single_example")
             + "/config/controllers.yaml",
             description="Path to the controllers config file",
+        ),
+        DeclareLaunchArgument(
+            "headless",
+            default_value="false",
+            choices=["false", "true"],
+            description="Run Gazebo without the GUI client",
         ),
         DeclareLaunchArgument(
             "start_rviz",
