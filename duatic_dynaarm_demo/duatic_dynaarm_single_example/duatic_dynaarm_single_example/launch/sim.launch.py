@@ -87,9 +87,6 @@ def launch_setup(context, *args, **kwargs):
         launch_arguments={
             "world": LaunchConfiguration("world"),
             "headless": LaunchConfiguration("headless"),
-            "gz_models_path": PathJoinSubstitution([pkg_dynaarm_description, ".."]).perform(
-                context
-            ),
         }.items(),
         condition=IfCondition(
             PythonExpression(["'", LaunchConfiguration("simulator"), "' == 'gazebo'"])
