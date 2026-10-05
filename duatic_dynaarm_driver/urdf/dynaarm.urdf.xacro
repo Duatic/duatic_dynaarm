@@ -38,6 +38,18 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                          start_in_freeze_mode:=false
                          drive_parameter_folder:=''
                          version
+                         joint_1_limit_vel=''
+                         joint_2_limit_vel=''
+                         joint_3_limit_vel=''
+                         joint_4_limit_vel=''
+                         joint_5_limit_vel=''
+                         joint_6_limit_vel=''
+                         joint_1_limit_effort=''
+                         joint_2_limit_effort=''
+                         joint_3_limit_effort=''
+                         joint_4_limit_effort=''
+                         joint_5_limit_effort=''
+                         joint_6_limit_effort=''
                          *origin">
         <xacro:include filename="$(find duatic_dynaarm_description)/urdf/dynaarm.urdf.xacro" />
         <xacro:include filename="$(find duatic_dynaarm_driver)/urdf/dynaarm.ros2control.xacro" />
@@ -53,7 +65,19 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 tf_prefix="${tf_prefix}"
                 parent_link="${parent_link}"
                 collision="${collision}"
-                version="${version}">
+                version="${version}"
+                joint_1_limit_vel="${joint_1_limit_vel}"
+                joint_2_limit_vel="${joint_2_limit_vel}"
+                joint_3_limit_vel="${joint_3_limit_vel}"
+                joint_4_limit_vel="${joint_4_limit_vel}"
+                joint_5_limit_vel="${joint_5_limit_vel}"
+                joint_6_limit_vel="${joint_6_limit_vel}"
+                joint_1_limit_effort="${joint_1_limit_effort}"
+                joint_2_limit_effort="${joint_2_limit_effort}"
+                joint_3_limit_effort="${joint_3_limit_effort}"
+                joint_4_limit_effort="${joint_4_limit_effort}"
+                joint_5_limit_effort="${joint_5_limit_effort}"
+                joint_6_limit_effort="${joint_6_limit_effort}">
             <xacro:insert_block name="origin" />
         </xacro:dynaarm_description>
 

@@ -127,4 +127,56 @@ Eigen::VectorXd DynaArmKinematicsMapping::map_from_serial_to_coupled_torques(con
   return mapping * input;
 }
 
+/*!
+ * Map symmetric limit magnitudes (velocity / acceleration) from serial to coupled space.
+ *
+ * A limit is the radius of an interval, not a coordinate: for a row
+ * q_i = sum_j c_ij * theta_j the reachable extremum is sum_j |c_ij| * limit_j.
+ * We therefore apply the element-wise absolute value of the coordinate mapping.
+ * The result is exact (attained), not a conservative padding.
+ */
+Eigen::VectorXd DynaArmKinematicsMapping::map_from_serial_to_coupled_coordinate_limits(const Eigen::VectorXd& input)
+{
+  const Eigen::Index size = input.size();
+  if (size < 4) {
+    throw std::invalid_argument("Input vector must have at least 4 elements");
+  }
+
+  Eigen::MatrixXd mapping = Eigen::MatrixXd::Identity(size, size);
+
+  // clang-format off
+  // Element-wise |.| of map_from_serial_to_coupled_coordinates
+  mapping.block<4, 4>(0, 0) << 1.0, 0.0, 0.0, 0.0,
+                               0.0, 1.0, 0.0, 0.0,
+                               0.0, 1.0, 1.0, 0.0,
+                               0.0, 0.0, 0.0, 1.0;
+  // clang-format on
+
+  // Limits are magnitudes - guard against a negative value in the urdf
+  return mapping * input.cwiseAbs();
+}
+
+/*!
+ * Map symmetric torque limit magnitudes from serial to coupled space.
+ * Element-wise |.| of map_from_serial_to_coupled_torques - see above for the reasoning.
+ */
+Eigen::VectorXd DynaArmKinematicsMapping::map_from_serial_to_coupled_torque_limits(const Eigen::VectorXd& input)
+{
+  const Eigen::Index size = input.size();
+  if (size < 4) {
+    throw std::invalid_argument("Input vector must have at least 4 elements");
+  }
+
+  Eigen::MatrixXd mapping = Eigen::MatrixXd::Identity(size, size);
+
+  // clang-format off
+  mapping.block<4, 4>(0, 0) << 1.0, 0.0, 0.0, 0.0,
+                               0.0, 1.0, 1.0, 0.0,
+                               0.0, 0.0, 1.0, 0.0,
+                               0.0, 0.0, 0.0, 1.0;
+  // clang-format on
+
+  return mapping * input.cwiseAbs();
+}
+
 }  // namespace duatic::dynaarm_driver::kinematics
