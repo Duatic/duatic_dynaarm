@@ -1,5 +1,4 @@
-# Overrides for the DynaArm joint velocity (rad/s) and effort (Nm) limits.
-# Keys are joint names without tf_prefix. Joints and values left out keep the version defaults.
+# Example overrides for max joint velocity (rad/s) and max effort (Nm) limits.
 shoulder_rotation:
   max_velocity: 5.0
 elbow_flexion:
