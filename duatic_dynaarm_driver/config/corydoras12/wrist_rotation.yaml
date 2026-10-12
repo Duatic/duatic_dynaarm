@@ -18,8 +18,6 @@ dgainFilterCutoffFrequency: 50
 
 direction: 1
 
-
-
 joint_position_configurations:
   - name: "zero"
     value: 0.0

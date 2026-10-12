@@ -10,8 +10,6 @@ max_current: 25.0
 
 max_freeze_current: 10.0
 
-
-
 current_integrator_saturation: 15.0
 
 joint_torque_integrator_saturation: 30.0
@@ -19,8 +17,6 @@ joint_torque_integrator_saturation: 30.0
 dgainFilterCutoffFrequency: 50
 
 direction: -1
-
-
 
 joint_position_configurations:
   - name: "zero"

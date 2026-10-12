@@ -10,8 +10,6 @@ max_current: 25.0
 
 max_freeze_current: 10.0
 
-
-
 current_integrator_saturation: 15.0
 
 joint_torque_integrator_saturation: 80.0
