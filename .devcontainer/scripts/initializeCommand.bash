@@ -25,6 +25,19 @@ else
   echo "vcs not found, skipping repository import (use 'pipx install vcs2l')..."
 fi
 
+# Setup pre-commit hooks for every repo
+if command -v pre-commit >/dev/null 2>&1; then
+  for dir in "${repo_root}"/*; do
+    if [[ -d "${dir}/.git" && -f "${dir}/.pre-commit-config.yaml" ]]; then
+      cd "${dir}"
+      pre-commit install -c "${repo_root}/.pre-commit-config.yaml" --install-hooks
+      cd -
+    fi
+  done
+else
+  echo "pre-commit not found, skipping pre-commit hook installation (sudo apt install pre-commit)"
+fi
+
 # X11 Forwarding
 if command -v xhost >/dev/null 2>&1; then
   xhost +SI:localuser:"$(whoami)" >/dev/null 2>&1 || true
