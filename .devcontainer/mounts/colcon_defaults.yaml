@@ -2,5 +2,8 @@ build:
   cmake-args:
     # Export compile_commands.json for clangd
     - -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+    # Cache compiles with ccache
+    - -DCMAKE_C_COMPILER_LAUNCHER=ccache
+    - -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
     # Custom project top-level includes for colcon
     - -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES=/ros2_ws/src/duatic_dynaarm/.devcontainer/mounts/project_top_level_includes.cmake

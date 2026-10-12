@@ -25,5 +25,11 @@ RUN sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y --
   black && \
   sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
 
+# ccache
+RUN sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y --no-install-recommends \
+  ccache \
+  && sudo /usr/sbin/update-ccache-symlinks \
+  && sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
+
 # Source the bashrc overlay file in the bashrc
 RUN echo "[ -f \${HOME}/.bashrc_overlay.bash ] && source \${HOME}/.bashrc_overlay.bash" >> /home/${USER}/.bashrc

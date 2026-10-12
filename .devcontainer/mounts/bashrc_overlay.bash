@@ -7,5 +7,7 @@ _source_if_exists "/opt/ros/${ROS_DISTRO}/setup.bash"
 _source_if_exists "/ros2_ws/install/setup.bash"
 
 # Edit PATH
+# -- ccache
+export PATH=/usr/lib/ccache:$PATH
 # -- local binaries
 export PATH=$PATH:$HOME/.local/bin

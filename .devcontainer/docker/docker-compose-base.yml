@@ -1,4 +1,4 @@
-# Repository mounts, GPU settings and HOST_IP come from auto-generated docker-compose-overlay.yml
+# Repository mounts, GPU settings, ... come from auto-generated docker-compose-overlay.yml
 services:
   dynaarm:
     image: devcontainer:dynaarm
@@ -15,11 +15,13 @@ services:
     environment:
       QT_X11_NO_MITSHM: "1"
       DISPLAY: ${DISPLAY:-}
+      CCACHE_DIR: /ros2_ws/.cache/ccache
       COLCON_DEFAULTS_FILE: /ros2_ws/src/duatic_dynaarm/.devcontainer/mounts/colcon_defaults.yaml
     volumes:
       - ../mounts/build:/ros2_ws/build
       - ../mounts/install:/ros2_ws/install
       - ../mounts/log:/ros2_ws/log
+      - ../mounts/ccache:/ros2_ws/.cache/ccache
       - ../mounts/.vscode:/ros2_ws/.vscode
       - ../mounts/bashrc_overlay.bash:/home/${USER}/.bashrc_overlay.bash
       - ${HOME}/.ssh:/home/${USER}/.ssh

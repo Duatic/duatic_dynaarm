@@ -31,7 +31,7 @@ if command -v xhost >/dev/null 2>&1; then
 fi
 
 # Create missing docker mounts
-mkdir -p "${devcontainer_dir}"/mounts/{build,install,log}
+mkdir -p "${devcontainer_dir}"/mounts/{build,install,log,ccache}
 
 # Generate a docker-compose-overlay.yml
 "${devcontainer_dir}/scripts/generate_compose_overlay.bash"
