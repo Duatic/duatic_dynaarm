@@ -15,7 +15,7 @@ docker buildx build \
 # Clone the repositories of repos.list that are missing next to this repository
 repo_root="$(dirname "${devcontainer_dir}")"
 if command -v vcs &>/dev/null; then
-  if ! vcs --version | grep -q "vcs 2"; then
+  if ! vcs --version &>/dev/null; then
     echo "Please install the newer vcstool version ('pipx install vcs2l'), not the older one ('pipx install vcstool')"
     echo "Skipping repository import"
   else
