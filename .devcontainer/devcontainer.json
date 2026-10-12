@@ -6,6 +6,7 @@
   "workspaceFolder": "/ros2_ws",
   "initializeCommand": ".devcontainer/scripts/initializeCommand.bash",
   "postCreateCommand": "${containerWorkspaceFolder}/src/${localWorkspaceFolderBasename}/.devcontainer/scripts/postCreateCommand.bash",
+  "postStartCommand": "${containerWorkspaceFolder}/src/${localWorkspaceFolderBasename}/.devcontainer/scripts/postStartCommand.bash",
   "postAttachCommand": "${containerWorkspaceFolder}/src/${localWorkspaceFolderBasename}/.devcontainer/scripts/postAttachCommand.bash",
   "customizations": {
     "vscode": {
