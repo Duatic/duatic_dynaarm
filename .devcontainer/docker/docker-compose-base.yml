@@ -1,0 +1,29 @@
+# Repository mounts, GPU settings and HOST_IP come from auto-generated docker-compose-overlay.yml
+services:
+  dynaarm:
+    image: devcontainer:dynaarm
+    container_name: devcontainer_dynaarm
+    network_mode: host
+    privileged: true
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp=unconfined
+    ulimits:
+      rtprio: 99
+      core: -1
+    environment:
+      QT_X11_NO_MITSHM: "1"
+      DISPLAY: ${DISPLAY:-}
+      COLCON_DEFAULTS_FILE: /ros2_ws/src/duatic_dynaarm/.devcontainer/mounts/colcon_defaults.yaml
+    volumes:
+      - ../mounts/build:/ros2_ws/build
+      - ../mounts/install:/ros2_ws/install
+      - ../mounts/log:/ros2_ws/log
+      - ../mounts/.vscode:/ros2_ws/.vscode
+      - ../mounts/bashrc_overlay.bash:/home/${USER}/.bashrc_overlay.bash
+      - ${HOME}/.ssh:/home/${USER}/.ssh
+      - /tmp/.X11-unix/:/tmp/.X11-unix/
+      - /etc/apt/auth.conf.d/:/etc/apt/auth.conf.d/
+      - /etc/localtime:/etc/localtime
+    command: sleep infinity

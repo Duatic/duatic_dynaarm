@@ -1,0 +1,33 @@
+{
+  "name": "Duatic Dynaarm Devcontainer",
+  "dockerComposeFile": ["docker/docker-compose-base.yml", "docker/docker-compose-overlay.yml"],
+  "service": "dynaarm",
+  "remoteUser": "${localEnv:USER}",
+  "workspaceFolder": "/ros2_ws",
+  "initializeCommand": ".devcontainer/scripts/initializeCommand.bash",
+  "postCreateCommand": "${containerWorkspaceFolder}/src/${localWorkspaceFolderBasename}/.devcontainer/scripts/postCreateCommand.bash",
+  "postAttachCommand": "${containerWorkspaceFolder}/src/${localWorkspaceFolderBasename}/.devcontainer/scripts/postAttachCommand.bash",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "llvm-vs-code-extensions.vscode-clangd",
+        "ms-azuretools.vscode-docker",
+        "ms-python.python",
+        "ms-vscode.cmake-tools",
+        "xaver.clang-format",
+        "eamodio.gitlens",
+        "mngrm3a.shell-command",
+        "ms-python.debugpy",
+        "timonwong.shellcheck",
+        "ms-python.black-formatter",
+        "ms-python.pylint",
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack",
+        "ms-python.flake8",
+        "ms-python.vscode-pylance",
+        "GitLab.gitlab-workflow",
+        "xaver.clang-format"
+      ]
+    }
+  }
+}

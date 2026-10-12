@@ -1,0 +1,12 @@
+{
+    "python.analysis.extraPaths": [
+        "/opt/ros/**/site-packages",
+    ],
+    "pylint.args": [
+        "--init-hook=import glob, sys; sys.path.append(glob.glob('/opt/ros/**/site-packages', recursive=True))",
+        "--disable=C0114,C0301"
+    ],
+    "flake8.args": [
+        "--ignore=D104,E501",
+    ],
+}
