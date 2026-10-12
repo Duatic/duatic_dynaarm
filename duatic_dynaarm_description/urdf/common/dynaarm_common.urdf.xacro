@@ -29,13 +29,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <!-- -->
-    <!-- Common Constants -->
-    <!-- -->
-    <xacro:property name="J_PI" value="3.14159265359" />
-    <xacro:property name="mm2_to_m2" value="0.000001" />
-    <xacro:property name="mm_to_m" value="0.001" />
-
-    <!-- -->
     <!-- DynaArm Base Link Macro -->
     <!-- -->
     <xacro:macro name="dynaarm_baselink"
