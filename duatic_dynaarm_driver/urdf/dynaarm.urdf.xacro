@@ -38,7 +38,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                          start_in_freeze_mode:=false
                          drive_parameter_folder:=''
                          version
-                         joint_limits:=${xacro.load_yaml('$(find duatic_dynaarm_description)/config/limits/limits.yaml')}
+                         joint_limits_override:=''
                          *origin">
         <xacro:include filename="$(find duatic_dynaarm_description)/urdf/dynaarm.urdf.xacro" />
         <xacro:include filename="$(find duatic_dynaarm_driver)/urdf/dynaarm.ros2control.xacro" />
@@ -55,7 +55,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 parent_link="${parent_link}"
                 collision="${collision}"
                 version="${version}"
-                joint_limits="${joint_limits}">
+                joint_limits_override="${joint_limits_override}">
             <xacro:insert_block name="origin" />
         </xacro:dynaarm_description>
 
