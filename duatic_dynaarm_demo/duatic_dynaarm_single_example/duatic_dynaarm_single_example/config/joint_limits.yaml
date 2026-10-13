@@ -1,4 +1,4 @@
-# Example overrides for max joint velocity (rad/s) and max effort (Nm) limits.
+# Example of custom joint limits for max joint velocity (rad/s) and max effort (Nm).
 shoulder_rotation:
   max_velocity: 5.0
 elbow_flexion:

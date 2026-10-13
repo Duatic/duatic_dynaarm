@@ -33,7 +33,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- -->
   <xacro:macro name="dynaarm_description"
     params="tf_prefix parent_link collision:='simple' version standalone:=true
-      joint_limits_override:=''
+      joint_limits_yaml:=''
       *origin">
 
 
@@ -43,8 +43,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <xacro:include filename="$(find duatic_dynaarm_description)/urdf/common/dynaarm_common.urdf.xacro" />
     <!-- Include the version specific information and also load the ethercat addresses from the drive file -->
     <xacro:include filename="$(find duatic_dynaarm_description)/urdf/common/${version}/dynaarm_parameters.urdf.xacro" />
-    <!-- Per joint velocity and effort limits that replace the version defaults -->
-    <xacro:property name="joint_limits" value="${xacro.load_yaml(joint_limits_override) if joint_limits_override else dict()}" />
+    <!-- Per joint velocity and effort limits that replace the defaults -->
+    <xacro:property name="joint_limits" value="${xacro.load_yaml(joint_limits_yaml) if joint_limits_yaml else dict()}" />
 
 
     <xacro:dynaarm_joint_fixed joint_name="${joint_base_name}"
