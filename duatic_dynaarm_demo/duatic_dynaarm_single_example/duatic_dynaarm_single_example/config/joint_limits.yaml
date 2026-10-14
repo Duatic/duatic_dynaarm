@@ -1,0 +1,8 @@
+# Example of custom joint limits for max joint velocity (rad/s) and max effort (Nm).
+shoulder_rotation:
+  max_velocity: 5.0
+elbow_flexion:
+  max_velocity: 5.0
+  max_effort: 80.0
+wrist_rotation:
+  max_effort: 20.0
