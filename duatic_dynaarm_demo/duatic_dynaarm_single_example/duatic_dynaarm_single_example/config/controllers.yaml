@@ -95,13 +95,6 @@
         - forearm_rotation
         - wrist_flexion
         - wrist_rotation
-      # Drive to joint coupling: the elbow drive also turns shoulder_flexion
-      coupling: [1.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-                 0.0, 1.0, 1.0, 0.0, 0.0, 0.0,
-                 0.0, 0.0, 1.0, 0.0, 0.0, 0.0,
-                 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
-                 0.0, 0.0, 0.0, 0.0, 1.0, 0.0,
-                 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
 
 
   joint_trajectory_controller:
