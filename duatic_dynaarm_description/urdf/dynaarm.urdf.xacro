@@ -36,13 +36,10 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_limits_yaml:=''
       *origin">
 
-
     <xacro:include filename="$(find duatic_dynaarm_description)/urdf/common/dynaarm_common.urdf.xacro" />
-    <!-- Include the version specific information and also load the ethercat addresses from the drive file -->
     <xacro:include filename="$(find duatic_dynaarm_description)/urdf/common/${version}/dynaarm_parameters.urdf.xacro" />
     <!-- Per joint velocity and effort limits that replace the defaults -->
     <xacro:property name="joint_limits" value="${xacro.load_yaml(joint_limits_yaml) if joint_limits_yaml else dict()}" />
-
 
     <xacro:dynaarm_joint_fixed joint_name="${joint_base_name}"
       parent="${parent_link}"
@@ -225,11 +222,10 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- Link: Flange -->
     <xacro:virtual_link link_name="${end_effector}" />
     <xacro:dynaarm_joint_fixed joint_name="${joint_ee_name}"
-      parent="${ee_parent}"
+      parent="${link06}"
       child="${end_effector}">
       <origin xyz="${joint_ee_origin_xyz}" rpy="${joint_ee_origin_rpy}" />
     </xacro:dynaarm_joint_fixed>
-
 
   </xacro:macro>
 
