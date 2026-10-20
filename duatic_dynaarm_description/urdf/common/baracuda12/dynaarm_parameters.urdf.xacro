@@ -207,152 +207,68 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </inertial>
   </xacro:property>
 
- <xacro:if value="${collision == 'simple'}">
-    <!-- Collision properties -->
-    <xacro:property name="base_collision">
-        <collision>
-            <geometry>
-                <cylinder length='0.1' radius='0.075'/>
-            </geometry>
-            <origin xyz='0 0 0.05' rpy='0 0 0'/>
-        </collision>
-    </xacro:property>
+  <!-- Collision geometry for collision:=simple; collision:=complex reuses the visual meshes -->
+  <xacro:property name="base_collision">
+    <collision>
+      <geometry>
+        <cylinder length='0.1' radius='0.075'/>
+      </geometry>
+      <origin xyz='0 0 0.05' rpy='0 0 0'/>
+    </collision>
+  </xacro:property>
 
-    <xacro:property name="link01_collision">
-          <collision>
-              <geometry>
-                  <cylinder length='0.25' radius='0.06'/>
-              </geometry>
-              <origin xyz='0 0 0.05' rpy='${J_PI/2} 0 0'/>
-          </collision>
-    </xacro:property>
+  <xacro:property name="link01_collision">
+    <collision>
+      <geometry>
+        <cylinder length='0.25' radius='0.06'/>
+      </geometry>
+      <origin xyz='0 0 0.05' rpy='${J_PI/2} 0 0'/>
+    </collision>
+  </xacro:property>
 
-    <xacro:property name="link02_collision">
-          <collision>
-              <geometry>
-                  <cylinder length='0.4' radius='0.05'/>
-              </geometry>
-              <origin xyz='0.15 0 0' rpy='0 ${J_PI/2} 0'/>
-          </collision>
-    </xacro:property>
+  <xacro:property name="link02_collision">
+    <collision>
+      <geometry>
+        <cylinder length='0.4' radius='0.05'/>
+      </geometry>
+      <origin xyz='0.15 0 0' rpy='0 ${J_PI/2} 0'/>
+    </collision>
+  </xacro:property>
 
-    <xacro:property name="link03_collision">
-      <collision>
-          <geometry>
-              <cylinder length='0.2' radius='0.065'/>
-          </geometry>
-          <origin xyz='-0.01 -0.05 0' rpy='${J_PI/2} 0 0'/>
-      </collision>
-    </xacro:property>
+  <xacro:property name="link03_collision">
+    <collision>
+      <geometry>
+        <cylinder length='0.2' radius='0.065'/>
+      </geometry>
+      <origin xyz='-0.01 -0.05 0' rpy='${J_PI/2} 0 0'/>
+    </collision>
+  </xacro:property>
 
-    <xacro:property name="link04_collision">
-      <collision>
-          <geometry>
-              <cylinder length='0.4' radius='0.04'/>
-          </geometry>
-          <origin xyz='0 0 0.2' rpy='0 0 0'/>
-      </collision>
-    </xacro:property>
+  <xacro:property name="link04_collision">
+    <collision>
+      <geometry>
+        <cylinder length='0.4' radius='0.04'/>
+      </geometry>
+      <origin xyz='0 0 0.2' rpy='0 0 0'/>
+    </collision>
+  </xacro:property>
 
-    <xacro:property name="link05_collision">
-      <collision>
-          <geometry>
-              <cylinder length='0.125' radius='0.05'/>
-          </geometry>
-          <origin xyz='0 0 0.025' rpy='0 0 ${J_PI/2}'/>
-      </collision>
-    </xacro:property>
+  <xacro:property name="link05_collision">
+    <collision>
+      <geometry>
+        <cylinder length='0.125' radius='0.05'/>
+      </geometry>
+      <origin xyz='0 0 0.025' rpy='0 0 ${J_PI/2}'/>
+    </collision>
+  </xacro:property>
 
-    <xacro:property name="link06_collision">
-      <collision>
-          <geometry>
-              <cylinder length='0.09' radius='0.052'/>
-          </geometry>
-          <origin xyz='0.005 0 -0.035' rpy='0 0 0'/>
-      </collision>
-    </xacro:property>
-
-  </xacro:if>
-
-  <xacro:if value="${collision == 'complex'}">
-    <!-- Collision properties: reuse the visual meshes (base_mesh already resolves to the
-         standalone/attached variant) instead of the separate collision_meshes/*.stl files -->
-    <xacro:property name="base_collision">
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <mesh
-            filename="package://duatic_dynaarm_description/meshes/${version}/${base_mesh}"
-            scale="1 1 1" />
-        </geometry>
-      </collision>
-    </xacro:property>
-
-    <xacro:property name="link01_collision">
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <mesh
-            filename="package://duatic_dynaarm_description/meshes/${version}/${link01_mesh}"
-            scale="1 1 1" />
-        </geometry>
-      </collision>
-    </xacro:property>
-
-    <xacro:property name="link02_collision">
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <mesh
-            filename="package://duatic_dynaarm_description/meshes/${version}/${link02_mesh}"
-            scale="1 1 1" />
-        </geometry>
-      </collision>
-    </xacro:property>
-
-    <xacro:property name="link03_collision">
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <mesh
-            filename="package://duatic_dynaarm_description/meshes/${version}/${link03_mesh}"
-            scale="1 1 1" />
-        </geometry>
-      </collision>
-    </xacro:property>
-
-    <xacro:property name="link04_collision">
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <mesh
-            filename="package://duatic_dynaarm_description/meshes/${version}/${link04_mesh}"
-            scale="1 1 1" />
-        </geometry>
-      </collision>
-    </xacro:property>
-
-    <xacro:property name="link05_collision">
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <mesh
-            filename="package://duatic_dynaarm_description/meshes/${version}/${link05_mesh}"
-            scale="1 1 1" />
-        </geometry>
-      </collision>
-    </xacro:property>
-
-    <xacro:property name="link06_collision">
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <mesh
-            filename="package://duatic_dynaarm_description/meshes/${version}/${link06_mesh}"
-            scale="1 1 1" />
-        </geometry>
-      </collision>
-    </xacro:property>
-  </xacro:if>
+  <xacro:property name="link06_collision">
+    <collision>
+      <geometry>
+        <cylinder length='0.09' radius='0.052'/>
+      </geometry>
+      <origin xyz='0.005 0 -0.035' rpy='0 0 0'/>
+    </collision>
+  </xacro:property>
 
 </robot>
