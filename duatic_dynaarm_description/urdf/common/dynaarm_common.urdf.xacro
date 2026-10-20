@@ -117,12 +117,16 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 joint_limit_effort
                 joint_type
                 *origin">
+        <!-- joint_limits overrides the default velocity and effort per joint -->
+        <xacro:property name="limits" value="${joint_limits.get(joint_name, dict())}" />
+        <xacro:property name="effort" value="${limits.get('max_effort', joint_limit_effort)}" />
+        <xacro:property name="velocity" value="${limits.get('max_velocity', joint_limit_vel)}" />
         <joint name="${joint_name}" type="${joint_type}">
             <parent link="${parent}" />
             <child link="${child}" />
             <axis xyz="${joint_axis_xyz}" />
-            <limit effort="${joint_limit_effort}" command_effort="${joint_limit_effort}"
-                current="10" gear_velocity="${joint_limit_vel}" velocity="${joint_limit_vel}"
+            <limit effort="${effort}" command_effort="${effort}"
+                current="10" gear_velocity="${velocity}" velocity="${velocity}"
                 lower="${joint_lower_limit}" upper="${joint_upper_limit}" />
             <!-- limit effort also defines torque limit and freeze controller gains -->
             <xacro:insert_block name="origin" />
