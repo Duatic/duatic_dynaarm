@@ -76,8 +76,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_lower_limit="${joint_1_lower_limit}"
       joint_upper_limit="${joint_1_upper_limit}"
       joint_limit_vel="${joint_1_limit_vel}"
-      joint_limit_effort="${joint_1_limit_effort}"
-      joint_type="${joint_1_joint_type}">
+      joint_limit_effort="${joint_1_limit_effort}">
       <origin xyz="${joint_1_origin_xyz}" rpy="${joint_1_origin_rpy}" />
     </xacro:dynaarm_revolute_joint>
 
@@ -100,8 +99,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_lower_limit="${joint_2_lower_limit}"
       joint_upper_limit="${joint_2_upper_limit}"
       joint_limit_vel="${joint_2_limit_vel}"
-      joint_limit_effort="${joint_2_limit_effort}"
-      joint_type="${joint_2_joint_type}">
+      joint_limit_effort="${joint_2_limit_effort}">
       <origin xyz="${joint_2_origin_xyz}" rpy="${joint_2_origin_rpy}" />
     </xacro:dynaarm_revolute_joint>
 
@@ -124,8 +122,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_lower_limit="${joint_3_lower_limit}"
       joint_upper_limit="${joint_3_upper_limit}"
       joint_limit_vel="${joint_3_limit_vel}"
-      joint_limit_effort="${joint_3_limit_effort}"
-      joint_type="${joint_3_joint_type}">
+      joint_limit_effort="${joint_3_limit_effort}">
       <origin xyz="${joint_3_origin_xyz}" rpy="${joint_3_origin_rpy}" />
     </xacro:dynaarm_revolute_joint>
 
@@ -158,8 +155,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_lower_limit="${joint_4_lower_limit}"
       joint_upper_limit="${joint_4_upper_limit}"
       joint_limit_vel="${joint_4_limit_vel}"
-      joint_limit_effort="${joint_4_limit_effort}"
-      joint_type="${joint_4_joint_type}">
+      joint_limit_effort="${joint_4_limit_effort}">
       <origin xyz="${joint_4_origin_xyz}" rpy="${joint_4_origin_rpy}" />
     </xacro:dynaarm_revolute_joint>
 
@@ -181,8 +177,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_lower_limit="${joint_5_lower_limit}"
       joint_upper_limit="${joint_5_upper_limit}"
       joint_limit_vel="${joint_5_limit_vel}"
-      joint_limit_effort="${joint_5_limit_effort}"
-      joint_type="${joint_5_joint_type}">
+      joint_limit_effort="${joint_5_limit_effort}">
       <origin xyz="${joint_5_origin_xyz}" rpy="${joint_5_origin_rpy}" />
     </xacro:dynaarm_revolute_joint>
 
@@ -214,8 +209,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_lower_limit="${joint_6_lower_limit}"
       joint_upper_limit="${joint_6_upper_limit}"
       joint_limit_vel="${joint_6_limit_vel}"
-      joint_limit_effort="${joint_6_limit_effort}"
-      joint_type="${joint_6_joint_type}">
+      joint_limit_effort="${joint_6_limit_effort}">
       <origin xyz="${joint_6_origin_xyz}" rpy="${joint_6_origin_rpy}" />
     </xacro:dynaarm_revolute_joint>
 

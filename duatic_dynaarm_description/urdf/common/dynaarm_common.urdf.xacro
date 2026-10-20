@@ -102,13 +102,12 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 joint_upper_limit
                 joint_limit_vel
                 joint_limit_effort
-                joint_type
                 *origin">
         <!-- joint_limits overrides the default velocity and effort per joint -->
         <xacro:property name="limits" value="${joint_limits.get(joint_name, dict())}" />
         <xacro:property name="effort" value="${limits.get('max_effort', joint_limit_effort)}" />
         <xacro:property name="velocity" value="${limits.get('max_velocity', joint_limit_vel)}" />
-        <joint name="${joint_name}" type="${joint_type}">
+        <joint name="${joint_name}" type="revolute">
             <parent link="${parent}" />
             <child link="${child}" />
             <axis xyz="${joint_axis_xyz}" />
