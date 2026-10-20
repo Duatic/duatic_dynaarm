@@ -50,23 +50,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </xacro:macro>
 
     <!-- -->
-    <!-- DynaArm Link Macro -->
-    <!-- -->
-    <xacro:macro name="dynaarm_link"
-        params="link_name file_name **link_inertia">
-        <link name="${link_name}">
-            <visual>
-                <geometry>
-                    <mesh
-                        filename="package://duatic_dynaarm_description/meshes/${version}/${file_name}"
-                        scale="1.0 1.0 1.0" />
-                </geometry>
-            </visual>
-            <xacro:insert_block name="link_inertia" />
-        </link>
-    </xacro:macro>
-
-    <!-- -->
     <!-- DynaArm Link With Collision Macro -->
     <!-- -->
     <xacro:macro name="dynaarm_link_w_collision"
