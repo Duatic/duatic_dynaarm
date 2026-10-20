@@ -48,25 +48,25 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </xacro:dynaarm_joint_fixed>
 
     <!-- Link: Base -->
-    <xacro:dynaarm_baselink link_name="${base}" file_name="${base_mesh}">
-      <base_inertia>
+    <xacro:dynaarm_link link_name="${base}" file_name="${base_mesh}" carbon_fiber="true">
+      <link_inertia>
         <xacro:insert_block name="base_inertial" />
-      </base_inertia>
-      <base_collision>
+      </link_inertia>
+      <link_collision>
         <xacro:insert_block name="base_collision" />
-      </base_collision>
-    </xacro:dynaarm_baselink>
+      </link_collision>
+    </xacro:dynaarm_link>
 
 
     <!-- Link: Shoulder -->
-    <xacro:dynaarm_link_w_collision link_name="${link01}" file_name="${link01_mesh}">
+    <xacro:dynaarm_link link_name="${link01}" file_name="${link01_mesh}">
       <link_inertia>
         <xacro:insert_block name="link01_inertial" />
       </link_inertia>
       <link_collision>
         <xacro:insert_block name="link01_collision" />
       </link_collision>
-    </xacro:dynaarm_link_w_collision>
+    </xacro:dynaarm_link>
 
     <!-- Joint: Shoulder Rotation -->
     <xacro:dynaarm_revolute_joint joint_name="${joint_1_name}"
@@ -83,14 +83,14 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
     <!-- Link: Upperarm -->
-    <xacro:dynaarm_link_w_collision link_name="${link02}" file_name="${link02_mesh}">
+    <xacro:dynaarm_link link_name="${link02}" file_name="${link02_mesh}">
       <link_inertia>
         <xacro:insert_block name="link02_inertial" />
       </link_inertia>
       <link_collision>
         <xacro:insert_block name="link02_collision" />
       </link_collision>
-    </xacro:dynaarm_link_w_collision>
+    </xacro:dynaarm_link>
 
     <!-- Joint: Shoulder Flexion -->
     <xacro:dynaarm_revolute_joint joint_name="${joint_2_name}"
@@ -107,14 +107,14 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
     <!-- Link: Elbow -->
-    <xacro:dynaarm_link_w_collision link_name="${link03}" file_name="${link03_mesh}">
+    <xacro:dynaarm_link link_name="${link03}" file_name="${link03_mesh}">
       <link_inertia>
         <xacro:insert_block name="link03_inertial" />
       </link_inertia>
       <link_collision>
         <xacro:insert_block name="link03_collision" />
       </link_collision>
-    </xacro:dynaarm_link_w_collision>
+    </xacro:dynaarm_link>
 
     <!-- Joint: Elbow Flexion -->
     <xacro:dynaarm_revolute_joint joint_name="${joint_3_name}"
@@ -141,7 +141,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
     <!-- Link: Forearm -->
-    <xacro:dynaarm_link_w_collision link_name="${link04}" file_name="${link04_mesh}">
+    <xacro:dynaarm_link link_name="${link04}" file_name="${link04_mesh}">
       <link_inertia>
         <xacro:insert_block name="link04_inertial" />
       </link_inertia>
@@ -149,7 +149,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <link_collision>
         <xacro:insert_block name="link04_collision" />
       </link_collision>
-    </xacro:dynaarm_link_w_collision>
+    </xacro:dynaarm_link>
 
     <!-- Joint: Forearm Rotation -->
     <xacro:dynaarm_revolute_joint joint_name="${joint_4_name}" parent="${link03}"
@@ -165,14 +165,14 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
     <!-- Link: Wrist 1 -->
-    <xacro:dynaarm_link_w_collision link_name="${link05}" file_name="${link05_mesh}">
+    <xacro:dynaarm_link link_name="${link05}" file_name="${link05_mesh}">
       <link_inertia>
         <xacro:insert_block name="link05_inertial" />
       </link_inertia>
       <link_collision>
         <xacro:insert_block name="link05_collision" />
       </link_collision>
-    </xacro:dynaarm_link_w_collision>
+    </xacro:dynaarm_link>
 
     <!-- Joint: Wrist Flexion -->
     <xacro:dynaarm_revolute_joint joint_name="${joint_5_name}" parent="${link04}"
@@ -198,14 +198,14 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
     <!-- Link: Wrist 2 -->
-    <xacro:dynaarm_link_w_collision link_name="${link06}" file_name="${link06_mesh}">
+    <xacro:dynaarm_link link_name="${link06}" file_name="${link06_mesh}">
       <link_inertia>
         <xacro:insert_block name="link06_inertial" />
       </link_inertia>
       <link_collision>
         <xacro:insert_block name="link06_collision" />
       </link_collision>
-    </xacro:dynaarm_link_w_collision>
+    </xacro:dynaarm_link>
 
     <!-- Joint: Wrist Rotation -->
     <xacro:dynaarm_revolute_joint joint_name="${joint_6_name}" parent="${link05}"
