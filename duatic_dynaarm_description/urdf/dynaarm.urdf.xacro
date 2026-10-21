@@ -48,7 +48,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </xacro:dynaarm_joint_fixed>
 
     <!-- Link: Base -->
-    <xacro:dynaarm_link link_name="${base}" file_name="${base_mesh}" carbon_fiber="true">
+    <xacro:dynaarm_link link_name="${base}" file_name="${base_mesh}">
       <link_inertia>
         <xacro:insert_block name="base_inertial" />
       </link_inertia>
