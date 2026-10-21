@@ -52,7 +52,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_base_name" value="${tf_prefix}joint_base" />
 
   <xacro:property name="joint_1_name" value="${tf_prefix}shoulder_rotation" />
-  <xacro:property name="joint_1_joint_type" value="revolute" />
   <xacro:property name="joint_1_axis_xyz" value="0 0 1" />
   <xacro:property name="joint_1_origin_xyz" value="0 0 0.1105" />
   <xacro:property name="joint_1_origin_rpy" value="0 0 0" />
@@ -62,7 +61,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_1_limit_effort" value="120.0" />
 
   <xacro:property name="joint_2_name" value="${tf_prefix}shoulder_flexion" />
-  <xacro:property name="joint_2_joint_type" value="revolute" />
   <xacro:property name="joint_2_axis_xyz" value="0 0 1" />
   <xacro:property name="joint_2_origin_xyz" value="0 0 0.047" />
   <xacro:property name="joint_2_origin_rpy" value="${pi/2} ${-pi/2} 0" />
@@ -72,7 +70,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_2_limit_effort" value="120.0" />
 
   <xacro:property name="joint_3_name" value="${tf_prefix}elbow_flexion" />
-  <xacro:property name="joint_3_joint_type" value="revolute" />
   <xacro:property name="joint_3_axis_xyz" value="0 0 1" />
   <xacro:property name="joint_3_origin_xyz" value="0.4127 0 0" />
   <xacro:property name="joint_3_origin_rpy" value="0 0 0" />
@@ -86,7 +83,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_3_cam_origin_rpy" value="0.0 0.0 0.0" />
 
   <xacro:property name="joint_4_name" value="${tf_prefix}forearm_rotation" />
-  <xacro:property name="joint_4_joint_type" value="revolute" />
   <xacro:property name="joint_4_axis_xyz" value="0 0 1" />
   <xacro:property name="joint_4_origin_xyz" value="0.0262 -0.0855 0" />
   <xacro:property name="joint_4_origin_rpy" value="${pi/2} ${pi/2} ${pi/2}" />
@@ -96,7 +92,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_4_limit_effort" value="40.0" />
 
   <xacro:property name="joint_5_name" value="${tf_prefix}wrist_flexion" />
-  <xacro:property name="joint_5_joint_type" value="revolute" />
   <xacro:property name="joint_5_axis_xyz" value="0 0 1" />
   <xacro:property name="joint_5_origin_xyz" value="0.0295 0 0.4207" />
   <xacro:property name="joint_5_origin_rpy" value="0 ${-pi/2} 0" />
@@ -110,7 +105,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_5_cam_origin_rpy" value="0.0 0.0 0.0" />
 
   <xacro:property name="joint_6_name" value="${tf_prefix}wrist_rotation" />
-  <xacro:property name="joint_6_joint_type" value="revolute" />
   <xacro:property name="joint_6_axis_xyz" value="0 0 1" />
   <xacro:property name="joint_6_origin_xyz" value="0.117 0.0 0.0295" />
   <xacro:property name="joint_6_origin_rpy" value="${-pi/2} ${pi/2} ${-pi/2}" />
