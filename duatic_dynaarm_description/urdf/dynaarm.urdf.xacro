@@ -52,9 +52,9 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <link_inertia>
         <xacro:insert_block name="base_inertial" />
       </link_inertia>
-      <link_collision>
-        <xacro:insert_block name="base_collision" />
-      </link_collision>
+      <link_collision_simplified>
+        <xacro:insert_block name="base_collision_simplified" />
+      </link_collision_simplified>
     </xacro:dynaarm_link>
 
 
@@ -63,9 +63,9 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <link_inertia>
         <xacro:insert_block name="link01_inertial" />
       </link_inertia>
-      <link_collision>
-        <xacro:insert_block name="link01_collision" />
-      </link_collision>
+      <link_collision_simplified>
+        <xacro:insert_block name="link01_collision_simplified" />
+      </link_collision_simplified>
     </xacro:dynaarm_link>
 
     <!-- Joint: Shoulder Rotation -->
@@ -87,9 +87,9 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <link_inertia>
         <xacro:insert_block name="link02_inertial" />
       </link_inertia>
-      <link_collision>
-        <xacro:insert_block name="link02_collision" />
-      </link_collision>
+      <link_collision_simplified>
+        <xacro:insert_block name="link02_collision_simplified" />
+      </link_collision_simplified>
     </xacro:dynaarm_link>
 
     <!-- Joint: Shoulder Flexion -->
@@ -111,9 +111,9 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <link_inertia>
         <xacro:insert_block name="link03_inertial" />
       </link_inertia>
-      <link_collision>
-        <xacro:insert_block name="link03_collision" />
-      </link_collision>
+      <link_collision_simplified>
+        <xacro:insert_block name="link03_collision_simplified" />
+      </link_collision_simplified>
     </xacro:dynaarm_link>
 
     <!-- Joint: Elbow Flexion -->
@@ -146,9 +146,9 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <xacro:insert_block name="link04_inertial" />
       </link_inertia>
 
-      <link_collision>
-        <xacro:insert_block name="link04_collision" />
-      </link_collision>
+      <link_collision_simplified>
+        <xacro:insert_block name="link04_collision_simplified" />
+      </link_collision_simplified>
     </xacro:dynaarm_link>
 
     <!-- Joint: Forearm Rotation -->
@@ -169,9 +169,9 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <link_inertia>
         <xacro:insert_block name="link05_inertial" />
       </link_inertia>
-      <link_collision>
-        <xacro:insert_block name="link05_collision" />
-      </link_collision>
+      <link_collision_simplified>
+        <xacro:insert_block name="link05_collision_simplified" />
+      </link_collision_simplified>
     </xacro:dynaarm_link>
 
     <!-- Joint: Wrist Flexion -->
@@ -202,9 +202,9 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <link_inertia>
         <xacro:insert_block name="link06_inertial" />
       </link_inertia>
-      <link_collision>
-        <xacro:insert_block name="link06_collision" />
-      </link_collision>
+      <link_collision_simplified>
+        <xacro:insert_block name="link06_collision_simplified" />
+      </link_collision_simplified>
     </xacro:dynaarm_link>
 
     <!-- Joint: Wrist Rotation -->

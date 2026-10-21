@@ -206,7 +206,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </xacro:property>
 
   <!-- Collision geometry for collision:=simple; collision:=complex reuses the visual meshes -->
-  <xacro:property name="base_collision">
+  <xacro:property name="base_collision_simplified">
     <collision>
       <geometry>
         <cylinder length='0.1' radius='0.075'/>
@@ -215,7 +215,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </collision>
   </xacro:property>
 
-  <xacro:property name="link01_collision">
+  <xacro:property name="link01_collision_simplified">
     <collision>
       <geometry>
         <cylinder length='0.25' radius='0.06'/>
@@ -224,7 +224,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </collision>
   </xacro:property>
 
-  <xacro:property name="link02_collision">
+  <xacro:property name="link02_collision_simplified">
     <collision>
       <geometry>
         <cylinder length='0.4' radius='0.05'/>
@@ -233,7 +233,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </collision>
   </xacro:property>
 
-  <xacro:property name="link03_collision">
+  <xacro:property name="link03_collision_simplified">
     <collision>
       <geometry>
         <cylinder length='0.2' radius='0.065'/>
@@ -242,7 +242,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </collision>
   </xacro:property>
 
-  <xacro:property name="link04_collision">
+  <xacro:property name="link04_collision_simplified">
     <collision>
       <geometry>
         <cylinder length='0.4' radius='0.04'/>
@@ -251,7 +251,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </collision>
   </xacro:property>
 
-  <xacro:property name="link05_collision">
+  <xacro:property name="link05_collision_simplified">
     <collision>
       <geometry>
         <cylinder length='0.125' radius='0.05'/>
@@ -260,7 +260,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </collision>
   </xacro:property>
 
-  <xacro:property name="link06_collision">
+  <xacro:property name="link06_collision_simplified">
     <collision>
       <geometry>
         <cylinder length='0.09' radius='0.052'/>
