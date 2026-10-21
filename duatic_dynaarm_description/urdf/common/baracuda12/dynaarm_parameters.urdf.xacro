@@ -27,8 +27,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:property name="J_PI" value="3.14159265359" />
-
   <!-- Links -->
   <xacro:property name="base" value="${tf_prefix}base" />
   <xacro:property name="link01" value="${tf_prefix}shoulder" />
@@ -58,8 +56,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_1_axis_xyz" value="0 0 1" />
   <xacro:property name="joint_1_origin_xyz" value="0 0 0.1105" />
   <xacro:property name="joint_1_origin_rpy" value="0 0 0" />
-  <xacro:property name="joint_1_lower_limit" value="${-J_PI - J_PI/2 + 0.4}" />
-  <xacro:property name="joint_1_upper_limit" value="${J_PI + J_PI/2 - 0.4}" />
+  <xacro:property name="joint_1_lower_limit" value="${-pi - pi/2 + 0.4}" />
+  <xacro:property name="joint_1_upper_limit" value="${pi + pi/2 - 0.4}" />
   <xacro:property name="joint_1_limit_vel" value="10.64" />
   <xacro:property name="joint_1_limit_effort" value="120.0" />
 
@@ -67,9 +65,9 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_2_joint_type" value="revolute" />
   <xacro:property name="joint_2_axis_xyz" value="0 0 1" />
   <xacro:property name="joint_2_origin_xyz" value="0 0 0.047" />
-  <xacro:property name="joint_2_origin_rpy" value="${J_PI/2} ${-J_PI/2} 0" />
-  <xacro:property name="joint_2_lower_limit" value="${-J_PI/2 - 0.15}" />
-  <xacro:property name="joint_2_upper_limit" value="${J_PI/2 + 0.15}" />
+  <xacro:property name="joint_2_origin_rpy" value="${pi/2} ${-pi/2} 0" />
+  <xacro:property name="joint_2_lower_limit" value="${-pi/2 - 0.15}" />
+  <xacro:property name="joint_2_upper_limit" value="${pi/2 + 0.15}" />
   <xacro:property name="joint_2_limit_vel" value="10.64" />
   <xacro:property name="joint_2_limit_effort" value="120.0" />
 
@@ -79,7 +77,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_3_origin_xyz" value="0.4127 0 0" />
   <xacro:property name="joint_3_origin_rpy" value="0 0 0" />
   <xacro:property name="joint_3_lower_limit" value="0.00" />
-  <xacro:property name="joint_3_upper_limit" value="${J_PI - 0.05}" />
+  <xacro:property name="joint_3_upper_limit" value="${pi - 0.05}" />
   <xacro:property name="joint_3_limit_vel" value="10.64" />
   <xacro:property name="joint_3_limit_effort" value="120.0" />
 
@@ -91,9 +89,9 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_4_joint_type" value="revolute" />
   <xacro:property name="joint_4_axis_xyz" value="0 0 1" />
   <xacro:property name="joint_4_origin_xyz" value="0.0262 -0.0855 0" />
-  <xacro:property name="joint_4_origin_rpy" value="${J_PI/2} ${J_PI/2} ${J_PI/2}" />
-  <xacro:property name="joint_4_lower_limit" value="${-J_PI - J_PI/2}" />
-  <xacro:property name="joint_4_upper_limit" value="${J_PI + J_PI/2}" />
+  <xacro:property name="joint_4_origin_rpy" value="${pi/2} ${pi/2} ${pi/2}" />
+  <xacro:property name="joint_4_lower_limit" value="${-pi - pi/2}" />
+  <xacro:property name="joint_4_upper_limit" value="${pi + pi/2}" />
   <xacro:property name="joint_4_limit_vel" value="13.647" />
   <xacro:property name="joint_4_limit_effort" value="40.0" />
 
@@ -101,9 +99,9 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_5_joint_type" value="revolute" />
   <xacro:property name="joint_5_axis_xyz" value="0 0 1" />
   <xacro:property name="joint_5_origin_xyz" value="0.0295 0 0.4207" />
-  <xacro:property name="joint_5_origin_rpy" value="0 ${-J_PI/2} 0" />
-  <xacro:property name="joint_5_lower_limit" value="${-J_PI/2 -0.25}" />
-  <xacro:property name="joint_5_upper_limit" value="${J_PI/2 + 0.25}" />
+  <xacro:property name="joint_5_origin_rpy" value="0 ${-pi/2} 0" />
+  <xacro:property name="joint_5_lower_limit" value="${-pi/2 -0.25}" />
+  <xacro:property name="joint_5_upper_limit" value="${pi/2 + 0.25}" />
   <xacro:property name="joint_5_limit_vel" value="13.647" />
   <xacro:property name="joint_5_limit_effort" value="40.0" />
 
@@ -115,15 +113,15 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_6_joint_type" value="revolute" />
   <xacro:property name="joint_6_axis_xyz" value="0 0 1" />
   <xacro:property name="joint_6_origin_xyz" value="0.117 0.0 0.0295" />
-  <xacro:property name="joint_6_origin_rpy" value="${-J_PI/2} ${J_PI/2} ${-J_PI/2}" />
-  <xacro:property name="joint_6_lower_limit" value="${-J_PI/2}" />
-  <xacro:property name="joint_6_upper_limit" value="${J_PI + J_PI/2}" />
+  <xacro:property name="joint_6_origin_rpy" value="${-pi/2} ${pi/2} ${-pi/2}" />
+  <xacro:property name="joint_6_lower_limit" value="${-pi/2}" />
+  <xacro:property name="joint_6_upper_limit" value="${pi + pi/2}" />
   <xacro:property name="joint_6_limit_vel" value="13.647" />
   <xacro:property name="joint_6_limit_effort" value="40.0" />
 
   <xacro:property name="joint_ee_name" value="${tf_prefix}flange_fix_joint" />
   <xacro:property name="joint_ee_origin_xyz" value="0.0 0.0 0.009" />
-  <xacro:property name="joint_ee_origin_rpy" value="0.0 0.0 ${J_PI/2}" />
+  <xacro:property name="joint_ee_origin_rpy" value="0.0 0.0 ${pi/2}" />
 
   <!-- Base Robot -->
   <xacro:property name="base_inertial">
@@ -222,7 +220,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <geometry>
         <cylinder length='0.25' radius='0.06'/>
       </geometry>
-      <origin xyz='0 0 0.05' rpy='${J_PI/2} 0 0'/>
+      <origin xyz='0 0 0.05' rpy='${pi/2} 0 0'/>
     </collision>
   </xacro:property>
 
@@ -231,7 +229,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <geometry>
         <cylinder length='0.4' radius='0.05'/>
       </geometry>
-      <origin xyz='0.15 0 0' rpy='0 ${J_PI/2} 0'/>
+      <origin xyz='0.15 0 0' rpy='0 ${pi/2} 0'/>
     </collision>
   </xacro:property>
 
@@ -240,7 +238,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <geometry>
         <cylinder length='0.2' radius='0.065'/>
       </geometry>
-      <origin xyz='-0.01 -0.05 0' rpy='${J_PI/2} 0 0'/>
+      <origin xyz='-0.01 -0.05 0' rpy='${pi/2} 0 0'/>
     </collision>
   </xacro:property>
 
@@ -258,7 +256,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <geometry>
         <cylinder length='0.125' radius='0.05'/>
       </geometry>
-      <origin xyz='0 0 0.025' rpy='0 0 ${J_PI/2}'/>
+      <origin xyz='0 0 0.025' rpy='0 0 ${pi/2}'/>
     </collision>
   </xacro:property>
 
