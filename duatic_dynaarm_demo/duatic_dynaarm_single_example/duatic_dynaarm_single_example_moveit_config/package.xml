@@ -38,5 +38,6 @@
   <exec_depend>pick_ik</exec_depend>
   <export>
       <build_type>ament_cmake</build_type>
+      <duatic_archive_root>public</duatic_archive_root>
   </export>
 </package>
