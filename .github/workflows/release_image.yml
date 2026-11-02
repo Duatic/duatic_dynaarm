@@ -1,0 +1,23 @@
+name: Release image
+on:
+  workflow_dispatch:
+    inputs:
+      ros_distro:
+        description: "ROS distro to release"
+        required: true
+        type: choice
+        options: [humble, jazzy, kilted, lyrical, rolling]
+      version:
+        description: "Version to tag (e.g. 1.0.0); must not already exist"
+        required: true
+
+jobs:
+  release:
+    permissions:
+      contents: write
+      packages: write
+    uses: Duatic/duatic_docker_image/.github/workflows/release.yml@v1
+    with:
+      ros_distro: ${{ inputs.ros_distro }}
+      version: ${{ inputs.version }}
+    secrets: inherit

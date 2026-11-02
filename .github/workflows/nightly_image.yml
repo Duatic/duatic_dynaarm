@@ -20,7 +20,6 @@ jobs:
       packages: write
     uses: Duatic/duatic_docker_image/.github/workflows/nightly.yml@v1
     with:
-      product: dynaarm
       ros_distro: ${{ inputs.ros_distro }}
       publish: ${{ github.event_name == 'schedule' || inputs.publish }}
     secrets: inherit
