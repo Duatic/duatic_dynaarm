@@ -154,7 +154,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             name="srdf_file",
             default_value=get_package_share_directory("duatic_dynaarm_description")
-            + "/srdf/dynaarm.srdf.xacro",
+            + "/srdf/dynaarm_standalone.srdf.xacro",
             description="Path to the robot SRDF file",
         ),
         DeclareLaunchArgument(

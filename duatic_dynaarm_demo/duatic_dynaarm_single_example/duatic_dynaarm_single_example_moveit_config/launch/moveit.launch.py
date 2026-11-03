@@ -117,9 +117,9 @@ def launch_setup(context, *args, **kwargs):
             # Needs to be fully defined here, as "package:" is not supported for SRDF in MoveItConfigsBuilder
             file_path=PathJoinSubstitution(
                 [
-                    FindPackageShare("duatic_dynaarm_description"),
+                    FindPackageShare("duatic_dynaarm_single_example_description"),
                     "srdf",
-                    "dynaarm.srdf.xacro",
+                    "dynaarm_single_example.srdf.xacro",
                 ]
             ).perform(context),
         )
