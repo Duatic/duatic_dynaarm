@@ -10,7 +10,7 @@ find_package(ament_cmake REQUIRED)
 find_package(duatic_dynaarm_description REQUIRED)
 
 install(DIRECTORY
-  launch urdf config worlds
+  config launch srdf urdf worlds
   DESTINATION share/${PROJECT_NAME}/
 )
 
