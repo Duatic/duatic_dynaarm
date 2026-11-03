@@ -209,67 +209,45 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!-- Collision geometry for collision:=simple; collision:=complex reuses the visual meshes -->
   <xacro:property name="base_plate_collision_simplified"/>
-
-  <xacro:property name="base_collision_simplified">
-    <collision>
-      <geometry>
-        <cylinder length='0.1' radius='0.075'/>
-      </geometry>
-      <origin xyz='0 0 0.05' rpy='0 0 0'/>
-    </collision>
-  </xacro:property>
+  <xacro:property name="base_collision_simplified"/>
 
   <xacro:property name="link01_collision_simplified">
-    <collision>
+    <collision name="capsule">
+      <origin xyz='0 0 0.03' rpy='${-pi/2} 0 0'/>
       <geometry>
-        <cylinder length='0.25' radius='0.06'/>
+        <cylinder length='0.09' radius='0.08'/>
       </geometry>
-      <origin xyz='0 0 0.05' rpy='${pi/2} 0 0'/>
     </collision>
   </xacro:property>
 
   <xacro:property name="link02_collision_simplified">
-    <collision>
+    <collision name="capsule">
+      <origin xyz='0.204 0 0' rpy='0 ${pi/2} 0'/>
       <geometry>
-        <cylinder length='0.4' radius='0.05'/>
+        <cylinder length='0.415' radius='0.0425'/>
       </geometry>
-      <origin xyz='0.15 0 0' rpy='0 ${pi/2} 0'/>
     </collision>
   </xacro:property>
 
-  <xacro:property name="link03_collision_simplified">
-    <collision>
-      <geometry>
-        <cylinder length='0.2' radius='0.065'/>
-      </geometry>
-      <origin xyz='-0.01 -0.05 0' rpy='${pi/2} 0 0'/>
-    </collision>
-  </xacro:property>
+  <xacro:property name="link03_collision_simplified"/>
 
   <xacro:property name="link04_collision_simplified">
-    <collision>
+    <collision name="capsule">
+      <origin xyz='0 -0.0012 0.1638' rpy='0 0 0'/>
       <geometry>
-        <cylinder length='0.4' radius='0.04'/>
+        <cylinder length='0.41' radius='0.05'/>
       </geometry>
-      <origin xyz='0 0 0.2' rpy='0 0 0'/>
     </collision>
   </xacro:property>
+
+  <xacro:property name="link06_collision_simplified"/>
 
   <xacro:property name="link05_collision_simplified">
-    <collision>
+    <collision name="capsule">
+      <origin xyz='0.055 0 0.0295' rpy='0 ${pi/2} 0'/>
       <geometry>
-        <cylinder length='0.125' radius='0.05'/>
+        <cylinder length='0.09' radius='0.055'/>
       </geometry>
-      <origin xyz='0 0 0.025' rpy='0 0 ${pi/2}'/>
-    </collision>
-  </xacro:property>
-
-  <xacro:property name="link06_collision_simplified">
-    <collision>
-      <geometry>
-        <cylinder length='0.09' radius='0.052'/>
-      </geometry>
-      <origin xyz='0.005 0 -0.035' rpy='0 0 0'/>
     </collision>
   </xacro:property>
 
