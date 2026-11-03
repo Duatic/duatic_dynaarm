@@ -113,6 +113,16 @@ def launch_setup(context, *args, **kwargs):
     moveit_config = (
         MoveItConfigsBuilder("dynaarm", package_name=dynaarm_moveit_pkg)
         .robot_description(mappings=launch_arguments)
+        .robot_description_semantic(
+            # Needs to be fully defined here, as "package:" is not supported for SRDF in MoveItConfigsBuilder
+            file_path=PathJoinSubstitution(
+                [
+                    FindPackageShare("duatic_dynaarm_description"),
+                    "config",
+                    "dynaarm.srdf.xacro",
+                ]
+            ).perform(context),
+        )
         .planning_scene_monitor(
             publish_robot_description=True, publish_robot_description_semantic=True
         )
