@@ -80,13 +80,6 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       </xacro:dynaarm_joint_fixed>
     </xacro:unless>
 
-    <!-- Capsule collisions -->
-    <xacro:if value="${collision == 'simple'}">
-      <collision_checking>
-        <capsule name="capsule"/>
-      </collision_checking>
-    </xacro:if>
-
     <!-- Link: Base -->
     <xacro:dynaarm_link link_name="${base}" file_name="${base_mesh}">
       <link_inertia>
