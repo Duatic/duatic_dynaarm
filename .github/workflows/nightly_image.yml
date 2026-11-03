@@ -18,7 +18,7 @@ jobs:
     permissions:
       contents: write
       packages: write
-    uses: Duatic/duatic_docker_image/.github/workflows/nightly.yml@v1
+    uses: Duatic/duatic_ros2_base_images/.github/workflows/nightly.yml@v1
     with:
       ros_distro: ${{ inputs.ros_distro }}
       publish: ${{ github.event_name == 'schedule' || inputs.publish }}
