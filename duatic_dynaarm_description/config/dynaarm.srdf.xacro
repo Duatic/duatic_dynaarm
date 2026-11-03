@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="dynaarm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Group definitions -->
+  <xacro:include filename="$(find duatic_dynaarm_description)/config/dynaarm_groups.srdf.xacro" />
+  <xacro:dynaarm_groups/>
+
+  <!-- Self-collisions -->
+  <xacro:include filename="$(find duatic_dynaarm_description)/config/dynaarm_collisions.srdf.xacro" />
+  <xacro:dynaarm_disable_collisions/>
+
+  <!-- Table collisions -->
+  <disable_collisions link1="base" link2="table" reason="Adjacent"/>
+  <disable_collisions link1="shoulder" link2="table" reason="Always"/>
+  <disable_collisions link1="upperarm" link2="table" reason="Never"/>
+
+</robot>
