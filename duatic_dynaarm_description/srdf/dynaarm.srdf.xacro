@@ -6,11 +6,11 @@
 <robot name="dynaarm" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- Group definitions -->
-  <xacro:include filename="$(find duatic_dynaarm_description)/config/dynaarm_groups.srdf.xacro" />
+  <xacro:include filename="$(find duatic_dynaarm_description)/srdf/dynaarm_groups.srdf.xacro" />
   <xacro:dynaarm_groups/>
 
   <!-- Self-collisions -->
-  <xacro:include filename="$(find duatic_dynaarm_description)/config/dynaarm_collisions.srdf.xacro" />
+  <xacro:include filename="$(find duatic_dynaarm_description)/srdf/dynaarm_collisions.srdf.xacro" />
   <xacro:dynaarm_disable_collisions/>
 
   <!-- Table collisions -->

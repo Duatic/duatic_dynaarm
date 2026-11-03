@@ -118,7 +118,7 @@ def launch_setup(context, *args, **kwargs):
             file_path=PathJoinSubstitution(
                 [
                     FindPackageShare("duatic_dynaarm_description"),
-                    "config",
+                    "srdf",
                     "dynaarm.srdf.xacro",
                 ]
             ).perform(context),
