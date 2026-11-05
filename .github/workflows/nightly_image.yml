@@ -1,0 +1,26 @@
+name: Nightly image
+on:
+  workflow_dispatch:
+    inputs:
+      ros_distro:
+        description: "Comma-separated distros to build, e.g. 'jazzy,kilted'. Empty builds the factory's default set."
+        default: ""
+      publish:
+        description: "Push the images to ghcr.io"
+        type: boolean
+        default: false
+  # After CI's 00:30 run, which builds the day's ci image this build reuses.
+  schedule:
+    - cron: "30 1 * * *"
+      timezone: "Europe/Zurich"
+
+jobs:
+  image:
+    permissions:
+      contents: write   # image-badges branch
+      packages: write
+    uses: Duatic/duatic_ros2_docker_images/.github/workflows/reusable_nightly_image.yml@v1
+    with:
+      ros_distro: ${{ inputs.ros_distro }}
+      publish: ${{ github.event_name == 'schedule' || inputs.publish }}
+    secrets: inherit
