@@ -22,6 +22,11 @@
         <joint name="wrist_rotation" value="0"/>
     </group_state>
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="base_plate" link2="elbow" reason="Never"/>
+    <disable_collisions link1="base_plate" link2="elbow_camera_mount" reason="Never"/>
+    <disable_collisions link1="base_plate" link2="shoulder" reason="Never"/>
+    <disable_collisions link1="base_plate" link2="table" reason="Never"/>
+    <disable_collisions link1="base_plate" link2="base" reason="Adjacent"/>
     <disable_collisions link1="base" link2="elbow" reason="Never"/>
     <disable_collisions link1="base" link2="elbow_camera_mount" reason="Never"/>
     <disable_collisions link1="base" link2="shoulder" reason="Adjacent"/>
