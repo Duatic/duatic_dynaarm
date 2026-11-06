@@ -28,6 +28,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!-- Links -->
+  <xacro:property name="base_plate" value="${tf_prefix}base_plate" />
   <xacro:property name="base" value="${tf_prefix}base" />
   <xacro:property name="link01" value="${tf_prefix}shoulder" />
   <xacro:property name="link02" value="${tf_prefix}upperarm" />
@@ -40,7 +41,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="end_effector" value="${tf_prefix}flange" />
 
   <!-- Meshes -->
-  <xacro:property name="base_mesh" value="${'base_mesh_standalone.glb' if standalone else 'base_mesh_attached.glb'}" />
+  <xacro:property name="base_plate_mesh" value="base_plate_mesh.glb" />
+  <xacro:property name="base_mesh" value="base_mesh.glb" />
   <xacro:property name="link01_mesh" value="shoulder_mesh.glb" />
   <xacro:property name="link02_mesh" value="upperarm_mesh.glb" />
   <xacro:property name="link03_mesh" value="elbow_mesh.glb" />
@@ -49,11 +51,15 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="link06_mesh" value="wrist2_mesh.glb" />
 
   <!-- Joint properties -->
+  <xacro:property name="joint_base_plate_name" value="${tf_prefix}joint_base_plate" />
+  <xacro:property name="joint_base_plate_origin_xyz" value="0 0 0.005" />
+  <xacro:property name="joint_base_plate_origin_rpy" value="0 0 0" />
+
   <xacro:property name="joint_base_name" value="${tf_prefix}joint_base" />
 
   <xacro:property name="joint_1_name" value="${tf_prefix}shoulder_rotation" />
   <xacro:property name="joint_1_axis_xyz" value="0 0 1" />
-  <xacro:property name="joint_1_origin_xyz" value="0 0 0.1105" />
+  <xacro:property name="joint_1_origin_xyz" value="0 0 0.1055" />
   <xacro:property name="joint_1_origin_rpy" value="0 0 0" />
   <xacro:property name="joint_1_lower_limit" value="${-pi - pi/2 + 0.4}" />
   <xacro:property name="joint_1_upper_limit" value="${pi + pi/2 - 0.4}" />
@@ -118,6 +124,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:property name="joint_ee_origin_rpy" value="0.0 0.0 ${pi/2}" />
 
   <!-- Base Robot -->
+  <xacro:property name="base_plate_inertial"/>
+
   <xacro:property name="base_inertial">
     <inertial>
       <mass value="1.94219788" />
@@ -200,6 +208,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </xacro:property>
 
   <!-- Collision geometry for collision:=simple; collision:=complex reuses the visual meshes -->
+  <xacro:property name="base_plate_collision_simplified"/>
+
   <xacro:property name="base_collision_simplified">
     <collision>
       <geometry>

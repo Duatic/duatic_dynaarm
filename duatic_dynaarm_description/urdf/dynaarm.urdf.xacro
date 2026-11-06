@@ -41,11 +41,44 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- Per joint velocity and effort limits that replace the defaults -->
     <xacro:property name="joint_limits" value="${xacro.load_yaml(joint_limits_yaml) if joint_limits_yaml else dict()}" />
 
-    <xacro:dynaarm_joint_fixed joint_name="${joint_base_name}"
-      parent="${parent_link}"
-      child="${base}">
-      <xacro:insert_block name="origin" />
-    </xacro:dynaarm_joint_fixed>
+    <!-- Joint: Base(s) -->
+    <xacro:if value="${standalone}">
+      <!-- parent -> base_plate -> base -> arm -->
+
+      <!-- Joint: parent to plate -->
+      <xacro:dynaarm_joint_fixed joint_name="${joint_base_plate_name}"
+        parent="${parent_link}"
+        child="${base_plate}">
+        <xacro:insert_block name="origin" />
+      </xacro:dynaarm_joint_fixed>
+
+      <!-- Link: Base plate -->
+      <xacro:dynaarm_link link_name="${base_plate}" file_name="${base_plate_mesh}">
+        <link_inertia>
+          <xacro:insert_block name="base_inertial" />
+        </link_inertia>
+        <link_collision_simplified>
+          <xacro:insert_block name="base_collision_simplified" />
+        </link_collision_simplified>
+      </xacro:dynaarm_link>
+
+      <!-- Joint: plate to base -->
+      <xacro:dynaarm_joint_fixed joint_name="${joint_base_name}"
+        parent="${base_plate}"
+        child="${base}">
+        <origin xyz="${joint_base_plate_origin_xyz}" rpy="${joint_base_plate_origin_rpy}" />
+      </xacro:dynaarm_joint_fixed>
+    </xacro:if>
+    <xacro:unless value="${standalone}">
+      <!-- parent -> base -> arm -->
+
+      <!-- Joint: parent to base -->
+      <xacro:dynaarm_joint_fixed joint_name="${joint_base_name}"
+        parent="${parent_link}"
+        child="${base}">
+        <xacro:insert_block name="origin"/>
+      </xacro:dynaarm_joint_fixed>
+    </xacro:unless>
 
     <!-- Link: Base -->
     <xacro:dynaarm_link link_name="${base}" file_name="${base_mesh}">
