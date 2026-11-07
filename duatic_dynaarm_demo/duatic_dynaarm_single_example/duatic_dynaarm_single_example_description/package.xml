@@ -20,6 +20,11 @@
   <!--NOTE this is only needed for the ros2control part of the xacro-->
   <depend>duatic_dynaarm_driver</depend>
   <depend>duatic_gazebo</depend>
+  <exec_depend>duatic_control</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>joint_state_publisher_gui</exec_depend>
+  <exec_depend>rviz2</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
