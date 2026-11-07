@@ -2,6 +2,10 @@
 Changelog for package duatic_dynaarm_single_example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.0.1 (2026-11-07)
+------------------
+* fix: declare the runtime dependencies the launch files use (#72)
+
 2.0.0 (2026-11-07)
 ------------------
 * chore!: remove the unused node move_to_predefined_position (#39)
