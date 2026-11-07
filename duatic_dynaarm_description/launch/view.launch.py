@@ -77,7 +77,10 @@ def launch_setup(context, *args, **kwargs):
 
     xacro.process_doc(
         doc,
-        mappings={"version": version_value},
+        mappings={
+            "version": version_value,
+            "collision": LaunchConfiguration("collision").perform(context),
+        },
     )
     robot_description = {"robot_description": doc.toxml()}
 
@@ -157,6 +160,14 @@ def generate_launch_description():
             default_value="False",
             description="Select the desired version of robot ",
         )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "collision",
+            default_value="simple",
+            choices=["simple", "complex", "none"],
+            description="Detail level of collision elements in the URDF",
+        ),
     )
 
     return LaunchDescription(declared_arguments + [OpaqueFunction(function=launch_setup)])
