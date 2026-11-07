@@ -2,6 +2,10 @@
 Changelog for package duatic_dynaarm_single_example_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.0.1 (2026-11-07)
+------------------
+* fix: declare the runtime dependencies the launch files use (#72)
+
 2.0.0 (2026-11-07)
 ------------------
 * feat!: remove the arowana4 version from the launch choices (#22)
