@@ -5,22 +5,21 @@ Changelog for package duatic_dynaarm_description
 2.0.0 (2026-11-07)
 ------------------
 * fix(urdf)!: Fix mesh offsets (#56)
+* feat(urdf)!: remove the option to enable or disable the covers (#16)
 * feat(urdf): Split base frames (#62)
 * feat(control): Read and apply joint limits from the URDF (#25)
-* feat: deprecate arowana4 (#22)
-* feat(): removing the option to enable/disable covers (#16)
+* feat(urdf): new meshes, with corrected wrist2 and shoulder origins (#33)
 * feat(urdf): adapt limits for new wrist rotation cover (#10)
-* fix: typo in README.md (#29)
+* deprecate: the arowana4 version (#22)
 * fix: set version default to corydoras12 (#28)
 * fix: remove obsolete dof parameter (#23)
+* fix(urdf): remove the cables from the mesh, and correct its color (#34)
+* fix(urdf): reference meshes with package:// instead of file://, for current ROS 2 and remote
+  streaming (#1)
+* fix: typo in README.md (#29)
 * refactor(description): drop unused elements from the DynaArm model (#50)
 * refactor(description): declutter the DynaArm URDF (#48)
 * docs: date the changelog history the packages brought into this repository (#64)
-* Fix/remove cable mesh (#34)
-* Feat/new meshes (#33)
-* bump cmake minimum version for all packages to 3.22
-* Change file:// for meshes with package:// to adapt to modern ros2 and make it usable for remote
-  streaming. (#1)
 
 1.1.0 (2026-05-08)
 ------------------
