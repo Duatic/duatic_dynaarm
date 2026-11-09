@@ -6,6 +6,6 @@
 <robot name="dynaarm" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:include filename="$(find duatic_dynaarm_description)/srdf/dynaarm.srdf.xacro" />
-  <xacro:dynaarm_srdf/>
+  <xacro:dynaarm_srdf standalone="true"/>
 
 </robot>

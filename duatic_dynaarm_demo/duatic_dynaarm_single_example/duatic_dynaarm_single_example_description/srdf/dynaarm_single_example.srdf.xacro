@@ -7,7 +7,7 @@
 
   <!-- The Dynaarm itself (groups and self-collisions) -->
   <xacro:include filename="$(find duatic_dynaarm_description)/srdf/dynaarm.srdf.xacro" />
-  <xacro:dynaarm_srdf/>
+  <xacro:dynaarm_srdf standalone="true"/>
 
   <!-- Table collisions: the 'table' link only exists in this example's URDF -->
   <disable_collisions link1="table" link2="base_plate" reason="Adjacent"/>
