@@ -1,9 +1,9 @@
 # duatic_dynaarm
 
-[![Jazzy](https://github.com/Duatic/duatic_dynaarm/raw/badges/jazzy.svg)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/ci.yml)
-[![Kilted](https://github.com/Duatic/duatic_dynaarm/raw/badges/kilted.svg)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/ci.yml)
-[![Lyrical](https://github.com/Duatic/duatic_dynaarm/raw/badges/lyrical.svg)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/ci.yml)
-[![Rolling](https://github.com/Duatic/duatic_dynaarm/raw/badges/rolling.svg)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/ci.yml)
+[![Jazzy](https://github.com/Duatic/duatic_dynaarm/raw/badges/jazzy.svg)](https://github.com/Duatic/duatic_dynaarm/actions?query=branch%3Amain)
+[![Kilted](https://github.com/Duatic/duatic_dynaarm/raw/badges/kilted.svg)](https://github.com/Duatic/duatic_dynaarm/actions?query=branch%3Amain)
+[![Lyrical](https://github.com/Duatic/duatic_dynaarm/raw/badges/lyrical.svg)](https://github.com/Duatic/duatic_dynaarm/actions?query=branch%3Amain)
+[![Rolling](https://github.com/Duatic/duatic_dynaarm/raw/badges/rolling.svg)](https://github.com/Duatic/duatic_dynaarm/actions?query=branch%3Amain)
 
 This repository contains the [ros2_control](https://control.ros.org/) based driver for the [Duatic DynaArm](https://www.duatic.com/dynaarm), the necessary description package and a simple demo application
 
