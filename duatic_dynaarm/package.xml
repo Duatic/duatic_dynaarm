@@ -2,7 +2,7 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>duatic_dynaarm</name>
-  <version>0.0.0</version>
+  <version>1.0.0</version>
   <description>Everything needed to run a DynaArm: installs its bringup with the driver, description and controllers</description>
   <maintainer email="vpapaspyros@duatic.com">Vaios Papaspyros</maintainer>
   <license>BSD-3-Clause</license>
