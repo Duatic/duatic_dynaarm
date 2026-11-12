@@ -92,10 +92,10 @@ def launch_setup(context, *args, **kwargs):
                 ),
                 launch_arguments={
                     "namespace": LaunchConfiguration("namespace"),
-                    "x": LaunchConfiguration("initial_pose_x"),
-                    "y": LaunchConfiguration("initial_pose_y"),
-                    "z": LaunchConfiguration("initial_pose_z"),
-                    "yaw": LaunchConfiguration("initial_pose_yaw"),
+                    "initial_pose_x": LaunchConfiguration("initial_pose_x"),
+                    "initial_pose_y": LaunchConfiguration("initial_pose_y"),
+                    "initial_pose_z": LaunchConfiguration("initial_pose_z"),
+                    "initial_pose_yaw": LaunchConfiguration("initial_pose_yaw"),
                 }.items(),
                 # Only spawn if not started as subcomponent and using Gazebo
                 condition=simulator_not_subcomponent_condition("gazebo"),
