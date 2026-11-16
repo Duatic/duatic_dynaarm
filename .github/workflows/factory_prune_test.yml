@@ -1,0 +1,19 @@
+name: Factory prune test
+# Builds the images with the factory branch that keeps only the repositories package.xml depends on.
+on:
+  push:
+    branches: [test/factory-prune-repos]
+  workflow_dispatch:
+
+jobs:
+  image:
+    permissions:
+      contents: read
+      packages: write
+    uses: Duatic/duatic_ros2_docker_images/.github/workflows/reusable_build_image.yml@feat/prune-unneeded-repos
+    with:
+      ros_distro: jazzy
+      target: dev,runtime
+      publish: false
+      architectures: '["amd64"]'
+    secrets: inherit
