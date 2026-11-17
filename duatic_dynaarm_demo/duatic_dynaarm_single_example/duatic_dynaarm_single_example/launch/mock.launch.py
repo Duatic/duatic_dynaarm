@@ -60,6 +60,7 @@ def launch_setup(context, *args, **kwargs):
             "urdf_file_path": pkg_dynaarm_single_arm_example_description,
             "controllers_config": LaunchConfiguration("controllers_config"),
             "version": LaunchConfiguration("version"),
+            "calibration_yaml": LaunchConfiguration("calibration_yaml"),
         }.items(),
     )
 
@@ -113,6 +114,11 @@ def generate_launch_description():
             default_value="corydoras12",
             choices=["baracuda12", "corydoras12"],
             description="Select the desired version of robot ",
+        ),
+        DeclareLaunchArgument(
+            "calibration_yaml",
+            default_value="",
+            description="Path to the robot calibration file; empty for nominal structure",
         ),
     ]
 

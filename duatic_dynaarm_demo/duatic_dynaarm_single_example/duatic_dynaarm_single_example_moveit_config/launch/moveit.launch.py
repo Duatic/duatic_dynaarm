@@ -49,12 +49,14 @@ def launch_setup(context, *args, **kwargs):
     ethercat_bus_value = ethercat_bus.perform(context)
     mode_value = mode.perform(context)
     version_value = version.perform(context)
+    calibration_yaml_value = LaunchConfiguration("calibration_yaml").perform(context)
 
     launch_arguments = {
         "mode": mode_value,
         "ethercat_bus": ethercat_bus_value,
         "version": version_value,
         "namespace": LaunchConfiguration("namespace"),
+        "calibration_yaml": calibration_yaml_value,
     }
 
     dynaarm_moveit_pkg = "duatic_dynaarm_single_example_moveit_config"
@@ -73,6 +75,7 @@ def launch_setup(context, *args, **kwargs):
                 "gui": "False",
                 "version": version_value,
                 "namespace": LaunchConfiguration("namespace"),
+                "calibration_yaml": calibration_yaml_value,
             }.items(),
         )
 
@@ -90,6 +93,7 @@ def launch_setup(context, *args, **kwargs):
                 "version": version_value,
                 "ethercat_bus": ethercat_bus_value,
                 "namespace": LaunchConfiguration("namespace"),
+                "calibration_yaml": calibration_yaml_value,
             }.items(),
         )
 
@@ -105,6 +109,7 @@ def launch_setup(context, *args, **kwargs):
                 "gui": "False",
                 "version": version_value,
                 "namespace": LaunchConfiguration("namespace"),
+                "calibration_yaml": calibration_yaml_value,
             }.items(),
         )
         nodes_to_start.append(start_demo_sim)
@@ -205,6 +210,13 @@ def generate_launch_description():
             name="namespace",
             default_value="",
             description="Namespace for all launched nodes.",
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "calibration_yaml",
+            default_value="",
+            description="Path to the robot calibration file; empty for nominal structure",
         )
     )
 

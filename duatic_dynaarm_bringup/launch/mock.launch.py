@@ -54,6 +54,7 @@ def launch_setup(context, *args, **kwargs):
             "mode": "mock",
             "version": LaunchConfiguration("version").perform(context),
             "tf_prefix": tf_prefix + "/" if tf_prefix else "",
+            "calibration_yaml": LaunchConfiguration("calibration_yaml").perform(context),
         },
     )
 
@@ -173,6 +174,11 @@ def generate_launch_description():
             description="Robot namespace",
         ),
         DeclareLaunchArgument("tf_prefix", default_value="", description="Arm identifier"),
+        DeclareLaunchArgument(
+            "calibration_yaml",
+            default_value="",
+            description="Path to the robot calibration file; empty for nominal structure",
+        ),
     ]
 
     return LaunchDescription(declared_arguments + [OpaqueFunction(function=launch_setup)])
