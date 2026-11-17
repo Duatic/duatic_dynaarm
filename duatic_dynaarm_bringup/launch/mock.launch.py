@@ -54,6 +54,7 @@ def launch_setup(context, *args, **kwargs):
             "mode": "mock",
             "version": LaunchConfiguration("version").perform(context),
             "tf_prefix": tf_prefix + "/" if tf_prefix else "",
+            "joint_limits_yaml": LaunchConfiguration("joint_limits_yaml").perform(context),
             "calibration_yaml": LaunchConfiguration("calibration_yaml").perform(context),
         },
     )
@@ -174,6 +175,11 @@ def generate_launch_description():
             description="Robot namespace",
         ),
         DeclareLaunchArgument("tf_prefix", default_value="", description="Arm identifier"),
+        DeclareLaunchArgument(
+            "joint_limits_yaml",
+            default_value="",
+            description="Path to the joint limits file; empty for nominal limits",
+        ),
         DeclareLaunchArgument(
             "calibration_yaml",
             default_value="",

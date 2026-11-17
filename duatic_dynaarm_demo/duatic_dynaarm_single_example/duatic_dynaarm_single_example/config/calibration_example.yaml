@@ -1,8 +1,8 @@
 # Example robot calibration file: replaces the nominal origins of declared joints.
 # The values below are made up for illustration; use the measurements of your own robot.
 #
-# Usage:
-#   ros2 launch duatic_dynaarm_single_example mock.launch.py calibration_yaml:=/abs/path/to/calibration_example.yaml
+# Example usage:
+#   ros2 launch duatic_dynaarm_single_example_description view.launch.py calibration_yaml:=/abs/path/to/calibration_example.yaml
 #
 # Format:
 #   <joint name>:

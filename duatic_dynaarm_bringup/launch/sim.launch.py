@@ -63,6 +63,7 @@ def launch_setup(context, *args, **kwargs):
             "mode": sim_tool,
             "version": LaunchConfiguration("version").perform(context),
             "tf_prefix": tf_prefix + "/" if tf_prefix else "",
+            "joint_limits_yaml": LaunchConfiguration("joint_limits_yaml").perform(context),
             "calibration_yaml": LaunchConfiguration("calibration_yaml").perform(context),
             "controller_manager_yaml": LaunchConfiguration("controllers_config").perform(context),
         },
@@ -184,6 +185,11 @@ def generate_launch_description():
             "initial_pose_yaw", default_value="0.0", description="Spawn rotation around axis z."
         ),
         DeclareLaunchArgument("tf_prefix", default_value="", description="Arm identifier"),
+        DeclareLaunchArgument(
+            "joint_limits_yaml",
+            default_value="",
+            description="Path to the joint limits file; empty for nominal limits",
+        ),
         DeclareLaunchArgument(
             "calibration_yaml",
             default_value="",
