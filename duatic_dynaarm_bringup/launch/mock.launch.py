@@ -35,7 +35,7 @@ from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import PushRosNamespace
 
 from duatic_control.core import core_stage
-from duatic_control.stages import stage_arguments, staged
+from duatic_bringup_stages.stages import stage_arguments, staged
 from duatic_helpers import ReplaceString
 
 
