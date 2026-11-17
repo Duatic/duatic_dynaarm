@@ -35,6 +35,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:arg name="collision" default="complex" />
   <!-- v1, v2, ... -->
   <xacro:arg name="version" default="corydoras12" />
+  <!-- optional yaml filepath to use custom joint origins -->
+  <xacro:arg name="calibration_yaml" default="" />
 
 
   <xacro:include filename="$(find duatic_dynaarm_description)/urdf/dynaarm.urdf.xacro" />
@@ -45,7 +47,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:dynaarm_description tf_prefix="$(arg tf_prefix)_1/"
                 parent_link="base_link"
                 collision="$(arg collision)"
-                version="$(arg version)">
+                version="$(arg version)"
+                calibration_yaml="$(arg calibration_yaml)">
     <origin xyz="0 0 0" rpy="0.0 0.0 0.0" />
   </xacro:dynaarm_description>
 
@@ -53,7 +56,8 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:dynaarm_description tf_prefix="$(arg tf_prefix)_2/"
                 parent_link="base_link"
                 collision="$(arg collision)"
-                version="$(arg version)">
+                version="$(arg version)"
+                calibration_yaml="$(arg calibration_yaml)">
     <origin xyz="1.0 0 0" rpy="0.0 0.0 0.0" />
   </xacro:dynaarm_description>
 

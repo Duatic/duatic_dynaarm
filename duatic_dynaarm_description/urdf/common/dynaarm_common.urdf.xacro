@@ -106,11 +106,16 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 joint_upper_limit
                 joint_limit_vel
                 joint_limit_effort
-                *origin">
+                origin_xyz
+                origin_rpy">
         <!-- joint_limits overrides the default velocity and effort per joint -->
         <xacro:property name="limits" value="${joint_limits.get(joint_name, dict())}" />
         <xacro:property name="effort" value="${limits.get('max_effort', joint_limit_effort)}" />
         <xacro:property name="velocity" value="${limits.get('max_velocity', joint_limit_vel)}" />
+        <!-- calibration overrides the default origin per joint -->
+        <xacro:property name="joint_origin" value="${calibration.get(joint_name, dict())}" />
+        <xacro:property name="xyz" value="${joint_origin.get('origin_xyz', origin_xyz)}" />
+        <xacro:property name="rpy" value="${joint_origin.get('origin_rpy', origin_rpy)}" />
         <joint name="${joint_name}" type="revolute">
             <parent link="${parent}" />
             <child link="${child}" />
@@ -119,7 +124,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 current="10" gear_velocity="${velocity}" velocity="${velocity}"
                 lower="${joint_lower_limit}" upper="${joint_upper_limit}" />
             <!-- limit effort also defines torque limit and freeze controller gains -->
-            <xacro:insert_block name="origin" />
+            <origin xyz="${xyz}" rpy="${rpy}" />
         </joint>
     </xacro:macro>
 

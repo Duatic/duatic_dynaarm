@@ -34,12 +34,15 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <xacro:macro name="dynaarm_description"
     params="tf_prefix parent_link collision:='simple' version standalone:=true
       joint_limits_yaml:=''
+      calibration_yaml:=''
       *origin">
 
     <xacro:include filename="$(find duatic_dynaarm_description)/urdf/common/dynaarm_common.urdf.xacro" />
     <xacro:include filename="$(find duatic_dynaarm_description)/urdf/common/${version}/dynaarm_parameters.urdf.xacro" />
     <!-- Per joint velocity and effort limits that replace the defaults -->
     <xacro:property name="joint_limits" value="${xacro.load_yaml(joint_limits_yaml) if joint_limits_yaml else dict()}" />
+    <!-- Per joint origins that replace the defaults -->
+    <xacro:property name="calibration" value="${xacro.load_yaml(calibration_yaml) if calibration_yaml else dict()}" />
 
     <!-- Joint: Base(s) -->
     <xacro:if value="${standalone}">
@@ -109,9 +112,9 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_lower_limit="${joint_1_lower_limit}"
       joint_upper_limit="${joint_1_upper_limit}"
       joint_limit_vel="${joint_1_limit_vel}"
-      joint_limit_effort="${joint_1_limit_effort}">
-      <origin xyz="${joint_1_origin_xyz}" rpy="${joint_1_origin_rpy}" />
-    </xacro:dynaarm_revolute_joint>
+      joint_limit_effort="${joint_1_limit_effort}"
+      origin_xyz="${joint_1_origin_xyz}"
+      origin_rpy="${joint_1_origin_rpy}" />
 
 
     <!-- Link: Upperarm -->
@@ -132,9 +135,9 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_lower_limit="${joint_2_lower_limit}"
       joint_upper_limit="${joint_2_upper_limit}"
       joint_limit_vel="${joint_2_limit_vel}"
-      joint_limit_effort="${joint_2_limit_effort}">
-      <origin xyz="${joint_2_origin_xyz}" rpy="${joint_2_origin_rpy}" />
-    </xacro:dynaarm_revolute_joint>
+      joint_limit_effort="${joint_2_limit_effort}"
+      origin_xyz="${joint_2_origin_xyz}"
+      origin_rpy="${joint_2_origin_rpy}" />
 
 
     <!-- Link: Elbow -->
@@ -155,9 +158,9 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_lower_limit="${joint_3_lower_limit}"
       joint_upper_limit="${joint_3_upper_limit}"
       joint_limit_vel="${joint_3_limit_vel}"
-      joint_limit_effort="${joint_3_limit_effort}">
-      <origin xyz="${joint_3_origin_xyz}" rpy="${joint_3_origin_rpy}" />
-    </xacro:dynaarm_revolute_joint>
+      joint_limit_effort="${joint_3_limit_effort}"
+      origin_xyz="${joint_3_origin_xyz}"
+      origin_rpy="${joint_3_origin_rpy}" />
 
     <!-- Link: Elbow Camera Mount -->
     <xacro:virtual_link link_name="${link03_cam}" />
@@ -188,9 +191,9 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_lower_limit="${joint_4_lower_limit}"
       joint_upper_limit="${joint_4_upper_limit}"
       joint_limit_vel="${joint_4_limit_vel}"
-      joint_limit_effort="${joint_4_limit_effort}">
-      <origin xyz="${joint_4_origin_xyz}" rpy="${joint_4_origin_rpy}" />
-    </xacro:dynaarm_revolute_joint>
+      joint_limit_effort="${joint_4_limit_effort}"
+      origin_xyz="${joint_4_origin_xyz}"
+      origin_rpy="${joint_4_origin_rpy}" />
 
 
     <!-- Link: Wrist 1 -->
@@ -210,9 +213,9 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_lower_limit="${joint_5_lower_limit}"
       joint_upper_limit="${joint_5_upper_limit}"
       joint_limit_vel="${joint_5_limit_vel}"
-      joint_limit_effort="${joint_5_limit_effort}">
-      <origin xyz="${joint_5_origin_xyz}" rpy="${joint_5_origin_rpy}" />
-    </xacro:dynaarm_revolute_joint>
+      joint_limit_effort="${joint_5_limit_effort}"
+      origin_xyz="${joint_5_origin_xyz}"
+      origin_rpy="${joint_5_origin_rpy}" />
 
     <!-- Link: Wrist 1 Camera Mount -->
     <xacro:virtual_link link_name="${link05_cam}" />
@@ -242,9 +245,9 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       joint_lower_limit="${joint_6_lower_limit}"
       joint_upper_limit="${joint_6_upper_limit}"
       joint_limit_vel="${joint_6_limit_vel}"
-      joint_limit_effort="${joint_6_limit_effort}">
-      <origin xyz="${joint_6_origin_xyz}" rpy="${joint_6_origin_rpy}" />
-    </xacro:dynaarm_revolute_joint>
+      joint_limit_effort="${joint_6_limit_effort}"
+      origin_xyz="${joint_6_origin_xyz}"
+      origin_rpy="${joint_6_origin_rpy}" />
 
     <!-- Link: Flange -->
     <xacro:virtual_link link_name="${end_effector}" />

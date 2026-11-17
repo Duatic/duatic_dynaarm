@@ -55,6 +55,8 @@ def launch_setup(context, *args, **kwargs):
             "version": LaunchConfiguration("version").perform(context),
             "ethercat_bus": LaunchConfiguration("ethercat_bus").perform(context),
             "tf_prefix": tf_prefix + "/" if tf_prefix else "",
+            "joint_limits_yaml": LaunchConfiguration("joint_limits_yaml").perform(context),
+            "calibration_yaml": LaunchConfiguration("calibration_yaml").perform(context),
         },
     )
 
@@ -167,6 +169,16 @@ def generate_launch_description():
             description="Whether the dynaarm is started as a subcomponent",
         ),
         DeclareLaunchArgument("tf_prefix", default_value="", description="Arm identifier"),
+        DeclareLaunchArgument(
+            "joint_limits_yaml",
+            default_value="",
+            description="Path to the joint limits file; empty for nominal limits",
+        ),
+        DeclareLaunchArgument(
+            "calibration_yaml",
+            default_value="",
+            description="Path to the robot calibration file; empty for nominal structure",
+        ),
         DeclareLaunchArgument(
             name="srdf_file",
             default_value=get_package_share_directory("duatic_dynaarm_description")

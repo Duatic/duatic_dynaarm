@@ -80,6 +80,7 @@ def launch_setup(context, *args, **kwargs):
         mappings={
             "version": version_value,
             "collision": LaunchConfiguration("collision").perform(context),
+            "calibration_yaml": LaunchConfiguration("calibration_yaml").perform(context),
         },
     )
     robot_description = {"robot_description": doc.toxml()}
@@ -168,6 +169,13 @@ def generate_launch_description():
             choices=["simple", "complex", "none"],
             description="Detail level of collision elements in the URDF",
         ),
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "calibration_yaml",
+            default_value="",
+            description="Path to the robot calibration file; empty for nominal structure",
+        )
     )
 
     return LaunchDescription(declared_arguments + [OpaqueFunction(function=launch_setup)])

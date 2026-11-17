@@ -69,7 +69,10 @@ def launch_setup(context, *args, **kwargs):
 
     xacro.process_doc(
         doc,
-        mappings={"version": version_value},
+        mappings={
+            "version": version_value,
+            "calibration_yaml": LaunchConfiguration("calibration_yaml").perform(context),
+        },
     )
     robot_description = {"robot_description": doc.toxml()}
 
@@ -156,6 +159,13 @@ def generate_launch_description():
             "rviz",
             default_value="true",
             description="Launch RViz2",
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "calibration_yaml",
+            default_value="",
+            description="Path to the robot calibration file; empty for nominal structure",
         )
     )
 
