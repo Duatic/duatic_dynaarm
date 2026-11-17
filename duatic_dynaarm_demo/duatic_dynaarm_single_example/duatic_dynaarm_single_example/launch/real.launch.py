@@ -36,7 +36,7 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
 
-from duatic_control.stages import stage_arguments
+from duatic_bringup_stages.stages import stage_arguments
 
 
 def launch_setup(context, *args, **kwargs):

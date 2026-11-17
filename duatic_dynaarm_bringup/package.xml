@@ -20,6 +20,7 @@
   <exec_depend>controller_manager</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>duatic_control</exec_depend>
+  <exec_depend>duatic_bringup_stages</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
