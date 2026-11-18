@@ -1,0 +1,30 @@
+# Example controllers extension: adds controllers on top of the base controllers of
+# duatic_dynaarm_bringup (config/controllers.yaml).
+#
+# Example usage (works the same with real.launch.py and sim.launch.py):
+#   ros2 launch duatic_dynaarm_single_example mock.launch.py extend_controllers_config:=$(ros2 pkg prefix duatic_dynaarm_single_example)/share/duatic_dynaarm_single_example/config/extend_controllers_example.yaml
+#
+# Format:
+# - Only new controllers: a declaration under controller_manager/ros__parameters with a 'type'
+#   (and optionally 'state' and 'remappings'), plus a ros__parameters block for each of them.
+# - Names of the base controllers, their parameters and controller manager settings such as
+#   update_rate cannot be changed here; the launch fails if this file tries to.
+# - To change the base controllers, pass your own complete file as controllers_config instead.
+#
+/**:
+  controller_manager:
+    ros__parameters:
+      forward_position_controller:
+        type: forward_command_controller/ForwardCommandController
+        state: inactive
+
+  forward_position_controller:
+    ros__parameters:
+      joints:
+        - shoulder_rotation
+        - shoulder_flexion
+        - elbow_flexion
+        - forearm_rotation
+        - wrist_flexion
+        - wrist_rotation
+      interface_name: position

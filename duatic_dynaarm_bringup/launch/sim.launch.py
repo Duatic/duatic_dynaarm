@@ -22,6 +22,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import xacro
+from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
@@ -36,6 +37,7 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node, PushRosNamespace, SetParameter
 
+from duatic_control import extend_controller_config
 from duatic_helpers import simulator_not_subcomponent_condition
 
 
@@ -53,6 +55,11 @@ def launch_setup(context, *args, **kwargs):
     else:
         raise RuntimeError(f"Unknown simulator: {simulator}")
 
+    controllers_config = extend_controller_config(
+        LaunchConfiguration("controllers_config").perform(context),
+        LaunchConfiguration("extend_controllers_config").perform(context),
+    )
+
     # Process URDF file
     doc = xacro.parse(open(LaunchConfiguration("urdf_file_path").perform(context)))
     tf_prefix = LaunchConfiguration("tf_prefix").perform(context)
@@ -65,7 +72,7 @@ def launch_setup(context, *args, **kwargs):
             "tf_prefix": tf_prefix + "/" if tf_prefix else "",
             "joint_limits_yaml": LaunchConfiguration("joint_limits_yaml").perform(context),
             "calibration_yaml": LaunchConfiguration("calibration_yaml").perform(context),
-            "controller_manager_yaml": LaunchConfiguration("controllers_config").perform(context),
+            "controller_manager_yaml": controllers_config,
         },
     )
 
@@ -103,7 +110,7 @@ def launch_setup(context, *args, **kwargs):
             Node(
                 package="controller_manager",
                 executable="ros2_control_node",
-                parameters=[LaunchConfiguration("controllers_config")],
+                parameters=[controllers_config],
                 output={
                     "stdout": "screen",
                     "stderr": "screen",
@@ -118,7 +125,7 @@ def launch_setup(context, *args, **kwargs):
                 ),
                 launch_arguments={
                     "namespace": LaunchConfiguration("namespace"),
-                    "config_path": LaunchConfiguration("controllers_config"),
+                    "config_path": controllers_config,
                 }.items(),
                 condition=UnlessCondition(LaunchConfiguration("start_as_subcomponent")),
             ),
@@ -161,8 +168,14 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             "controllers_config",
-            default_value="",
+            default_value=get_package_share_directory("duatic_dynaarm_bringup")
+            + "/config/controllers.yaml",
             description="Path to the controllers config file",
+        ),
+        DeclareLaunchArgument(
+            "extend_controllers_config",
+            default_value="",
+            description="Path to a file that only adds new controllers to controllers_config",
         ),
         DeclareLaunchArgument(
             "start_as_subcomponent",
