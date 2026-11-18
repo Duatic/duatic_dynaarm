@@ -94,10 +94,7 @@ def launch_setup(context, *args, **kwargs):
                 ),
                 launch_arguments={
                     "namespace": LaunchConfiguration("namespace"),
-                    "initial_pose_x": LaunchConfiguration("initial_pose_x"),
-                    "initial_pose_y": LaunchConfiguration("initial_pose_y"),
-                    "initial_pose_z": LaunchConfiguration("initial_pose_z"),
-                    "initial_pose_yaw": LaunchConfiguration("initial_pose_yaw"),
+                    "spawn_pose": LaunchConfiguration("spawn_pose"),
                 }.items(),
                 # Only spawn if not started as subcomponent and using Gazebo
                 condition=simulator_not_subcomponent_condition("gazebo"),
@@ -173,16 +170,9 @@ def generate_launch_description():
             description="Whether the dynaarm is started as a subcomponent",
         ),
         DeclareLaunchArgument(
-            "initial_pose_x", default_value="0.0", description="Spawn position in axis x."
-        ),
-        DeclareLaunchArgument(
-            "initial_pose_y", default_value="0.0", description="Spawn position in axis y."
-        ),
-        DeclareLaunchArgument(
-            "initial_pose_z", default_value="0.0", description="Spawn position in axis z."
-        ),
-        DeclareLaunchArgument(
-            "initial_pose_yaw", default_value="0.0", description="Spawn rotation around axis z."
+            "spawn_pose",
+            default_value="[0.0, 0.0, 0.0, 0.0]",
+            description="Spawn pose [x, y, z, yaw] (floats)",
         ),
         DeclareLaunchArgument("tf_prefix", default_value="", description="Arm identifier"),
         DeclareLaunchArgument(
