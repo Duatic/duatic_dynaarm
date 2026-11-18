@@ -61,6 +61,7 @@ def launch_setup(context, *args, **kwargs):
             "namespace": LaunchConfiguration("namespace"),
             "world": LaunchConfiguration("world"),
             "simulator": LaunchConfiguration("simulator"),
+            "spawn_pose": LaunchConfiguration("spawn_pose"),
             "urdf_file_path": pkg_dynaarm_single_arm_example_description,
             "controllers_config": LaunchConfiguration("controllers_config"),
             "version": LaunchConfiguration("version"),
@@ -120,6 +121,11 @@ def generate_launch_description():
             default_value="gazebo",
             choices=["gazebo", "isaac"],
             description="Which simulator backend to use.",
+        ),
+        DeclareLaunchArgument(
+            "spawn_pose",
+            default_value="[0.0, 0.0, 0.0, 0.0]",
+            description="Spawn pose [x, y, z, yaw] (floats)",
         ),
         DeclareLaunchArgument(
             "controllers_config",
