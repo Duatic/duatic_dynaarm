@@ -37,7 +37,7 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node, PushRosNamespace
 
-from duatic_helpers import add_controllers
+from duatic_control import extend_controller_config
 
 
 def launch_setup(context, *args, **kwargs):
@@ -60,7 +60,7 @@ def launch_setup(context, *args, **kwargs):
         },
     )
 
-    controllers_config = add_controllers(
+    controllers_config = extend_controller_config(
         LaunchConfiguration("controllers_config").perform(context),
         LaunchConfiguration("custom_controllers_config").perform(context),
     )

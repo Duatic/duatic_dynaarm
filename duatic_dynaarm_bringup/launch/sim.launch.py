@@ -37,7 +37,8 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node, PushRosNamespace, SetParameter
 
-from duatic_helpers import add_controllers, simulator_not_subcomponent_condition
+from duatic_control import extend_controller_config
+from duatic_helpers import simulator_not_subcomponent_condition
 
 
 def launch_setup(context, *args, **kwargs):
@@ -54,7 +55,7 @@ def launch_setup(context, *args, **kwargs):
     else:
         raise RuntimeError(f"Unknown simulator: {simulator}")
 
-    controllers_config = add_controllers(
+    controllers_config = extend_controller_config(
         LaunchConfiguration("controllers_config").perform(context),
         LaunchConfiguration("custom_controllers_config").perform(context),
     )
