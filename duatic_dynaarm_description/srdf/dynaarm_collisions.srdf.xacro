@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!-- Disabled collision pairs between the links of a Dynaarm -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- The collision pairs of the links of one Dynaarm -->
+  <xacro:macro name="dynaarm_disable_collisions" params="prefix:='' standalone:='false'">
+    <!-- Adjacent: parent/child links, always touching at the joint -->
+    <disable_collisions link1="${prefix}base" link2="${prefix}shoulder" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}elbow" link2="${prefix}elbow_camera_mount" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}elbow" link2="${prefix}forearm" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}elbow" link2="${prefix}upperarm" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}flange" link2="${prefix}wrist_2" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}forearm" link2="${prefix}wrist_1" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}shoulder" link2="${prefix}upperarm" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}wrist_1" link2="${prefix}wrist_1_camera_mount" reason="Adjacent"/>
+    <disable_collisions link1="${prefix}wrist_1" link2="${prefix}wrist_2" reason="Adjacent"/>
+    <!-- Always: non-adjacent links that still collide -->
+    <disable_collisions link1="${prefix}elbow_camera_mount" link2="${prefix}forearm" reason="Always"/>
+    <disable_collisions link1="${prefix}forearm" link2="${prefix}upperarm" reason="Always"/>
+    <disable_collisions link1="${prefix}wrist_1_camera_mount" link2="${prefix}wrist_2" reason="Always"/>
+    <!-- Never: cannot collide -->
+    <disable_collisions link1="${prefix}base" link2="${prefix}elbow" reason="Never"/>
+    <disable_collisions link1="${prefix}base" link2="${prefix}elbow_camera_mount" reason="Never"/>
+    <disable_collisions link1="${prefix}base" link2="${prefix}upperarm" reason="Never"/>
+    <disable_collisions link1="${prefix}elbow" link2="${prefix}flange" reason="Never"/>
+    <disable_collisions link1="${prefix}elbow" link2="${prefix}shoulder" reason="Never"/>
+    <disable_collisions link1="${prefix}elbow" link2="${prefix}wrist_1" reason="Never"/>
+    <disable_collisions link1="${prefix}elbow" link2="${prefix}wrist_1_camera_mount" reason="Never"/>
+    <disable_collisions link1="${prefix}elbow" link2="${prefix}wrist_2" reason="Never"/>
+    <disable_collisions link1="${prefix}elbow_camera_mount" link2="${prefix}flange" reason="Never"/>
+    <disable_collisions link1="${prefix}elbow_camera_mount" link2="${prefix}shoulder" reason="Never"/>
+    <disable_collisions link1="${prefix}elbow_camera_mount" link2="${prefix}upperarm" reason="Never"/>
+    <disable_collisions link1="${prefix}elbow_camera_mount" link2="${prefix}wrist_1" reason="Never"/>
+    <disable_collisions link1="${prefix}elbow_camera_mount" link2="${prefix}wrist_1_camera_mount" reason="Never"/>
+    <disable_collisions link1="${prefix}elbow_camera_mount" link2="${prefix}wrist_2" reason="Never"/>
+    <disable_collisions link1="${prefix}flange" link2="${prefix}forearm" reason="Never"/>
+    <disable_collisions link1="${prefix}flange" link2="${prefix}wrist_1" reason="Never"/>
+    <disable_collisions link1="${prefix}flange" link2="${prefix}wrist_1_camera_mount" reason="Never"/>
+    <disable_collisions link1="${prefix}forearm" link2="${prefix}shoulder" reason="Never"/>
+    <disable_collisions link1="${prefix}forearm" link2="${prefix}wrist_1_camera_mount" reason="Never"/>
+    <disable_collisions link1="${prefix}forearm" link2="${prefix}wrist_2" reason="Never"/>
+    <!-- Additional standalone collisions -->
+    <xacro:if value="${standalone}">
+      <disable_collisions link1="${prefix}base_plate" link2="${prefix}base" reason="Adjacent"/>
+      <disable_collisions link1="${prefix}base_plate" link2="${prefix}shoulder" reason="Always"/>
+      <disable_collisions link1="${prefix}base_plate" link2="${prefix}elbow" reason="Never"/>
+      <disable_collisions link1="${prefix}base_plate" link2="${prefix}elbow_camera_mount" reason="Never"/>
+      <disable_collisions link1="${prefix}base_plate" link2="${prefix}upperarm" reason="Never"/>
+    </xacro:if>
+  </xacro:macro>
+
+</robot>

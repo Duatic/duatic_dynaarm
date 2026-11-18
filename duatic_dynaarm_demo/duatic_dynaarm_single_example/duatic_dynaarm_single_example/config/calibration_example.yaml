@@ -1,0 +1,41 @@
+# Example robot calibration file: replaces the nominal origins of declared joints.
+# The values below are made up for illustration; use the measurements of your own robot.
+#
+# Example usage:
+#   ros2 launch duatic_dynaarm_single_example_description view.launch.py calibration_yaml:=/abs/path/to/calibration_example.yaml
+#
+# Format:
+#   <joint name>:
+#     origin_xyz: "x y z"   # position of the joint frame in the parent link frame [m]
+#     origin_rpy: "r p y"   # orientation of the joint frame in the parent link frame [rad], URDF: Rz(y) Ry(p) Rx(r)
+# - Key is the full joint name including tf_prefix (empty in this example).
+# - Values are absolute origins, not offsets from the nominal values.
+# - Both values are optional; a missing value or joint keeps its nominal origin.
+# - Unknown joint names are ignored silently.
+#
+# Available dynaarm joints and their nominal origins:
+#   joint              origin_xyz             origin_rpy
+#   shoulder_rotation  "0 0 0.1055"           "0 0 0"
+#   shoulder_flexion   "0 0 0.047"            "pi/2 -pi/2 0"
+#   elbow_flexion      "0.4127 0 0"           "0 0 0"
+#   forearm_rotation   "0.0262 -0.0855 0"     "pi/2 pi/2 pi/2"
+#   wrist_flexion      "0.0295 0 0.4207"      "0 -pi/2 0"
+#   wrist_rotation     "0.117 0 0.0295"       "-pi/2 pi/2 -pi/2"
+#
+# Example values:
+#
+# orientation-only calibration:
+# 0.2 deg zero offset: yaw 0 + 0.0034906585
+shoulder_rotation:
+  origin_rpy: "0 0 0.0034906585"
+
+# full calibration: position and orientation
+# -0.4 deg zero offset: pitch -pi/2 + 0.0069813170; joint 0.2 mm higher
+shoulder_flexion:
+  origin_xyz: "0 0 0.0472"
+  origin_rpy: "1.5707963268 -1.5638150098 0"
+
+# position-only calibration:
+# elbow axis 0.2 mm closer to the shoulder and 0.2 mm sideways
+elbow_flexion:
+  origin_xyz: "0.4125 0.0002 0"

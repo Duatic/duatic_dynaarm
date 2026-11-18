@@ -63,6 +63,8 @@ def launch_setup(context, *args, **kwargs):
             "mode": sim_tool,
             "version": LaunchConfiguration("version").perform(context),
             "tf_prefix": tf_prefix + "/" if tf_prefix else "",
+            "joint_limits_yaml": LaunchConfiguration("joint_limits_yaml").perform(context),
+            "calibration_yaml": LaunchConfiguration("calibration_yaml").perform(context),
             "controller_manager_yaml": LaunchConfiguration("controllers_config").perform(context),
         },
     )
@@ -92,10 +94,7 @@ def launch_setup(context, *args, **kwargs):
                 ),
                 launch_arguments={
                     "namespace": LaunchConfiguration("namespace"),
-                    "x": LaunchConfiguration("initial_pose_x"),
-                    "y": LaunchConfiguration("initial_pose_y"),
-                    "z": LaunchConfiguration("initial_pose_z"),
-                    "yaw": LaunchConfiguration("initial_pose_yaw"),
+                    "spawn_pose": LaunchConfiguration("spawn_pose"),
                 }.items(),
                 # Only spawn if not started as subcomponent and using Gazebo
                 condition=simulator_not_subcomponent_condition("gazebo"),
@@ -171,18 +170,21 @@ def generate_launch_description():
             description="Whether the dynaarm is started as a subcomponent",
         ),
         DeclareLaunchArgument(
-            "initial_pose_x", default_value="0.0", description="Spawn position in axis x."
-        ),
-        DeclareLaunchArgument(
-            "initial_pose_y", default_value="0.0", description="Spawn position in axis y."
-        ),
-        DeclareLaunchArgument(
-            "initial_pose_z", default_value="0.0", description="Spawn position in axis z."
-        ),
-        DeclareLaunchArgument(
-            "initial_pose_yaw", default_value="0.0", description="Spawn rotation around axis z."
+            "spawn_pose",
+            default_value="[0.0, 0.0, 0.0, 0.0]",
+            description="Spawn pose [x, y, z, yaw] (floats)",
         ),
         DeclareLaunchArgument("tf_prefix", default_value="", description="Arm identifier"),
+        DeclareLaunchArgument(
+            "joint_limits_yaml",
+            default_value="",
+            description="Path to the joint limits file; empty for nominal limits",
+        ),
+        DeclareLaunchArgument(
+            "calibration_yaml",
+            default_value="",
+            description="Path to the robot calibration file; empty for nominal structure",
+        ),
         DeclareLaunchArgument(
             "simulator",
             default_value="gazebo",

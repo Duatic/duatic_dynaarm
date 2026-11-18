@@ -2,10 +2,10 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>duatic_dynaarm_bringup</name>
-  <version>0.0.0</version>
+  <version>1.0.1</version>
   <description>Starts up all modules for the dynaarm</description>
   <maintainer email="mbloechlinger@duatic.com">Marc Blöchlinger</maintainer>
-  <license>Duatic</license>
+  <license>BSD-3-Clause</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
@@ -17,8 +17,12 @@
   <exec_depend>duatic_dynaarm_driver</exec_depend>
   <exec_depend>duatic_e_stop</exec_depend>
   <exec_depend>xacro</exec_depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>duatic_control</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
+    <duatic_archive_root>public</duatic_archive_root>
   </export>
 </package>

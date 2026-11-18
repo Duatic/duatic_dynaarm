@@ -2,10 +2,10 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>duatic_dynaarm_description</name>
-  <version>1.1.0</version>
+  <version>2.0.0</version>
   <description>URDF description for the DUATIC DynaArms</description>
 
-  <license file="LICENSE">BSD-3-Clause</license>
+  <license>BSD-3-Clause</license>
 
   <author email="jpreisig@duatic.com">Jan Preisig</author>
   <author email="lnachtigall@duatic.com">Lennart Nachtigall</author>
@@ -25,8 +25,10 @@
   <test_depend>ament_lint_common</test_depend>
   <test_depend>launch_ros</test_depend>
   <test_depend>launch_testing_ament_cmake</test_depend>
+  <test_depend version_gte="2.1.0">duatic_helpers</test_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
+    <duatic_archive_root>public</duatic_archive_root>
   </export>
 </package>

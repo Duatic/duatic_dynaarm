@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- Dynaarm SRDF macro -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find duatic_dynaarm_description)/srdf/dynaarm_groups.srdf.xacro" />
+  <xacro:include filename="$(find duatic_dynaarm_description)/srdf/dynaarm_collisions.srdf.xacro" />
+
+  <xacro:macro name="dynaarm_srdf" params="prefix:='' standalone:='false'">
+
+    <!-- Group definitions -->
+    <xacro:dynaarm_groups prefix="${prefix}" standalone="${standalone}"/>
+
+    <!-- Self-collisions -->
+    <xacro:dynaarm_disable_collisions prefix="${prefix}" standalone="${standalone}"/>
+
+  </xacro:macro>
+
+</robot>

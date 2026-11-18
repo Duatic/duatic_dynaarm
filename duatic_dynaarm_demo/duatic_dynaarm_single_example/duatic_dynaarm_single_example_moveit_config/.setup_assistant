@@ -2,8 +2,7 @@ moveit_setup_assistant_config:
   urdf:
     package: duatic_dynaarm_single_example_description
     relative_path: urdf/dynaarm_single_example.urdf.xacro
-  srdf:
-    relative_path: config/dynaarm.srdf
+  # 'srdf:' set in launch file, as "package:" is not supported for SRDF
   package_settings:
     author_name: Timo Schwarzer
     author_email: tschwarzer@duatic.com

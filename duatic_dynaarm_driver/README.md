@@ -13,7 +13,7 @@ All dependencies with their corresponding version are listed in the [repos.list]
 
 | Name | Description | License
 | [duatic_dynaarm_description](https://github.com/Duatic/dynaarm_description) | URDF descript of the Dynaarm | BSD-3-Clause |
-| [ethercat_sdk_master](https://github.com/Duatic/ethercat_sdk_master) | Object oriented wrapper around the soem_interface | BSD-3-Clause |
+| [ecat_sdk_master](https://github.com/Duatic/ecat_sdk_master) | Object oriented wrapper around the soem_interface | BSD-3-Clause |
 | [rsl_drive_sdk](https://github.com/leggedrobotics/rsl_drive_sdk) | Basic drive sdk for the DynaDrives | BSD-3-Clause |
 | [soem_interface](https://github.com/Duatic/soem_interface) | Ethercat wrapper library around SOME | GPL v3 |
 | [message_logger](https://github.com/leggedrobotics/message_logger) | Logging library which allows logging with and without ROS | BSD-3-Clause |

@@ -1,9 +1,9 @@
 # duatic_dynaarm
 
-[![Jazzy](https://github.com/Duatic/duatic_dynaarm/raw/badges/jazzy.svg)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/ci.yml)
-[![Kilted](https://github.com/Duatic/duatic_dynaarm/raw/badges/kilted.svg)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/ci.yml)
-[![Lyrical](https://github.com/Duatic/duatic_dynaarm/raw/badges/lyrical.svg)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/ci.yml)
-[![Rolling](https://github.com/Duatic/duatic_dynaarm/raw/badges/rolling.svg)](https://github.com/Duatic/duatic_dynaarm/actions/workflows/ci.yml)
+[![Jazzy](https://github.com/Duatic/duatic_dynaarm/raw/badges/jazzy.svg)](https://github.com/Duatic/duatic_dynaarm/actions?query=branch%3Amain)
+[![Kilted](https://github.com/Duatic/duatic_dynaarm/raw/badges/kilted.svg)](https://github.com/Duatic/duatic_dynaarm/actions?query=branch%3Amain)
+[![Lyrical](https://github.com/Duatic/duatic_dynaarm/raw/badges/lyrical.svg)](https://github.com/Duatic/duatic_dynaarm/actions?query=branch%3Amain)
+[![Rolling](https://github.com/Duatic/duatic_dynaarm/raw/badges/rolling.svg)](https://github.com/Duatic/duatic_dynaarm/actions?query=branch%3Amain)
 
 This repository contains the [ros2_control](https://control.ros.org/) based driver for the [Duatic DynaArm](https://www.duatic.com/dynaarm), the necessary description package and a simple demo application
 
@@ -33,7 +33,7 @@ All dependencies with their corresponding version are listed in the [repos.list]
 
 | Name | Description | License
 | ---  | --- | --- |
-| [ethercat_sdk_master](https://github.com/Duatic/ethercat_sdk_master) | Object oriented wrapper around the soem_interface | BSD-3-Clause |
+| [ecat_sdk_master](https://github.com/Duatic/ecat_sdk_master) | Object oriented wrapper around the soem_interface | BSD-3-Clause |
 | [rsl_drive_sdk](https://github.com/leggedrobotics/rsl_drive_sdk) | Basic drive sdk for the DynaDrives | BSD-3-Clause |
 | [soem_interface](https://github.com/Duatic/soem_interface) | Ethercat wrapper library around SOME | GPL v3 |
 | [duatic_message_logger](https://github.com/Duatic/duatic_message_logger) | Logging library which allows logging with and without ROS | BSD-3-Clause |

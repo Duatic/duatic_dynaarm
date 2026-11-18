@@ -8,16 +8,27 @@ endif()
 find_package(ament_cmake REQUIRED)
 
 install(DIRECTORY
-  config launch meshes urdf
+  config launch meshes srdf urdf
   DESTINATION share/${PROJECT_NAME}/
 )
 
 if(BUILD_TESTING)
   find_package(launch_testing_ament_cmake REQUIRED)
+  find_package(duatic_helpers REQUIRED)
 
   add_launch_test(
       test/test_launch_view.py
       TIMEOUT 60
+  )
+
+  duatic_add_urdf_tests(
+    urdf/dynaarm_standalone.urdf.xacro
+    urdf/dynaarm_standalone_dual.urdf.xacro
+  )
+
+  duatic_add_srdf_test(
+    srdf/dynaarm_standalone.srdf.xacro
+    urdf/dynaarm_standalone.urdf.xacro
   )
 endif()
 
