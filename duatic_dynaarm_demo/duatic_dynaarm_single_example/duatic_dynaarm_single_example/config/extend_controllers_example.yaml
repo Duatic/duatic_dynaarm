@@ -1,8 +1,8 @@
-# Example custom controllers file: adds controllers on top of the base controllers of
+# Example controllers extension: adds controllers on top of the base controllers of
 # duatic_dynaarm_bringup (config/controllers.yaml).
 #
 # Example usage (works the same with real.launch.py and sim.launch.py):
-#   ros2 launch duatic_dynaarm_single_example mock.launch.py custom_controllers_config:=$(ros2 pkg prefix duatic_dynaarm_single_example)/share/duatic_dynaarm_single_example/config/custom_controllers_example.yaml
+#   ros2 launch duatic_dynaarm_single_example mock.launch.py extend_controllers_config:=$(ros2 pkg prefix duatic_dynaarm_single_example)/share/duatic_dynaarm_single_example/config/extend_controllers_example.yaml
 #
 # Format:
 # - Only new controllers: a declaration under controller_manager/ros__parameters with a 'type'

@@ -62,7 +62,7 @@ def launch_setup(context, *args, **kwargs):
             "simulator": LaunchConfiguration("simulator"),
             "spawn_pose": LaunchConfiguration("spawn_pose"),
             "urdf_file_path": pkg_dynaarm_single_arm_example_description,
-            "custom_controllers_config": LaunchConfiguration("custom_controllers_config"),
+            "extend_controllers_config": LaunchConfiguration("extend_controllers_config"),
             "version": LaunchConfiguration("version"),
         }.items(),
     )
@@ -127,7 +127,7 @@ def generate_launch_description():
             description="Spawn pose [x, y, z, yaw] (floats)",
         ),
         DeclareLaunchArgument(
-            "custom_controllers_config",
+            "extend_controllers_config",
             default_value="",
             description="Path to a file that only adds new controllers to the bringup's base controllers",
         ),

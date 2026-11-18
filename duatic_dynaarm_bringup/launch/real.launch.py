@@ -62,7 +62,7 @@ def launch_setup(context, *args, **kwargs):
 
     controllers_config = extend_controller_config(
         LaunchConfiguration("controllers_config").perform(context),
-        LaunchConfiguration("custom_controllers_config").perform(context),
+        LaunchConfiguration("extend_controllers_config").perform(context),
     )
 
     group_action = GroupAction(
@@ -151,7 +151,7 @@ def generate_launch_description():
             description="Path to the controllers config file",
         ),
         DeclareLaunchArgument(
-            "custom_controllers_config",
+            "extend_controllers_config",
             default_value="",
             description="Path to a file that only adds new controllers to controllers_config",
         ),
