@@ -18,8 +18,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
 
   <xacro:arg name="tf_prefix" default="" />
 
-  <!-- simple, complex -->
-  <xacro:arg name="collision" default="complex" />
   <!-- real, mock, sim -->
   <xacro:arg name="mode" default="mock" />
   <!-- physical ethercat bus, only used for real -->
@@ -37,7 +35,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
 
   <xacro:include filename="$(find duatic_dynaarm_driver)/urdf/dynaarm.urdf.xacro" />
 
-<link name="base_link" />
+  <link name="base_link" />
 
   <link name="table">
     <visual>
@@ -71,7 +69,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” 
   <!-- create an instance of the dynaarm and fix its base-->
   <xacro:dynaarm tf_prefix="$(arg tf_prefix)"
                 parent_link="table"
-                collision="$(arg collision)"
                 mode="$(arg mode)"
                 ethercat_bus="$(arg ethercat_bus)"
                 version="$(arg version)"

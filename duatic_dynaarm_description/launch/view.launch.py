@@ -79,7 +79,6 @@ def launch_setup(context, *args, **kwargs):
         doc,
         mappings={
             "version": version_value,
-            "collision": LaunchConfiguration("collision").perform(context),
             "calibration_yaml": LaunchConfiguration("calibration_yaml").perform(context),
         },
     )
@@ -161,14 +160,6 @@ def generate_launch_description():
             default_value="False",
             description="Select the desired version of robot ",
         )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "collision",
-            default_value="simple",
-            choices=["simple", "complex", "none"],
-            description="Detail level of collision elements in the URDF",
-        ),
     )
     declared_arguments.append(
         DeclareLaunchArgument(
