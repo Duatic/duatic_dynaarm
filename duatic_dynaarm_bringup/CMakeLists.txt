@@ -7,11 +7,14 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
 
 install(DIRECTORY
   launch
   DESTINATION share/${PROJECT_NAME}/
 )
+
+ament_python_install_package(${PROJECT_NAME})
 
 if(BUILD_TESTING)
 endif()
