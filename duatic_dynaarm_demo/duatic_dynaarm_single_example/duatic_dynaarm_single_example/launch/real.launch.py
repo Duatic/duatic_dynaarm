@@ -36,6 +36,8 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
 
+from duatic_bringup_stages.stages import stage_arguments
+
 
 def launch_setup(context, *args, **kwargs):
     # Package Directories
@@ -126,4 +128,6 @@ def generate_launch_description():
         ),
     ]
 
-    return LaunchDescription(declared_arguments + [OpaqueFunction(function=launch_setup)])
+    return LaunchDescription(
+        declared_arguments + stage_arguments([]) + [OpaqueFunction(function=launch_setup)]
+    )
