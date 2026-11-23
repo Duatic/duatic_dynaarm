@@ -22,7 +22,6 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import xacro
-from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
@@ -36,8 +35,6 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node, PushRosNamespace
-
-from duatic_helpers import ReplaceString
 
 
 def launch_setup(context, *args, **kwargs):
@@ -57,25 +54,6 @@ def launch_setup(context, *args, **kwargs):
             "tf_prefix": tf_prefix + "/" if tf_prefix else "",
             "joint_limits_yaml": LaunchConfiguration("joint_limits_yaml").perform(context),
             "calibration_yaml": LaunchConfiguration("calibration_yaml").perform(context),
-        },
-    )
-
-    # Process SRDF file
-    srdf_doc = xacro.parse(open(LaunchConfiguration("srdf_file").perform(context)))
-    xacro.process_doc(
-        srdf_doc,
-        mappings={
-            "version": LaunchConfiguration("version").perform(context),
-            "mode": "real",
-        },
-    )
-
-    # Configure controller parameters
-    srdf_str = srdf_doc.toxml().replace("\n", "\\n").replace('"', '\\"')
-    controllers_params = ReplaceString(
-        source_file=LaunchConfiguration("controllers_config"),
-        replacements={
-            "<srdf>": f'"{srdf_str}"',
         },
     )
 
@@ -99,7 +77,7 @@ def launch_setup(context, *args, **kwargs):
             Node(
                 package="controller_manager",
                 executable="ros2_control_node",
-                parameters=[controllers_params],
+                parameters=[LaunchConfiguration("controllers_config")],
                 output={
                     "stdout": "screen",
                     "stderr": "screen",
@@ -113,7 +91,7 @@ def launch_setup(context, *args, **kwargs):
                 ),
                 launch_arguments={
                     "namespace": LaunchConfiguration("namespace"),
-                    "config_path": controllers_params,
+                    "config_path": LaunchConfiguration("controllers_config"),
                 }.items(),
                 condition=UnlessCondition(LaunchConfiguration("start_as_subcomponent")),
             ),
@@ -178,12 +156,6 @@ def generate_launch_description():
             "calibration_yaml",
             default_value="",
             description="Path to the robot calibration file; empty for nominal structure",
-        ),
-        DeclareLaunchArgument(
-            name="srdf_file",
-            default_value=get_package_share_directory("duatic_dynaarm_description")
-            + "/srdf/dynaarm_standalone.srdf.xacro",
-            description="Path to the robot SRDF file",
         ),
     ]
 
