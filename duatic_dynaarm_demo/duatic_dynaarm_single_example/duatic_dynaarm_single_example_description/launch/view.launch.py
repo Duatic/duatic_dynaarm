@@ -22,7 +22,6 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import os
-import xacro
 
 from ament_index_python.packages import get_package_share_directory
 
@@ -32,6 +31,8 @@ from launch.conditions import IfCondition, UnlessCondition
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
+
+from duatic_helpers import process_robot_description
 
 
 def string_to_bool(string_input):
@@ -63,18 +64,18 @@ def launch_setup(context, *args, **kwargs):
         package="duatic_dynaarm_single_example_description"
     ).find("duatic_dynaarm_single_example_description")
 
-    doc = xacro.parse(
-        open(os.path.join(pkg_share_description, "urdf/dynaarm_single_example.urdf.xacro"))
-    )
-
-    xacro.process_doc(
-        doc,
+    robot_description = process_robot_description(
+        urdf_file_path=os.path.join(
+            pkg_share_description, "urdf/dynaarm_single_example.urdf.xacro"
+        ),
+        srdf_file_path=os.path.join(
+            pkg_share_description, "srdf/dynaarm_single_example.srdf.xacro"
+        ),
         mappings={
             "version": version_value,
             "calibration_yaml": LaunchConfiguration("calibration_yaml").perform(context),
         },
     )
-    robot_description = {"robot_description": doc.toxml()}
 
     # Publish the joint state values for the non-fixed joints in the URDF file.
     start_joint_state_publisher_node = Node(
@@ -97,7 +98,7 @@ def launch_setup(context, *args, **kwargs):
         package="robot_state_publisher",
         executable="robot_state_publisher",
         output="screen",
-        parameters=[robot_description],
+        parameters=[{"robot_description": robot_description}],
     )
 
     # Launch RViz
@@ -114,7 +115,7 @@ def launch_setup(context, *args, **kwargs):
                 "config.rviz",
             ),
         ],
-        parameters=[robot_description],
+        parameters=[{"robot_description": robot_description}],
         condition=IfCondition(LaunchConfiguration("rviz")),
     )
 

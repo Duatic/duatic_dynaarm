@@ -21,7 +21,6 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-import xacro
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
@@ -36,7 +35,7 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node, PushRosNamespace, SetParameter
 
-from duatic_helpers import simulator_not_subcomponent_condition
+from duatic_helpers import simulator_not_subcomponent_condition, process_robot_description
 
 
 def launch_setup(context, *args, **kwargs):
@@ -54,10 +53,10 @@ def launch_setup(context, *args, **kwargs):
         raise RuntimeError(f"Unknown simulator: {simulator}")
 
     # Process URDF file
-    doc = xacro.parse(open(LaunchConfiguration("urdf_file_path").perform(context)))
     tf_prefix = LaunchConfiguration("tf_prefix").perform(context)
-    xacro.process_doc(
-        doc,
+    robot_description = process_robot_description(
+        urdf_file_path=LaunchConfiguration("urdf_file_path").perform(context),
+        srdf_file_path=LaunchConfiguration("srdf_file_path").perform(context),
         mappings={
             "namespace": LaunchConfiguration("namespace").perform(context),
             "mode": sim_tool,
@@ -83,7 +82,7 @@ def launch_setup(context, *args, **kwargs):
                 package="robot_state_publisher",
                 executable="robot_state_publisher",
                 output="screen",
-                parameters=[{"robot_description": doc.toxml()}],
+                parameters=[{"robot_description": robot_description}],
                 remappings=[("/tf", "tf"), ("/tf_static", "tf_static")],
                 condition=UnlessCondition(LaunchConfiguration("start_as_subcomponent")),
             ),
@@ -158,6 +157,11 @@ def generate_launch_description():
         DeclareLaunchArgument(
             name="urdf_file_path",
             description="Path to the robot URDF file",
+        ),
+        DeclareLaunchArgument(
+            "srdf_file_path",
+            default_value="",
+            description="(Optional) Path to the robot SRDF file",
         ),
         DeclareLaunchArgument(
             "controllers_config",
