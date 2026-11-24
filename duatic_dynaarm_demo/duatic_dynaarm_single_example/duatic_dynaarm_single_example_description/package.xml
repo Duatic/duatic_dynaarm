@@ -21,7 +21,7 @@
   <depend>duatic_dynaarm_driver</depend>
   <depend>duatic_gazebo</depend>
   <exec_depend>duatic_control</exec_depend>
-  <exec_depend version_gte="2.1.0">duatic_helpers</exec_depend>
+  <exec_depend version_gte="2.2.0">duatic_helpers</exec_depend>
   <exec_depend>joint_state_publisher</exec_depend>
   <exec_depend>joint_state_publisher_gui</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
