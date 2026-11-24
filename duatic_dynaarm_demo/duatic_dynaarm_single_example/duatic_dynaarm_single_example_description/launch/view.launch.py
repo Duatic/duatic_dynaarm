@@ -35,23 +35,6 @@ from launch_ros.substitutions import FindPackageShare
 from duatic_helpers import process_robot_description
 
 
-def string_to_bool(string_input):
-    """Converts a string representation of a boolean value to a Python boolean.
-
-    Args:
-        string_input (str): The input string, e.g., "true", "false", "yes", "no".
-
-    Returns:
-        bool: The corresponding boolean value, or raises a ValueError for invalid input.
-    """
-    if string_input.lower() in ["true", "yes", "1"]:
-        return True
-    elif string_input.lower() in ["false", "no", "0"]:
-        return False
-    else:
-        raise ValueError(f"Invalid boolean string: '{string_input}'")
-
-
 def launch_setup(context, *args, **kwargs):
 
     gui = LaunchConfiguration("gui")
@@ -145,13 +128,6 @@ def generate_launch_description():
             name="version",
             default_value="corydoras12",
             choices=["baracuda12", "corydoras12"],
-            description="Select the desired version of robot ",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            name="dual",
-            default_value="False",
             description="Select the desired version of robot ",
         )
     )
