@@ -26,24 +26,20 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
-    IncludeLaunchDescription,
     OpaqueFunction,
     GroupAction,
 )
-from launch.conditions import UnlessCondition
-from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch.conditions import IfCondition
+from launch.substitutions import LaunchConfiguration
 
-from launch_ros.substitutions import FindPackageShare
-from launch_ros.actions import Node, PushRosNamespace
+from launch_ros.actions import PushRosNamespace
 
+from duatic_dynaarm_bringup.stages import core_stage
+from duatic_bringup_stages.stages import stage_arguments, staged
 from duatic_helpers import ReplaceString
 
 
 def launch_setup(context, *args, **kwargs):
-    # Package Directories
-    pkg_duatic_control = FindPackageShare("duatic_control")
-
     # Process URDF file
     doc = xacro.parse(open(LaunchConfiguration("urdf_file_path").perform(context)))
     tf_prefix = LaunchConfiguration("tf_prefix").perform(context)
@@ -79,65 +75,16 @@ def launch_setup(context, *args, **kwargs):
         },
     )
 
-    group_action = GroupAction(
-        actions=[
-            # Push Namespace, if the component is started as a standalone component
-            PushRosNamespace(
-                LaunchConfiguration("namespace"),
-                condition=UnlessCondition(LaunchConfiguration("start_as_subcomponent")),
-            ),
-            # Robot State Publisher
-            Node(
-                package="robot_state_publisher",
-                executable="robot_state_publisher",
-                output="screen",
-                parameters=[{"robot_description": doc.toxml()}],
-                remappings=[("/tf", "tf"), ("/tf_static", "tf_static")],
-                condition=UnlessCondition(LaunchConfiguration("start_as_subcomponent")),
-            ),
-            # Controller Manager
-            Node(
-                package="controller_manager",
-                executable="ros2_control_node",
-                parameters=[controllers_params],
-                output={
-                    "stdout": "screen",
-                    "stderr": "screen",
-                },
-                condition=UnlessCondition(LaunchConfiguration("start_as_subcomponent")),
-            ),
-            # Start Controllers
-            IncludeLaunchDescription(
-                PythonLaunchDescriptionSource(
-                    PathJoinSubstitution([pkg_duatic_control, "launch", "control.launch.py"])
-                ),
-                launch_arguments={
-                    "namespace": LaunchConfiguration("namespace"),
-                    "config_path": controllers_params,
-                }.items(),
-                condition=UnlessCondition(LaunchConfiguration("start_as_subcomponent")),
-            ),
-            # Brake Release
-            Node(
-                package="duatic_e_stop",
-                executable="brake_release_node",
-                name="brake_release_node",
-                output="screen",
-                condition=UnlessCondition(LaunchConfiguration("start_as_subcomponent")),
-            ),
-            # Emergency Stop
-            Node(
-                package="duatic_e_stop",
-                executable="e_stop_node",
-                name="e_stop_node",
-                output="screen",
-                parameters=[{"emergency_stop_button": 9}],  # Change button index here
-                condition=UnlessCondition(LaunchConfiguration("start_as_subcomponent")),
-            ),
-        ]
-    )
+    # A parent robot starts the core itself
+    if IfCondition(LaunchConfiguration("start_as_subcomponent")).evaluate(context):
+        return []
 
-    return [group_action]
+    core = core_stage(
+        doc.toxml(),
+        controllers_params.perform(context),
+        namespace=LaunchConfiguration("namespace").perform(context),
+    )
+    return [GroupAction([PushRosNamespace(LaunchConfiguration("namespace")), staged([core])])]
 
 
 def generate_launch_description():
@@ -187,4 +134,6 @@ def generate_launch_description():
         ),
     ]
 
-    return LaunchDescription(declared_arguments + [OpaqueFunction(function=launch_setup)])
+    return LaunchDescription(
+        declared_arguments + stage_arguments([]) + [OpaqueFunction(function=launch_setup)]
+    )

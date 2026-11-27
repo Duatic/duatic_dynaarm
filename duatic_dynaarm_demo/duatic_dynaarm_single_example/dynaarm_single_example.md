@@ -37,3 +37,5 @@ Example if the ethercat bus is plugged to `eth0`
 ```
 ros2 launch duatic_dynaarm_single_example real.launch.py ethercat_bus:=eth0
 ```
+
+Once started, the bringup waits until every controller is in its configured state and the hardware is active. If that does not happen within the timeout, it shuts the launch down and names what did not come up. Add `stage_timeout_scale:=<factor>` to lengthen the timeout.
