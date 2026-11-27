@@ -134,6 +134,19 @@ def launch_setup(context, *args, **kwargs):
                 parameters=[{"emergency_stop_button": 9}],  # Change button index here
                 condition=UnlessCondition(LaunchConfiguration("start_as_subcomponent")),
             ),
+            # Failure snapshot
+            IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(
+                    PathJoinSubstitution(
+                        [
+                            FindPackageShare("duatic_monitoring"),
+                            "launch",
+                            "failure_snapshot.launch.py",
+                        ]
+                    )
+                ),
+                condition=UnlessCondition(LaunchConfiguration("start_as_subcomponent")),
+            ),
         ]
     )
 
