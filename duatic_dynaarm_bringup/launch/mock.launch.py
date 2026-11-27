@@ -37,7 +37,7 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node, PushRosNamespace
 
-from duatic_helpers import ReplaceString
+from duatic_control import extend_controller_config
 
 
 def launch_setup(context, *args, **kwargs):
@@ -59,23 +59,9 @@ def launch_setup(context, *args, **kwargs):
         },
     )
 
-    # Process SRDF file
-    srdf_doc = xacro.parse(open(LaunchConfiguration("srdf_file").perform(context)))
-    xacro.process_doc(
-        srdf_doc,
-        mappings={
-            "version": LaunchConfiguration("version").perform(context),
-            "mode": "mock",
-        },
-    )
-
-    # Process controllers_config file
-    srdf_str = srdf_doc.toxml().replace("\n", "\\n").replace('"', '\\"')
-    controllers_params = ReplaceString(
-        source_file=LaunchConfiguration("controllers_config"),
-        replacements={
-            "<srdf>": f'"{srdf_str}"',
-        },
+    controllers_config = extend_controller_config(
+        LaunchConfiguration("controllers_config").perform(context),
+        LaunchConfiguration("extend_controllers_config").perform(context),
     )
 
     group_action = GroupAction(
@@ -98,7 +84,7 @@ def launch_setup(context, *args, **kwargs):
             Node(
                 package="controller_manager",
                 executable="ros2_control_node",
-                parameters=[LaunchConfiguration("controllers_config")],
+                parameters=[controllers_config],
                 output={
                     "stdout": "screen",
                     "stderr": "screen",
@@ -112,7 +98,7 @@ def launch_setup(context, *args, **kwargs):
                 ),
                 launch_arguments={
                     "namespace": LaunchConfiguration("namespace"),
-                    "config_path": controllers_params,
+                    "config_path": controllers_config,
                 }.items(),
                 condition=UnlessCondition(LaunchConfiguration("start_as_subcomponent")),
             ),
@@ -154,20 +140,20 @@ def generate_launch_description():
             description="Path to the robot URDF file",
         ),
         DeclareLaunchArgument(
-            name="srdf_file",
-            default_value=get_package_share_directory("duatic_dynaarm_description")
-            + "/srdf/dynaarm_standalone.srdf.xacro",
-            description="Path to the robot SRDF file",
-        ),
-        DeclareLaunchArgument(
             "start_as_subcomponent",
             default_value="false",
             description="Whether the dynaarm is started as a subcomponent",
         ),
         DeclareLaunchArgument(
             "controllers_config",
-            default_value="",
+            default_value=get_package_share_directory("duatic_dynaarm_bringup")
+            + "/config/controllers.yaml",
             description="Path to the controllers config file",
+        ),
+        DeclareLaunchArgument(
+            "extend_controllers_config",
+            default_value="",
+            description="Path to a file that only adds new controllers to controllers_config",
         ),
         DeclareLaunchArgument(
             name="namespace",

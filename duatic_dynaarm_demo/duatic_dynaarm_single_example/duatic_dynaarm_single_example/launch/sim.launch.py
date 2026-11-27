@@ -21,7 +21,6 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-from ament_index_python import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
@@ -63,7 +62,7 @@ def launch_setup(context, *args, **kwargs):
             "simulator": LaunchConfiguration("simulator"),
             "spawn_pose": LaunchConfiguration("spawn_pose"),
             "urdf_file_path": pkg_dynaarm_single_arm_example_description,
-            "controllers_config": LaunchConfiguration("controllers_config"),
+            "extend_controllers_config": LaunchConfiguration("extend_controllers_config"),
             "version": LaunchConfiguration("version"),
         }.items(),
     )
@@ -128,10 +127,9 @@ def generate_launch_description():
             description="Spawn pose [x, y, z, yaw] (floats)",
         ),
         DeclareLaunchArgument(
-            "controllers_config",
-            default_value=get_package_share_directory("duatic_dynaarm_single_example")
-            + "/config/controllers.yaml",
-            description="Path to the controllers config file",
+            "extend_controllers_config",
+            default_value="",
+            description="Path to a file that only adds new controllers to the bringup's base controllers",
         ),
         DeclareLaunchArgument(
             "headless",
