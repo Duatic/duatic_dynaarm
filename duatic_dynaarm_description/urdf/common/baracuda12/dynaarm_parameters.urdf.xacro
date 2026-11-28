@@ -207,7 +207,7 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </inertial>
   </xacro:property>
 
-  <!-- Collision geometry for collision:=simple; collision:=complex reuses the visual meshes -->
+  <!-- Collision geometry -->
   <xacro:property name="base_plate_collision_simplified"/>
   <xacro:property name="base_collision_simplified"/>
 

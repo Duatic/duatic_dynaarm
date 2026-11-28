@@ -32,10 +32,13 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <!-- DynaArm Macro-->
   <!-- -->
   <xacro:macro name="dynaarm_description"
-    params="tf_prefix parent_link collision:='simple' version standalone:=true
-      joint_limits_yaml:=''
-      calibration_yaml:=''
-      *origin">
+    params="tf_prefix
+            parent_link
+            version
+            standalone:=true
+            joint_limits_yaml:=''
+            calibration_yaml:=''
+            *origin">
 
     <xacro:include filename="$(find duatic_dynaarm_description)/urdf/common/dynaarm_common.urdf.xacro" />
     <xacro:include filename="$(find duatic_dynaarm_description)/urdf/common/${version}/dynaarm_parameters.urdf.xacro" />

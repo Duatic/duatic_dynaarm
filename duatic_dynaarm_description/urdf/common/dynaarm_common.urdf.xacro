@@ -40,21 +40,11 @@ THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 </geometry>
             </visual>
             <xacro:insert_block name="link_inertia" />
-            <xacro:if value="${collision == 'simple'}">
-                <xacro:insert_block name="link_collision_simplified" />
-                <!-- Capsule collisions -->
-                <collision_checking>
-                    <capsule name="capsule"/>
-                </collision_checking>
-            </xacro:if>
-            <xacro:if value="${collision == 'complex'}">
-                <collision>
-                    <origin xyz="0 0 0" rpy="0 0 0" />
-                    <geometry>
-                        <mesh filename="package://duatic_dynaarm_description/meshes/${version}/${file_name}" />
-                    </geometry>
-                </collision>
-            </xacro:if>
+            <xacro:insert_block name="link_collision_simplified" />
+            <!-- Capsule collisions -->
+            <collision_checking>
+                <capsule name="capsule"/>
+            </collision_checking>
         </link>
     </xacro:macro>
 
