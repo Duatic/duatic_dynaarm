@@ -25,7 +25,7 @@
   <test_depend>ament_lint_common</test_depend>
   <test_depend>launch_ros</test_depend>
   <test_depend>launch_testing_ament_cmake</test_depend>
-  <test_depend version_gte="2.1.0">duatic_helpers</test_depend>
+  <exec_depend version_gte="2.2.0">duatic_helpers</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

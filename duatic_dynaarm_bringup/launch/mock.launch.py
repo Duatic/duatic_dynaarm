@@ -21,8 +21,6 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-import xacro
-from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
@@ -37,7 +35,7 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node, PushRosNamespace
 
-from duatic_helpers import ReplaceString
+from duatic_helpers import process_robot_description
 
 
 def launch_setup(context, *args, **kwargs):
@@ -45,10 +43,10 @@ def launch_setup(context, *args, **kwargs):
     pkg_duatic_control = FindPackageShare("duatic_control")
 
     # Process URDF file
-    doc = xacro.parse(open(LaunchConfiguration("urdf_file_path").perform(context)))
     tf_prefix = LaunchConfiguration("tf_prefix").perform(context)
-    xacro.process_doc(
-        doc,
+    robot_description = process_robot_description(
+        urdf_file_path=LaunchConfiguration("urdf_file_path").perform(context),
+        srdf_file_path=LaunchConfiguration("srdf_file_path").perform(context),
         mappings={
             "namespace": LaunchConfiguration("namespace").perform(context),
             "mode": "mock",
@@ -56,25 +54,6 @@ def launch_setup(context, *args, **kwargs):
             "tf_prefix": tf_prefix + "/" if tf_prefix else "",
             "joint_limits_yaml": LaunchConfiguration("joint_limits_yaml").perform(context),
             "calibration_yaml": LaunchConfiguration("calibration_yaml").perform(context),
-        },
-    )
-
-    # Process SRDF file
-    srdf_doc = xacro.parse(open(LaunchConfiguration("srdf_file").perform(context)))
-    xacro.process_doc(
-        srdf_doc,
-        mappings={
-            "version": LaunchConfiguration("version").perform(context),
-            "mode": "mock",
-        },
-    )
-
-    # Process controllers_config file
-    srdf_str = srdf_doc.toxml().replace("\n", "\\n").replace('"', '\\"')
-    controllers_params = ReplaceString(
-        source_file=LaunchConfiguration("controllers_config"),
-        replacements={
-            "<srdf>": f'"{srdf_str}"',
         },
     )
 
@@ -90,7 +69,7 @@ def launch_setup(context, *args, **kwargs):
                 package="robot_state_publisher",
                 executable="robot_state_publisher",
                 output="screen",
-                parameters=[{"robot_description": doc.toxml()}],
+                parameters=[{"robot_description": robot_description}],
                 remappings=[("/tf", "tf"), ("/tf_static", "tf_static")],
                 condition=UnlessCondition(LaunchConfiguration("start_as_subcomponent")),
             ),
@@ -112,7 +91,7 @@ def launch_setup(context, *args, **kwargs):
                 ),
                 launch_arguments={
                     "namespace": LaunchConfiguration("namespace"),
-                    "config_path": controllers_params,
+                    "config_path": LaunchConfiguration("controllers_config"),
                 }.items(),
                 condition=UnlessCondition(LaunchConfiguration("start_as_subcomponent")),
             ),
@@ -154,10 +133,9 @@ def generate_launch_description():
             description="Path to the robot URDF file",
         ),
         DeclareLaunchArgument(
-            name="srdf_file",
-            default_value=get_package_share_directory("duatic_dynaarm_description")
-            + "/srdf/dynaarm_standalone.srdf.xacro",
-            description="Path to the robot SRDF file",
+            "srdf_file_path",
+            default_value="",
+            description="(Optional) Path to the robot SRDF file",
         ),
         DeclareLaunchArgument(
             "start_as_subcomponent",

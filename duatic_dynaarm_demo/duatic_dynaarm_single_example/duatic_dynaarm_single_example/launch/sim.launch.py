@@ -44,6 +44,13 @@ def launch_setup(context, *args, **kwargs):
     pkg_dynaarm_description = FindPackageShare("duatic_dynaarm_description")
 
     # Use the actual description of this package !
+    pkg_dynaarm_single_arm_example_srdf = PathJoinSubstitution(
+        [
+            FindPackageShare("duatic_dynaarm_single_example_description"),
+            "srdf",
+            "dynaarm_single_example.srdf.xacro",
+        ]
+    )
     pkg_dynaarm_single_arm_example_description = PathJoinSubstitution(
         [
             FindPackageShare("duatic_dynaarm_single_example_description"),
@@ -63,6 +70,7 @@ def launch_setup(context, *args, **kwargs):
             "simulator": LaunchConfiguration("simulator"),
             "spawn_pose": LaunchConfiguration("spawn_pose"),
             "urdf_file_path": pkg_dynaarm_single_arm_example_description,
+            "srdf_file_path": pkg_dynaarm_single_arm_example_srdf,
             "controllers_config": LaunchConfiguration("controllers_config"),
             "version": LaunchConfiguration("version"),
         }.items(),

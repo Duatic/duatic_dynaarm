@@ -13,6 +13,7 @@
   <test_depend>ament_lint_common</test_depend>
 
   <exec_depend>duatic_dynaarm_description</exec_depend>
+  <exec_depend version_gte="2.2.0">duatic_helpers</exec_depend>
   <exec_depend>duatic_controllers</exec_depend>
   <exec_depend>duatic_dynaarm_driver</exec_depend>
   <exec_depend>duatic_e_stop</exec_depend>

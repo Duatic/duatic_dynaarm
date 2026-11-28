@@ -22,7 +22,6 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import os
-import xacro
 
 from ament_index_python.packages import get_package_share_directory
 
@@ -33,22 +32,7 @@ from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
-
-def string_to_bool(string_input):
-    """Converts a string representation of a boolean value to a Python boolean.
-
-    Args:
-        string_input (str): The input string, e.g., "true", "false", "yes", "no".
-
-    Returns:
-        bool: The corresponding boolean value, or raises a ValueError for invalid input.
-    """
-    if string_input.lower() in ["true", "yes", "1"]:
-        return True
-    elif string_input.lower() in ["false", "no", "0"]:
-        return False
-    else:
-        raise ValueError(f"Invalid boolean string: '{string_input}'")
+from duatic_helpers import process_robot_description
 
 
 def launch_setup(context, *args, **kwargs):
@@ -63,18 +47,18 @@ def launch_setup(context, *args, **kwargs):
         package="duatic_dynaarm_single_example_description"
     ).find("duatic_dynaarm_single_example_description")
 
-    doc = xacro.parse(
-        open(os.path.join(pkg_share_description, "urdf/dynaarm_single_example.urdf.xacro"))
-    )
-
-    xacro.process_doc(
-        doc,
+    robot_description = process_robot_description(
+        urdf_file_path=os.path.join(
+            pkg_share_description, "urdf/dynaarm_single_example.urdf.xacro"
+        ),
+        srdf_file_path=os.path.join(
+            pkg_share_description, "srdf/dynaarm_single_example.srdf.xacro"
+        ),
         mappings={
             "version": version_value,
             "calibration_yaml": LaunchConfiguration("calibration_yaml").perform(context),
         },
     )
-    robot_description = {"robot_description": doc.toxml()}
 
     # Publish the joint state values for the non-fixed joints in the URDF file.
     start_joint_state_publisher_node = Node(
@@ -97,7 +81,7 @@ def launch_setup(context, *args, **kwargs):
         package="robot_state_publisher",
         executable="robot_state_publisher",
         output="screen",
-        parameters=[robot_description],
+        parameters=[{"robot_description": robot_description}],
     )
 
     # Launch RViz
@@ -114,7 +98,7 @@ def launch_setup(context, *args, **kwargs):
                 "config.rviz",
             ),
         ],
-        parameters=[robot_description],
+        parameters=[{"robot_description": robot_description}],
         condition=IfCondition(LaunchConfiguration("rviz")),
     )
 
@@ -144,13 +128,6 @@ def generate_launch_description():
             name="version",
             default_value="corydoras12",
             choices=["baracuda12", "corydoras12"],
-            description="Select the desired version of robot ",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            name="dual",
-            default_value="False",
             description="Select the desired version of robot ",
         )
     )

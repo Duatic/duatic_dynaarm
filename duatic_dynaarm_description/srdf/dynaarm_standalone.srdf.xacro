@@ -5,7 +5,9 @@
 -->
 <robot name="dynaarm" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+  <xacro:arg name="tf_prefix" default="" />
+
   <xacro:include filename="$(find duatic_dynaarm_description)/srdf/dynaarm.srdf.xacro" />
-  <xacro:dynaarm_srdf standalone="true"/>
+  <xacro:dynaarm_srdf prefix="$(arg tf_prefix)" standalone="true"/>
 
 </robot>

@@ -22,7 +22,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import os
-import xacro
+from duatic_helpers import process_robot_description
 
 from ament_index_python import get_package_share_directory
 
@@ -65,24 +65,21 @@ def launch_setup(context, *args, **kwargs):
         "duatic_dynaarm_description"
     )
 
-    is_dual = string_to_bool(dual_value)
-    if is_dual:
-        doc = xacro.parse(
-            open(os.path.join(pkg_share_description, "urdf/dynaarm_standalone_dual.urdf.xacro"))
-        )
+    if string_to_bool(dual_value):
+        urdf_file = os.path.join(pkg_share_description, "urdf/dynaarm_standalone_dual.urdf.xacro")
+        srdf_file = os.path.join(pkg_share_description, "srdf/dynaarm_standalone_dual.srdf.xacro")
     else:
-        doc = xacro.parse(
-            open(os.path.join(pkg_share_description, "urdf/dynaarm_standalone.urdf.xacro"))
-        )
+        urdf_file = os.path.join(pkg_share_description, "urdf/dynaarm_standalone.urdf.xacro")
+        srdf_file = os.path.join(pkg_share_description, "srdf/dynaarm_standalone.srdf.xacro")
 
-    xacro.process_doc(
-        doc,
+    robot_description = process_robot_description(
+        urdf_file_path=urdf_file,
+        srdf_file_path=srdf_file,
         mappings={
             "version": version_value,
             "calibration_yaml": LaunchConfiguration("calibration_yaml").perform(context),
         },
     )
-    robot_description = {"robot_description": doc.toxml()}
 
     # Publish the joint state values for the non-fixed joints in the URDF file.
     start_joint_state_publisher_node = Node(
@@ -105,7 +102,7 @@ def launch_setup(context, *args, **kwargs):
         package="robot_state_publisher",
         executable="robot_state_publisher",
         output="screen",
-        parameters=[robot_description],
+        parameters=[{"robot_description": robot_description}],
     )
 
     # Launch RViz
@@ -122,7 +119,7 @@ def launch_setup(context, *args, **kwargs):
                 "config.rviz",
             ),
         ],
-        parameters=[robot_description],
+        parameters=[{"robot_description": robot_description}],
     )
 
     nodes_to_start = [
